@@ -1,0 +1,16 @@
+/!Backup*
+/!RELEASE*
+/AE.Docs*
+/AE.Web*
+/OpenTK.Math*
+/WinProjATL*
+Thumbs.db
+*.dll
+*.obj
+*.pdb
+*.exe
+*.zip
+*.rar
+*.ncb
+*.suo
+*.user

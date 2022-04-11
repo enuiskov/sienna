@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4689A685-BFF5-4A5D-8EFA-50974A92E048}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AE</RootNamespace>
+    <AssemblyName>Aetopia</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>0162</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Compile Include="Commands.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Miscellaneous\AudioPlayer.cs" />
+    <Compile Include="Miscellaneous\AudioPlayer.Routines.cs" />
+    <Compile Include="Simulation\SixDOF.cs" />
+    <Compile Include="Visualization\Fonts.cs" />
+    <Compile Include="Visualization\Frames\Common\Scheme\ObjectModel\Project.cs" />
+    <Compile Include="Visualization\Frames\Common\Scheme\ObjectModel\SchemeNode.cs" />
+    <Compile Include="Visualization\Frames\Common\Scheme\SchemeFrame.cs" />
+    <Compile Include="Visualization\Frames\Common\FrameGL.cs" />
+    <Compile Include="Visualization\Frames\Common\ZoomableFrame\ZF+.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Visualization\Frames\Common\ZoomableFrame\ZF+Routines.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Visualization\Frames\Common\ZoomableFrame\ZF+Toolbox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Visualization\Frames\Special\EventTest.cs" />
+    <Compile Include="Visualization\Frames\Special\FPSMeter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Visualization\Frames\Special\Frame3D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Visualization\Frames\Special\ImageGenerator.cs" />
+    <Compile Include="Visualization\Frames\Special\AudioTest.cs" />
+    <Compile Include="Visualization\Frames\Special\KeyMatrix.cs" />
+    <Compile Include="Visualization\Frames\Special\Test.cs" />
+    <Compile Include="Visualization\Frames\Special\WaveEditorFrame.cs" />
+    <Compile Include="Visualization\Frames\WNoise.cs" />
+    <Compile Include="Visualization\GLCanvasControl\GLCC.Assets.cs" />
+    <Compile Include="Visualization\GLCanvasControl\GLCC.Events.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visualization\GLCanvasControl\GLCC.Routines.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visualization\GLCanvasControl\GLCanvasControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visualization\TextureAtlas.cs" />
+    <Compile Include="AE.cs" />
+    <Compile Include="KeyMatrix.cs" />
+    <Compile Include="Visualization\GLGraphicsLayer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>bin\Debug\OpenTK.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AE.Core\AE.Core.csproj">
+      <Project>{AEC1AF15-AA7C-4D7F-8A2D-3F3CA535DCF7}</Project>
+      <Name>AE.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AE.Visualization\AE.Visualization.csproj">
+      <Project>{4899C32C-9E2B-4DB5-8BE9-CE1F40D6FCB6}</Project>
+      <Name>AE.Visualization</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Toolbox\Modeller\" />
+    <Folder Include="Toolbox\Schemer\" />
+    <Folder Include="Visualization\Frames\Common\GDILayers\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,5 @@
+L:\Development\Sienna\Software\AE.DescriptionLanguage\obj\Debug\ResolveAssemblyReference.cache
+L:\Development\Sienna\Software\AE.DescriptionLanguage\bin\Debug\AE.DescriptionLanguage.dll
+L:\Development\Sienna\Software\AE.DescriptionLanguage\bin\Debug\AE.DescriptionLanguage.pdb
+L:\Development\Sienna\Software\AE.DescriptionLanguage\obj\Debug\AE.DescriptionLanguage.dll
+L:\Development\Sienna\Software\AE.DescriptionLanguage\obj\Debug\AE.DescriptionLanguage.pdb

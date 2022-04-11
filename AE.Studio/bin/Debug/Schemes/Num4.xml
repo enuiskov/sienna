@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NGonNode sides="4" position="0,0,0" rotation="0" scale="0.5" color="10">
+	<Children>
+		<NGonNode sides="4" position="0.301944838607224,0.319659536250844,0" rotation="-3.14159226417542" scale="0.25" color="2">
+			<Children>
+				<NGonNode sides="6" position="-0.170304788560402,-0.187623829781769,0" rotation="-0.523598790168762" scale="0.125" color="10">
+					<Children>
+						<NGonNode sides="6" position="0.591230137502099,-0.315433285053145,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="2" />
+						<NGonNode sides="6" position="0.645356699183444,-0.409183297852577,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="0.537103524196132,-0.409183269729734,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="0.699483312489411,-0.315433313175988,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="0.645356750808065,-0.221683300376555,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="0.537103575820753,-0.221683272253713,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="0.482976962514786,-0.315433256930302,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="0.482977014139408,-0.12793325945428,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="0.428850452458062,-0.0341832466548483,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="0.374723890776717,0.0595667661445839,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="0.320597329095372,0.153316778944016,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="0.374723839152096,-0.127933231331438,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="0.266470646956576,-0.190433202367269,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="0.482977065764029,0.0595667380217412,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="0.591230257959549,0.122066709057572,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="3" position="0.555145849088904,0.0595667192731794,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="3" position="0.338639430281451,-0.190433221115831,0" rotation="-1.0471978187561" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="3" position="0.519061474148936,0.122066728314343,0" rotation="0" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="3" position="0.302555055341484,-0.127933203208595,0" rotation="0" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="0.266470750205819,0.247066792584774,0" rotation="0" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="0.0442442462363202,-0.624722818076703,0" rotation="0" scale="0.0624999999999996" color="2" />
+						<NGonNode sides="4" position="0.00155595261804854,-0.698661112877949,0" rotation="1.04719758033752" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="4" position="0.0869325386425712,-0.69866111740127,0" rotation="2.09439492225647" scale="0.0624999999999995" color="5" />
+						<NGonNode sides="4" position="0.129620852369761,-0.624722837762666,0" rotation="3.14159226417542" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="4" position="0.0869325935140183,-0.550784525604363,0" rotation="-2.09439563751221" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="4" position="-0.0411323205362914,-0.624722798084277,0" rotation="-1.57079696655273" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="4" position="0.00155596088269636,-0.55078449243142,0" rotation="-1.04719829559326" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="4" position="-0.0296939988256434,-0.496657881432512,0" rotation="-1.04719829559326" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="4" position="-0.0609439585339832,-0.442531270433604,0" rotation="-1.04719829559326" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="4" position="-0.092193918242323,-0.388404659434696,0" rotation="-1.04719829559326" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="4" position="-0.123443877950663,-0.334278048435788,0" rotation="-1.04719829559326" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="4" position="-0.154693837659003,-0.280151437436881,0" rotation="-1.04719829559326" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="6" position="-0.134882284179254,-0.485219515802363,0" rotation="-1.57079696655273" scale="0.0624999999999996" color="8" />
+						<NGonNode sides="6" position="-0.0182555982607977,-0.345716418307373,0" rotation="-1.57079696655273" scale="0.0624999999999996" color="8" />
+						<NGonNode sides="3" position="-0.197382307264513,-0.521303866994191,0" rotation="-1.57079696655273" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="3" position="0.0442444283549647,-0.309632066629809,0" rotation="-0.5235995054245" scale="0.0624999999999996" color="7" />
+						<NGonNode sides="3" position="0.129620894309332,-0.575430646241857,0" rotation="0.523598790168762" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.129620840218117,-0.674015045550624,0" rotation="-0.523598790168762" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.0442442366663877,-0.723307214345053,0" rotation="-1.570796251297" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="-0.0411323495853719,-0.674015016327752,0" rotation="-2.61799359321594" scale="0.0624999999999995" color="5" />
+						<NGonNode sides="3" position="-0.0411323477346528,-0.575430635940861,0" rotation="2.61799430847168" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.0442442337920123,-0.526138426414267,0" rotation="-2.61799359321594" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="0.129620851156193,-0.772599436371737,0" rotation="-2.09439492225647" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="-0.0411323435929796,-0.772599421201575,0" rotation="-2.09439492225647" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="-0.126508947808704,-0.624722838903087,0" rotation="-2.09439492225647" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="0.129620809714668,-0.47684621301782,0" rotation="-2.09439492225647" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="6" position="0.214997487657572,-0.624722832110432,0" rotation="-2.09439492225647" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.251081891064294,-0.687222825049424,0" rotation="-2.09439492225647" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="-0.00504794018625801,-0.835099414140567,0" rotation="-2.09439492225647" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="-0.198677731133581,-0.624722851342453,0" rotation="-2.09439492225647" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.165705189632822,-0.414346207639462,0" rotation="-2.09439492225647" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.201789600065209,-0.47684620407384,0" rotation="-1.04719758033752" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.201789627455405,-0.772599427427759,0" rotation="-1.04719758033752" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.093536464212374,-0.835099445245483,0" rotation="-1.04719758033752" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="-0.162593334752524,-0.687222847776833,0" rotation="-1.04719758033752" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.251081873918401,-0.562222823070128,0" rotation="0" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="-0.113301132547129,-0.772599430951761,0" rotation="0" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.165705247051513,-0.835099446016575,0" rotation="0" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.0935364063079457,-0.414346214630236,0" rotation="1.04719758033752" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="-0.0772167416090177,-0.835099431089511,0" rotation="1.04719758033752" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="3" position="0.287166275701067,-0.624722822395361,0" rotation="1.04719758033752" scale="0.0624999999999996" color="5" />
+						<NGonNode sides="4" position="0.223782368268104,-0.116494896555122,0" rotation="-1.04719769954681" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="0.192532376297796,-0.0623683041826518,0" rotation="-1.04719769954681" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="0.161282384327488,-0.00824171181018185,0" rotation="-1.04719769954681" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="0.13003239235718,0.0458848805622881,0" rotation="-1.04719769954681" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="0.0759057999847105,0.0146348885919801,0" rotation="-1.04719769954681" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="0.0217792076122406,-0.0166151033783279,0" rotation="-1.04719769954681" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="6" position="-0.0521590869250961,-0.0593033885763157,0" rotation="-1.57079637050629" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.126097383091106,-0.101991679852595,0" rotation="-2.61799383163452" scale="0.0624999999999984" color="2" />
+						<NGonNode sides="4" position="-0.126097380348627,-0.016615090320735,0" rotation="-2.09439516067505" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.0521590888973571,0.0260732041432118,0" rotation="-3.14159250259399" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.180223969378977,-0.133241682361738,0" rotation="-2.61799383163452" scale="0.062499999999998" color="2" />
+						<NGonNode sides="4" position="-0.234350555666848,-0.164491684870882,0" rotation="-2.61799383163452" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.288477141954718,-0.195741687380026,0" rotation="-2.61799383163452" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.180223966263845,0.0146349128338621,0" rotation="-2.09439516067505" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.234350552179063,0.0458849159884593,0" rotation="-2.09439516067505" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.288477138094282,0.0771349191430564,0" rotation="-2.09439516067505" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.0521590885247045,0.0885732139530997,0" rotation="-1.57079648971558" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.0521590783421621,0.151073213953097,0" rotation="-1.57079648971558" scale="0.0624999999999986" color="2" />
+						<NGonNode sides="4" position="-0.0521590681596197,0.213573213953095,0" rotation="-1.57079648971558" scale="0.0624999999999985" color="2" />
+						<NGonNode sides="4" position="0.223782459397983,0.321005097874695,0" rotation="-1.0471978187561" scale="0.0624999999999978" color="2" />
+						<NGonNode sides="4" position="0.192532473880067,0.375131693972454,0" rotation="-1.0471978187561" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="0.161282488362152,0.429258290070212,0" rotation="-1.0471978187561" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="8" position="0.107935424688069,0.521658171882419,0" rotation="-1.0471978187561" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="0.00487676548677785,0.549272678691125,0" rotation="-1.83259582519531" scale="0.0624999999999986" color="2" />
+						<NGonNode sides="4" position="-0.0554935968671801,0.56544887568707,0" rotation="-1.83259582519531" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.115863959221138,0.581625072683016,0" rotation="-1.83259582519531" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.132040156217084,0.521254710329058,0" rotation="-1.83259582519531" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.14821635321303,0.4608843479751,0" rotation="-1.83259582519531" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.164392550208976,0.400513985621142,0" rotation="-1.83259582519531" scale="0.0624999999999987" color="2" />
+						<NGonNode sides="4" position="-0.291054160599952,0.531510021641944,0" rotation="-1.83259582519531" scale="0.249999999999995" color="2">
+							<Children>
+								<NGonNode sides="6" position="0.016155228605093,-0.0493602964454223,0" rotation="-1.57079637050629" scale="0.249999999999986" color="5" />
+								<NGonNode sides="6" position="0.297405226239129,-0.1034868955043,0" rotation="-1.57079637050629" scale="0.0624999999999982" color="5" />
+								<NGonNode sides="6" position="0.20365521914129,-0.265866651701499,0" rotation="-1.57079637050629" scale="0.0624999999999981" color="5" />
+								<NGonNode sides="6" position="0.297405221507236,-0.211740069034393,0" rotation="-1.57079637050629" scale="0.0624999999999982" color="5" />
+								<NGonNode sides="3" position="0.234905224661832,-0.139571283949038,0" rotation="-1.57079637050629" scale="0.0624999999999976" color="5" />
+								<NGonNode sides="3" position="0.203655222295888,-0.1936978693481,0" rotation="-1.57079637050629" scale="0.0624999999999983" color="5" />
+								<NGonNode sides="3" position="0.23490522661504,-0.175655674639993,0" rotation="-0.523598909378052" scale="0.0624999999999982" color="5" />
+								<NGonNode sides="4" position="-0.151533073030082,-0.254428337840608,0" rotation="-1.04719769954681" scale="0.0624999999999985" color="5" />
+								<NGonNode sides="4" position="-0.18278306500039,-0.200301745468139,0" rotation="-1.04719769954681" scale="0.0624999999999985" color="5" />
+								<NGonNode sides="4" position="-0.214033056970698,-0.146175153095669,0" rotation="-1.04719769954681" scale="0.0624999999999985" color="5" />
+								<NGonNode sides="4" position="-0.245283071595973,-0.0920485776889633,0" rotation="-1.04719769954681" scale="0.0624999999999985" color="7" />
+								<NGonNode sides="4" position="-0.0775947621587706,0.198396056306355,0" rotation="0" scale="0.0624999999999985" color="12" />
+								<NGonNode sides="6" position="0.109905237674555,0.221272632659708,0" rotation="0.523598790168762" scale="0.0624999999999985" color="12" />
+								<NGonNode sides="3" position="0.0474052355237595,0.257357026711866,0" rotation="1.570796251297" scale="0.0624999999999984" color="13" />
+								<NGonNode sides="3" position="0.172405239557526,0.257357024261323,0" rotation="1.570796251297" scale="0.0624999999999983" color="13" />
+								<NGonNode sides="4" position="0.0474052392452161,0.306649222300214,0" rotation="1.570796251297" scale="0.0624999999999971" color="1" />
+								<NGonNode sides="4" position="0.109905243278985,0.30664922456829,0" rotation="1.570796251297" scale="0.0624999999999983" color="1" />
+								<NGonNode sides="4" position="0.172405243278983,0.306649219849672,0" rotation="1.570796251297" scale="0.0624999999999983" color="1" />
+								<NGonNode sides="6" position="-0.077594758072326,0.283772645430712,0" rotation="1.570796251297" scale="0.0624999999999967" color="1" />
+							</Children>
+						</NGonNode>
+						<NGonNode sides="4" position="-0.433098735983135,0.423985052229935,0" rotation="-0.261799395084381" scale="0.0312499999999993" color="4" />
+						<NGonNode sides="4" position="-0.402913553970526,0.415896956850576,0" rotation="-0.261799395084381" scale="0.0312499999999993" color="4" />
+						<NGonNode sides="4" position="-0.372728371957916,0.407808861471216,0" rotation="-0.261799395084381" scale="0.0312499999999993" color="4" />
+						<NGonNode sides="4" position="-0.360305852619992,0.695651683658376,0" rotation="-0.261799395084381" scale="0.0312499999999993" color="6" />
+						<NGonNode sides="4" position="-0.330120670607383,0.687563588279017,0" rotation="-0.261799395084381" scale="0.0312499999999993" color="6" />
+						<NGonNode sides="4" position="-0.299935488594774,0.679475492899657,0" rotation="-0.261799395084381" scale="0.0312499999999993" color="6" />
+						<NGonNode sides="4" position="-0.417715769059138,0.66250605431679,0" rotation="1.30899691581726" scale="0.0624999999999959" color="2" />
+						<NGonNode sides="4" position="-0.466244365324722,0.481394968669083,0" rotation="1.30899691581726" scale="0.0624999999999985" color="2" />
+						<NGonNode sides="4" position="-0.450068173606521,0.541765332437209,0" rotation="1.30899691581726" scale="0.0624999999999985" color="2" />
+					</Children>
+				</NGonNode>
+				<NGonNode sides="6" position="0.204695206391658,-0.187623832331263,0" rotation="-0.523598790168762" scale="0.125" color="2">
+					<Children>
+						<NGonNode sides="4" position="-0.00218958830630382,-0.00405154995793255,0" rotation="2.09439492225647" scale="0.499999999999996" color="2">
+							<Children>
+								<NGonNode sides="4" position="-0.312575612543748,-0.247982771662006,0" rotation="3.14159226417542" scale="0.249999999999998" color="9" />
+								<NGonNode sides="4" position="-0.312575515190153,0.0020172283379733,0" rotation="3.14159226417542" scale="0.249999999999998" color="9" />
+								<NGonNode sides="4" position="-0.312575417836559,0.252017228337953,0" rotation="3.14159226417542" scale="0.249999999999998" color="9" />
+								<NGonNode sides="4" position="-0.0625756125437688,-0.247982869015601,0" rotation="3.14159226417542" scale="0.249999999999998" color="1" />
+								<NGonNode sides="4" position="-0.0625754178365796,0.252017130984358,0" rotation="3.14159226417542" scale="0.249999999999998" color="1" />
+								<NGonNode sides="4" position="0.1874245821634,0.252017033630764,0" rotation="3.14159226417542" scale="0.249999999999998" color="1" />
+								<NGonNode sides="4" position="0.187424387456211,-0.247982966369195,0" rotation="3.14159226417542" scale="0.249999999999998" color="1" />
+								<NGonNode sides="4" position="0.187424484809805,0.00201703363078421,0" rotation="3.14159226417542" scale="0.249999999999998" color="1" />
+							</Children>
+						</NGonNode>
+						<NGonNode sides="4" position="-0.11504014667415,-0.339838733641383,0" rotation="2.09439492225647" scale="0.0312499999999998" color="3" />
+						<NGonNode sides="4" position="-0.130665141799057,-0.312775436958483,0" rotation="2.09439492225647" scale="0.0312499999999998" color="3" />
+						<NGonNode sides="4" position="-0.146290136923963,-0.285712140275584,0" rotation="2.09439492225647" scale="0.0312499999999998" color="3" />
+						<NGonNode sides="4" position="-0.16191513204887,-0.258648843592685,0" rotation="2.09439492225647" scale="0.0312499999999998" color="3" />
+						<NGonNode sides="4" position="-0.349415073547747,0.0661107166021085,0" rotation="2.09439492225647" scale="0.0312499999999998" color="6" />
+						<NGonNode sides="4" position="-0.333790078422841,0.0390474199192091,0" rotation="2.09439492225647" scale="0.0312499999999998" color="6" />
+						<NGonNode sides="4" position="-0.318165083297935,0.0119841232363097,0" rotation="2.09439492225647" scale="0.0312499999999998" color="6" />
+						<NGonNode sides="4" position="-0.302540088173028,-0.0150791734465898,0" rotation="2.09439492225647" scale="0.0312499999999998" color="6" />
+						<NGonNode sides="4" position="-0.337976771989754,0.108799008409914,0" rotation="2.09439492225647" scale="0.0312499999999998" color="10" />
+						<NGonNode sides="4" position="-0.310913475306855,0.124424003534821,0" rotation="2.09439492225647" scale="0.0312499999999998" color="10" />
+						<NGonNode sides="4" position="-0.283850178623956,0.140048998659727,0" rotation="2.09439492225647" scale="0.0312499999999998" color="10" />
+						<NGonNode sides="4" position="-0.256786881941056,0.155673993784634,0" rotation="2.09439492225647" scale="0.0312499999999998" color="10" />
+						<NGonNode sides="4" position="0.0466285323498339,0.348893086062508,0" rotation="2.09439492225647" scale="0.0624999999999996" color="12" />
+						<NGonNode sides="4" position="-0.00749806101596498,0.317643095812695,0" rotation="2.09439492225647" scale="0.0624999999999996" color="12" />
+						<NGonNode sides="4" position="-0.0616246543817638,0.286393105562882,0" rotation="2.09439492225647" scale="0.0624999999999996" color="12" />
+						<NGonNode sides="4" position="0.385069952388115,0.0751952048093482,0" rotation="2.09439492225647" scale="0.249999999999998" color="12" />
+						<NGonNode sides="3" position="0.555823153171494,0.173779580249934,0" rotation="1.570796251297" scale="0.249999999999998" color="12" />
+						<NGonNode sides="3" position="0.555823234176188,0.318117176249642,0" rotation="-1.57079696655273" scale="0.249999999999996" color="12" />
+						<NGonNode sides="3" position="0.430823297693587,0.390286012413041,0" rotation="-2.61799430847168" scale="0.249999999999998" color="12" />
+						<NGonNode sides="4" position="0.260070020774448,0.291701680097958,0" rotation="2.09439492225647" scale="0.249999999999998" color="12" />
+						<NGonNode sides="3" position="0.267147963802742,-0.158057962421876,0" rotation="0" scale="0.0625" color="2" />
+						<NGonNode sides="3" position="0.213021377037691,-0.189307962421876,0" rotation="0" scale="0.0625" color="2" />
+						<NGonNode sides="4" position="0.188375279107266,-0.294496256456801,0" rotation="-0.523598790168762" scale="0.0625" color="3" />
+						<NGonNode sides="4" position="0.242501865356167,-0.325746255668151,0" rotation="-0.523598790168762" scale="0.0625" color="3" />
+						<NGonNode sides="4" position="0.168563571564892,-0.391311137772926,0" rotation="-0.523598790168762" scale="0.125" color="3" />
+						<NGonNode sides="6" position="0.0831869788809498,-0.53918772258283,0" rotation="-1.04719758033752" scale="0.125" color="3" />
+						<NGonNode sides="4" position="-0.0021896138029924,-0.687064307392735,0" rotation="-0.523598790168762" scale="0.125" color="5" />
+						<NGonNode sides="4" position="0.168563564446681,-0.68706431195797,0" rotation="0.523598790168762" scale="0.125" color="5" />
+						<NGonNode sides="4" position="-0.0875661937993206,-0.539187721110879,0" rotation="0" scale="0.125" color="5" />
+						<NGonNode sides="4" position="0.253940158057443,-0.539187725842776,0" rotation="0" scale="0.125" color="5" />
+						<NGonNode sides="3" position="-0.323236516473592,0.177018153274899,0" rotation="-1.04719769954681" scale="0.124999999999998" color="10" />
+						<NGonNode sides="6" position="-0.433259264369843,-0.036423280215451,0" rotation="-2.61799430847168" scale="0.124999999999998" color="6">
+							<Children>
+								<NGonNode sides="3" position="-0.793856605887416,0.5,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.685603432357318,0.437500000000002,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.57735025882722,0.375000000000005,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.469097085297122,0.312500000000007,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.360843911767025,0.250000000000009,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.252590738236927,0.187500000000012,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.144337564706829,0.125000000000014,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.252590738236927,0.0625000000000164,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.360843911767025,1.87211357527417E-14,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.360843911767025,-0.124999999999977,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.360843911767025,-0.249999999999972,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.469097085297122,-0.31249999999997,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.57735025882722,-0.374999999999967,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.685603432357318,-0.437499999999965,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.793856605887416,-0.499999999999963,0" rotation="0" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="-0.721687823534014,-0.500000028103524,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.613434650003916,-0.437500028103526,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.505181476473818,-0.375000028103529,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.396928327282124,-0.312499985948192,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.396928375958921,-0.187499985948203,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.396928424635719,-0.0624999859482145,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.288675105075229,1.40518027075265E-08,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.180421931545131,0.0625000140518003,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.180421931545132,0.187500014051796,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.288675129413623,0.249999971896448,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.396928327282124,0.312500014051785,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.505181525150615,0.374999971896437,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.613434723019106,0.437499929741089,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+								<NGonNode sides="3" position="-0.721687799195621,0.500000014051784,0" rotation="-3.14159226417542" scale="0.124999999999998" color="2" />
+							</Children>
+						</NGonNode>
+						<NGonNode sides="4" position="-0.206135881795925,-0.338306279143124,0" rotation="-1.04719769954681" scale="0.124999999999998" color="3" />
+						<NGonNode sides="3" position="-0.291512480620787,-0.38759846957724,0" rotation="-1.57079637050629" scale="0.124999999999999" color="3" />
+						<NGonNode sides="4" position="-0.376889066536005,-0.338306269984461,0" rotation="-2.09439516067505" scale="0.124999999999998" color="3" />
+						<NGonNode sides="4" position="-0.291512490687964,-0.486182865966855,0" rotation="-1.57079648971558" scale="0.124999999999999" color="3" />
+						<NGonNode sides="3" position="0.19497917704106,-0.220557964406115,0" rotation="-1.04719769954681" scale="0.0624999999999995" color="3" />
+						<NGonNode sides="3" position="0.24910576941353,-0.189307972435807,0" rotation="-1.04719769954681" scale="0.0624999999999996" color="3" />
+						<NGonNode sides="3" position="0.158894780742677,-0.22055796144911,0" rotation="0" scale="0.0624999999999996" color="2" />
+						<NGonNode sides="3" position="0.249105766256652,-0.251807974283663,0" rotation="-2.09439516067505" scale="0.125" color="3" />
+						<NGonNode sides="3" position="0.253940160851971,-0.637772119916787,0" rotation="-2.61799383163452" scale="0.125" color="5" />
+						<NGonNode sides="3" position="0.083186964619044,-0.736356507818819,0" rotation="-1.57079648971558" scale="0.125" color="5" />
+						<NGonNode sides="3" position="-0.0875662037871597,-0.637772127644066,0" rotation="-0.523599028587341" scale="0.124999999999999" color="5" />
+						<NGonNode sides="3" position="0.253940161247157,-0.440603334605253,0" rotation="0.523598790168762" scale="0.125" color="5" />
+						<NGonNode sides="3" position="0.0831869889436336,-0.342018941912076,0" rotation="1.570796251297" scale="0.125" color="5" />
+						<NGonNode sides="4" position="-0.00218961144805626,-0.391311129632369,0" rotation="2.09439492225647" scale="0.124999999999999" color="5" />
+						<NGonNode sides="3" position="-0.0875661805136857,-0.440603308865746,0" rotation="2.61799359321594" scale="0.125" color="5" />
+					</Children>
+				</NGonNode>
+				<NGonNode sides="6" position="0.204695211228903,0.0288825176433697,0" rotation="-0.523598790168762" scale="0.125" color="2">
+					<Children>
+						<NGonNode sides="3" position="0.287585196283765,-0.499887818127701,0" rotation="-1.04719769954681" scale="0.999999999999984" color="7" />
+						<NGonNode sides="3" position="-0.0732586422187787,-0.624887785187456,0" rotation="0" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="0.576260417685412,-0.249887785867924,0" rotation="0" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="0.359754070625212,-0.124887785867926,0" rotation="0" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="-0.0732586422187787,-0.37488778518746,0" rotation="0" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="-0.0732586422187787,-0.124887785187464,0" rotation="0" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="0.143247723565012,0.000112214132071756,0" rotation="0" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="0.287585293857381,0.000112217356901534,0" rotation="1.04719758033752" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="0.504091648446103,-0.124887776333901,0" rotation="1.04719758033752" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="-0.145427428214795,-0.499887785327922,0" rotation="1.04719758033752" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="-0.145427426515132,-0.74988778827182,0" rotation="1.04719758033752" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="0.720597978749597,-0.249887786008388,0" rotation="1.04719758033752" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="-0.145427437442979,-0.24988778869322,0" rotation="1.04719758033752" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="0.792766764745613,-0.37488778481639,0" rotation="0" scale="0.249999999999996" color="7" />
+						<NGonNode sides="3" position="-0.073258640519116,-0.874887788131355,0" rotation="0" scale="0.249999999999996" color="7" />
+						<NGonNode sides="4" position="-0.126089876923793,0.216618559694697,0" rotation="0.523598790168762" scale="0.499999999999992" color="7" />
+						<NGonNode sides="3" position="-0.467596227590772,0.235956122340023,0" rotation="0.523598790168762" scale="0.124999999999998" color="7" />
+						<NGonNode sides="3" position="-0.405096226013474,0.127702947777624,0" rotation="0.523598790168762" scale="0.124999999999998" color="7" />
+						<NGonNode sides="3" position="0.0279164682100272,0.522040519348736,0" rotation="1.570796251297" scale="0.124999999999998" color="7" />
+						<NGonNode sides="3" position="0.0904164600371386,0.413787341100017,0" rotation="1.570796251297" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.119960115766091,0.581001510623224,0" rotation="2.09439492225647" scale="0.124999999999997" color="7" />
+						<NGonNode sides="4" position="-0.228213302497687,0.518501530123599,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.336466489229284,0.456001549623974,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.444719626087201,0.39350148928051,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.302972808997559,-0.102011188802066,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="0.238293078471587,0.210488797340106,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.411225995729156,-0.164511169301692,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.34872601522953,-0.272764356033289,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.473725976228781,-0.0562579825700952,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.581979162960378,-0.118757963069721,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.690232349691974,-0.181257943569346,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.456979201961127,-0.335264336532914,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.565232388692724,-0.397764317032539,0" rotation="2.09439492225647" scale="0.124999999999998" color="7" />
+						<NGonNode sides="6" position="0.386169692915052,0.295865351898697,0" rotation="2.61799359321594" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="0.386169744811347,0.466618530641704,0" rotation="3.14159226417542" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="0.534046255852648,0.210488718555161,0" rotation="2.61799359321594" scale="0.124999999999998" color="7" />
+					</Children>
+				</NGonNode>
+				<NGonNode sides="6" position="0.0171952096516117,-0.0793706365539442,0" rotation="-0.523598790168762" scale="0.125" color="2">
+					<Children>
+						<NGonNode sides="4" position="0.695319083021802,-0.454298743894518,0" rotation="-2.61799383163452" scale="0.249999999999991" color="3" />
+						<NGonNode sides="4" position="0.183059713082629,-0.317039284855819,0" rotation="-2.61799430847168" scale="0.499999999999983" color="3">
+							<Children>
+								<NGonNode sides="4" position="-0.0148786801884458,0.0606409130950865,0" rotation="-1.57079648971558" scale="0.24999999999999" color="2" />
+								<NGonNode sides="4" position="-0.108628703099162,-0.0799840716310925,0" rotation="-1.57079648971558" scale="0.0312499999999987" color="2" />
+								<NGonNode sides="4" position="-0.0773787030991632,-0.0799840767223637,0" rotation="-1.57079648971558" scale="0.0312499999999987" color="2" />
+								<NGonNode sides="4" position="-0.0461287030991649,-0.079984081813635,0" rotation="-1.57079648971558" scale="0.0312499999999987" color="2" />
+								<NGonNode sides="4" position="-0.0148787030991666,-0.0799840869049062,0" rotation="-1.57079648971558" scale="0.0312499999999988" color="2" />
+								<NGonNode sides="4" position="0.0163712969008318,-0.0799840919961775,0" rotation="-1.57079648971558" scale="0.0312499999999987" color="2" />
+								<NGonNode sides="4" position="0.0476212969008301,-0.0799840970874487,0" rotation="-1.57079648971558" scale="0.0312499999999988" color="2" />
+								<NGonNode sides="4" position="0.0788712969008284,-0.0799841021787199,0" rotation="-1.57079648971558" scale="0.0312499999999988" color="2" />
+								<NGonNode sides="4" position="-0.108628647654159,0.216890921290962,0" rotation="3.14159226417542" scale="0.0624999999999976" color="2" />
+								<NGonNode sides="4" position="-0.0461286476541657,0.216890896952563,0" rotation="3.14159226417542" scale="0.0624999999999976" color="2" />
+								<NGonNode sides="4" position="0.0163713523458271,0.216890872614165,0" rotation="3.14159226417542" scale="0.0624999999999976" color="2" />
+								<NGonNode sides="4" position="0.0788713523458355,0.216890904899191,0" rotation="3.14159226417542" scale="0.0624999999999976" color="2" />
+								<NGonNode sides="6" position="-0.0148785888841063,0.356394119446439,0" rotation="-2.61799430847168" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="0.0788713760576749,0.266183108310766,0" rotation="-1.57079696655273" scale="0.0624999999999976" color="2" />
+								<NGonNode sides="3" position="-0.108628622259654,0.266183187430664,0" rotation="-1.57079696655273" scale="0.0624999999999976" color="2" />
+								<NGonNode sides="6" position="0.141371399142932,0.302267459502593,0" rotation="-1.57079696655273" scale="0.0624999999999976" color="2" />
+								<NGonNode sides="6" position="-0.171128599174367,0.302267618592221,0" rotation="-1.57079696655273" scale="0.0624999999999976" color="2" />
+								<NGonNode sides="4" position="0.172621324530151,0.185640852745138,0" rotation="-1.57079696655273" scale="0.124999999999995" color="2" />
+								<NGonNode sides="4" position="-0.202378673787133,0.18564105181963,0" rotation="-1.57079696655273" scale="0.124999999999995" color="2" />
+								<NGonNode sides="4" position="0.172621244560421,0.0606408527451686,0" rotation="-1.57079696655273" scale="0.124999999999995" color="2" />
+								<NGonNode sides="4" position="-0.202378753756862,0.0606410518196608,0" rotation="-1.57079696655273" scale="0.124999999999995" color="2" />
+								<NGonNode sides="3" position="0.203871376057645,0.266183028341036,0" rotation="-1.57079696655273" scale="0.0624999999999976" color="2" />
+								<NGonNode sides="3" position="-0.233628622259624,0.266183267400394,0" rotation="-1.57079696655273" scale="0.0624999999999976" color="2" />
+							</Children>
+						</NGonNode>
+						<NGonNode sides="4" position="0.0458000475673609,-0.829298774004241,0" rotation="-2.61799383163452" scale="0.249999999999991" color="3" />
+						<NGonNode sides="4" position="0.262306392718841,-0.704298763967667,0" rotation="-2.61799383163452" scale="0.249999999999991" color="3" />
+						<NGonNode sides="4" position="0.478812737870322,-0.579298753931092,0" rotation="-2.61799383163452" scale="0.249999999999991" color="3" />
+						<NGonNode sides="6" position="-0.158446779693315,0.274467087162142,0" rotation="-2.09439516067505" scale="0.499999999999983" color="5">
+							<Children>
+								<NGonNode sides="4" position="0.0770031686758394,0.883373407775588,0" rotation="-2.09439516067505" scale="0.124999999999997" color="2" />
+								<NGonNode sides="4" position="0.185256340506276,0.820873401466394,0" rotation="-2.09439516067505" scale="0.124999999999997" color="2" />
+								<NGonNode sides="4" position="0.293509512336712,0.758373395157199,0" rotation="-2.09439516067505" scale="0.124999999999997" color="2" />
+								<NGonNode sides="4" position="0.401762684167149,0.695873388848005,0" rotation="-2.09439516067505" scale="0.124999999999997" color="2" />
+								<NGonNode sides="4" position="0.510015855997585,0.633373382538811,0" rotation="-2.09439516067505" scale="0.124999999999997" color="2" />
+								<NGonNode sides="4" position="0.618269027828022,0.570873376229616,0" rotation="-2.09439516067505" scale="0.124999999999997" color="2" />
+								<NGonNode sides="4" position="0.726522199658458,0.508373369920422,0" rotation="-2.09439516067505" scale="0.124999999999997" color="2" />
+							</Children>
+						</NGonNode>
+					</Children>
+				</NGonNode>
+				<NGonNode sides="6" position="0.0171952064970053,-0.295877006043832,0" rotation="-0.523598790168762" scale="0.125" color="2">
+					<Children>
+						<NGonNode sides="8" position="0.0338589451429161,0.160003053073743,0" rotation="0.523598790168762" scale="0.125" color="2" />
+						<NGonNode sides="4" position="-0.150940809008189,0.0533088757300509,0" rotation="2.09439492225647" scale="0.125" color="2" />
+						<NGonNode sides="4" position="-0.259193995739788,-0.00919110476957599,0" rotation="2.09439492225647" scale="0.125" color="2" />
+						<NGonNode sides="4" position="-0.367447182471386,-0.071691085269202,0" rotation="2.09439492225647" scale="0.125" color="2" />
+						<NGonNode sides="8" position="-0.552246936768305,-0.17838522877308,0" rotation="2.09439492225647" scale="0.125" color="2" />
+						<NGonNode sides="8" position="0.295205262854471,0.310891391109473,0" rotation="2.09439492225647" scale="0.125" color="2" />
+						<NGonNode sides="4" position="0.239976280480786,0.104774055641492,0" rotation="2.87979292869568" scale="0.125" color="2" />
+						<NGonNode sides="8" position="0.446093584736898,0.0495450077774809,0" rotation="2.87979292869568" scale="0.125" color="2" />
+						<NGonNode sides="4" position="0.207623875535256,-0.015966696672909,0" rotation="-1.83259570598602" scale="0.124999999999999" color="2" />
+						<NGonNode sides="4" position="0.17527149593678,-0.136707425237531,0" rotation="-1.83259570598602" scale="0.124999999999999" color="2" />
+						<NGonNode sides="12" position="0.0987249425084302,-0.42238306161283,0" rotation="-1.83259570598602" scale="0.124999999999999" color="9" />
+						<NGonNode sides="3" position="0.358885059441765,-0.35267336449725,0" rotation="1.30899691581726" scale="0.124999999999999" color="9" />
+						<NGonNode sides="3" position="0.358885059078926,-0.492092753016869,0" rotation="0.785398185253143" scale="0.124999999999999" color="9" />
+						<NGonNode sides="3" position="0.289175370265446,-0.612833481470857,0" rotation="0.261799395084381" scale="0.124999999999999" color="9" />
+						<NGonNode sides="3" position="-0.0917254834007976,-0.231932634576852,0" rotation="-0.785398185253143" scale="0.124999999999999" color="9" />
+						<NGonNode sides="3" position="-0.16143517710665,-0.352673361792642,0" rotation="-0.261799395084381" scale="0.124999999999999" color="9" />
+						<NGonNode sides="3" position="-0.161435174814519,-0.492092759118024,0" rotation="0.261799395084381" scale="0.124999999999999" color="9" />
+					</Children>
+				</NGonNode>
+				<NGonNode sides="6" position="-0.170304787088428,0.028882559223373,0" rotation="-1.57079648971558" scale="0.124999999999987" color="5">
+					<Children>
+						<NGonNode sides="6" position="0.434052585916673,0.248300848175373,0" rotation="3.14159226417542" scale="0.499999999999992" color="7" />
+						<NGonNode sides="6" position="0.00103959973552155,-0.501698983203189,0" rotation="3.14159226417542" scale="0.499999999999992" color="7" />
+						<NGonNode sides="6" position="-0.431972802324062,0.248301185418111,0" rotation="3.14159226417542" scale="0.499999999999992" color="7" />
+					</Children>
+				</NGonNode>
+				<NGonNode sides="4" position="0.0171952230940947,0.0913825286757407,0" rotation="-1.57079648971558" scale="0.124999999999992" color="4">
+					<Children>
+						<NGonNode sides="4" position="0.437607795906755,0.312393303779183,0" rotation="3.14159226417542" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="0.437607747229958,0.187393303779195,0" rotation="3.14159226417542" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="0.437607698553161,0.0623933037792061,0" rotation="3.14159226417542" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="0.437607552522769,-0.312606696220759,0" rotation="3.14159226417542" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="0.437607503845972,-0.437606696220748,0" rotation="3.14159226417542" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="0.437607844583553,0.437393303779172,0" rotation="3.14159226417542" scale="0.124999999999998" color="7" />
+						<NGonNode sides="4" position="-0.437602358535601,0.437958335647707,0" rotation="3.14159226417542" scale="0.124999999999998" color="3" />
+						<NGonNode sides="4" position="-0.437602407212398,0.312958335647719,0" rotation="3.14159226417542" scale="0.124999999999998" color="3" />
+						<NGonNode sides="4" position="-0.437602455889195,0.18795833564773,0" rotation="3.14159226417542" scale="0.124999999999998" color="3" />
+						<NGonNode sides="4" position="-0.437602504565993,0.0629583356477417,0" rotation="3.14159226417542" scale="0.124999999999998" color="3" />
+						<NGonNode sides="4" position="-0.43760255324279,-0.0620416643522468,0" rotation="3.14159226417542" scale="0.124999999999998" color="3" />
+						<NGonNode sides="4" position="-0.437602601919587,-0.187041664352235,0" rotation="3.14159226417542" scale="0.124999999999998" color="5" />
+						<NGonNode sides="4" position="-0.437602650596384,-0.312041664352224,0" rotation="3.14159226417542" scale="0.124999999999998" color="5" />
+						<NGonNode sides="4" position="-0.437602699273182,-0.437041664352212,0" rotation="3.14159226417542" scale="0.124999999999998" color="3" />
+						<NGonNode sides="6" position="0.00821420690839103,-0.00194921767883433,0" rotation="3.14159226417542" scale="0.124999999999998" color="5" />
+						<NGonNode sides="4" position="0.0935907361201941,-0.149825842168277,0" rotation="-2.61799430847168" scale="0.124999999999998" color="2" />
+						<NGonNode sides="4" position="0.0935908582601394,0.145927338947141,0" rotation="-2.09439563751221" scale="0.124999999999998" color="2" />
+						<NGonNode sides="4" position="-0.162538982268153,-0.00194913553861917,0" rotation="-1.57079696655273" scale="0.124999999999998" color="2" />
+						<NGonNode sides="6" position="0.178967545719482,0.29380387931435,0" rotation="-1.04719829559326" scale="0.124999999999998" color="2" />
+						<NGonNode sides="3" position="0.142882893984121,-0.235202472201779,0" rotation="0" scale="0.124999999999998" color="2" />
+						<NGonNode sides="4" position="0.241467314008794,-0.23520246665773,0" rotation="0" scale="0.124999999999998" color="2" />
+						<NGonNode sides="4" position="0.0935907259389461,-0.32057905315028,0" rotation="-0.523598790168762" scale="0.124999999999998" color="2" />
+					</Children>
+				</NGonNode>
+				<NGonNode sides="6" position="0.0171952509133043,0.26213570220582,0" rotation="-1.57079648971558" scale="0.124999999999977" color="4" />
+				<NGonNode sides="3" position="-0.107804754965566,0.226051331394208,0" rotation="-1.57079648971558" scale="0.0624999999999932" color="4" />
+				<NGonNode sides="3" position="-0.107804739677274,0.298220114233342,0" rotation="-0.523599028587341" scale="0.0624999999999964" color="4" />
+				<NGonNode sides="6" position="-0.170304748245342,0.262135737896983,0" rotation="-0.523599028587341" scale="0.062499999999997" color="4" />
+			</Children>
+		</NGonNode>
+		<NGonNode sides="3" position="0.104776007577027,0.319659536250836,0" rotation="0" scale="0.249999999999998" color="5" />
+		<NGonNode sides="4" position="0.00619161379072876,0.148906363265735,0" rotation="-0.523598790168762" scale="0.249999999999998" color="5">
+			<Children>
+				<NGonNode sides="4" position="-0.437500002731963,0.43749999726804,0" rotation="-1.57079637050629" scale="0.124999999999997" color="2" />
+				<NGonNode sides="4" position="-0.312500002731966,0.437499991804115,0" rotation="-1.57079637050629" scale="0.124999999999999" color="2" />
+				<NGonNode sides="4" position="-0.187500002731967,0.437499986340191,0" rotation="-1.57079637050629" scale="0.124999999999999" color="2" />
+				<NGonNode sides="4" position="0.437499997268039,0.437500002731963,0" rotation="-1.57079637050629" scale="0.124999999999998" color="2" />
+				<NGonNode sides="4" position="0.312499997268041,0.437500008195886,0" rotation="-1.57079637050629" scale="0.124999999999999" color="2" />
+				<NGonNode sides="4" position="0.187499997268042,0.43750001365981,0" rotation="-1.57079637050629" scale="0.124999999999999" color="2" />
+				<NGonNode sides="4" position="-0.43749999726804,-0.437500002731963,0" rotation="-1.57079637050629" scale="0.124999999999997" color="2" />
+				<NGonNode sides="4" position="-0.312499997268042,-0.437500008195888,0" rotation="-1.57079637050629" scale="0.124999999999999" color="2" />
+				<NGonNode sides="4" position="-0.218749998634024,-0.468750012293831,0" rotation="-1.57079637050629" scale="0.0624999999999989" color="6" />
+				<NGonNode sides="4" position="-0.156249998634025,-0.468750015025793,0" rotation="-1.57079637050629" scale="0.062499999999999" color="6" />
+				<NGonNode sides="4" position="-0.0937499986340261,-0.468750017757754,0" rotation="-1.57079637050629" scale="0.062499999999999" color="6" />
+				<NGonNode sides="4" position="-0.0312499986340271,-0.468750020489716,0" rotation="-1.57079637050629" scale="0.062499999999999" color="2" />
+				<NGonNode sides="4" position="0.0312500013659719,-0.468750023221678,0" rotation="-1.57079637050629" scale="0.062499999999999" color="3" />
+				<NGonNode sides="4" position="0.0937500013659708,-0.46875002595364,0" rotation="-1.57079637050629" scale="0.062499999999999" color="3" />
+				<NGonNode sides="4" position="0.15625000136597,-0.468750028685602,0" rotation="-1.57079637050629" scale="0.062499999999999" color="3" />
+				<NGonNode sides="4" position="0.218750001365969,-0.468750031417564,0" rotation="-1.57079637050629" scale="0.0624999999999989" color="10" />
+				<NGonNode sides="4" position="0.437500002731964,-0.43749999726804,0" rotation="-1.57079637050629" scale="0.124999999999996" color="2" />
+				<NGonNode sides="4" position="0.312500002731947,-0.437500035515508,0" rotation="-1.57079637050629" scale="0.124999999999997" color="2" />
+			</Children>
+		</NGonNode>
+		<NGonNode sides="6" position="-0.164561567812893,-0.146846806564767,0" rotation="-1.04719758033752" scale="0.249999999999998" color="13">
+			<Children>
+				<NGonNode sides="3" position="-0.0488634349623187,-0.199461408451716,0" rotation="-1.57079637050629" scale="0.499999999999975" color="2" />
+				<NGonNode sides="4" position="0.292642932844137,-0.00229261415303239,0" rotation="-2.61799383163452" scale="0.499999999999997" color="2" />
+				<NGonNode sides="4" position="-0.344616606792747,-0.173045784091032,0" rotation="-2.09439516067505" scale="0.249999999999999" color="2" />
+				<NGonNode sides="4" position="-0.134240011413744,0.0663371382012545,0" rotation="-2.09439516067505" scale="0.124999999999999" color="2" />
+				<NGonNode sides="4" position="-0.196740017722939,-0.0419160336291836,0" rotation="-2.09439516067505" scale="0.124999999999999" color="2" />
+				<NGonNode sides="6" position="-0.515369772313987,-0.00229258558631323,0" rotation="-1.57079648971558" scale="0.124999999999999" color="2" />
+				<NGonNode sides="3" position="-0.515369799938505,-0.146630155467057,0" rotation="-0.523599028587341" scale="0.124999999999998" color="2" />
+				<NGonNode sides="3" position="-0.390369753495196,0.0698761773734767,0" rotation="-0.523599028587341" scale="0.124999999999999" color="2" />
+				<NGonNode sides="3" position="-0.390369744892005,0.142044976449345,0" rotation="0.523598790168762" scale="0.124999999999999" color="2" />
+				<NGonNode sides="3" position="-0.327869739478533,0.178129336063238,0" rotation="1.570796251297" scale="0.124999999999999" color="2" />
+				<NGonNode sides="4" position="-0.242493157857241,0.128837175436302,0" rotation="1.04719758033752" scale="0.124999999999997" color="2" />
+				<NGonNode sides="4" position="-0.304993197017236,0.0205839706800768,0" rotation="1.04719758033752" scale="0.124999999999999" color="2" />
+				<NGonNode sides="6" position="-0.0488633981070905,0.214213767132732,0" rotation="1.04719758033752" scale="0.124999999999999" color="2" />
+				<NGonNode sides="3" position="-0.193200978808174,0.214213771039142,0" rotation="2.09439492225647" scale="0.124999999999999" color="2" />
+				<NGonNode sides="3" position="0.0954741947023678,0.214213756235545,0" rotation="3.14159226417542" scale="0.124999999999999" color="2" />
+				<NGonNode sides="6" position="0.1676429930158,0.46421368113939,0" rotation="3.14159226417542" scale="0.249999999999999" color="2" />
+				<NGonNode sides="3" position="-0.193200967427973,0.339213821657208,0" rotation="3.14159226417542" scale="0.249999999999999" color="2" />
+				<NGonNode sides="3" position="-0.12103212012765,0.46421380294719,0" rotation="-2.09439563751221" scale="0.249999999999999" color="2" />
+				<NGonNode sides="4" position="-0.390369781074275,0.339213929730515,0" rotation="-1.57079696655273" scale="0.249999999999999" color="2" />
+				<NGonNode sides="3" position="-0.452869888763977,0.178129572454117,0" rotation="-0.5235995054245" scale="0.124999999999999" color="2" />
+				<NGonNode sides="3" position="-0.515369941960412,0.142045180366782,0" rotation="0.523598790168762" scale="0.124999999999999" color="2" />
+			</Children>
+		</NGonNode>
+		<NGonNode sides="4" position="0.0675697879554843,-0.0374718116943078,0" rotation="-1.570796251297" scale="0.0312499999999986" color="5" />
+		<NGonNode sides="4" position="0.0675697903147938,-0.0687218116943065,0" rotation="-1.570796251297" scale="0.031249999999999" color="5" />
+		<NGonNode sides="4" position="0.0675697926741032,-0.0999718116943054,0" rotation="-1.570796251297" scale="0.031249999999999" color="5" />
+		<NGonNode sides="4" position="0.0675697997520312,-0.193721811694302,0" rotation="-1.570796251297" scale="0.031249999999999" color="13" />
+		<NGonNode sides="4" position="0.0675698021113405,-0.224971811694301,0" rotation="-1.570796251297" scale="0.031249999999999" color="13" />
+		<NGonNode sides="4" position="0.0675697763679905,-0.256221808329014,0" rotation="-1.570796251297" scale="0.031249999999999" color="13" />
+		<NGonNode sides="4" position="-0.396692911993777,-0.0374718048005193,0" rotation="-1.570796251297" scale="0.0312499999999986" color="11" />
+		<NGonNode sides="4" position="-0.396692909634468,-0.0687218048005179,0" rotation="-1.570796251297" scale="0.031249999999999" color="11" />
+		<NGonNode sides="4" position="-0.396692907275159,-0.0999718048005168,0" rotation="-1.570796251297" scale="0.031249999999999" color="11" />
+		<NGonNode sides="4" position="-0.396692904915849,-0.131221804800516,0" rotation="-1.570796251297" scale="0.031249999999999" color="11" />
+		<NGonNode sides="4" position="-0.39669292358127,-0.256221801435226,0" rotation="-1.570796251297" scale="0.031249999999998" color="9" />
+		<NGonNode sides="4" position="0.442569791110071,0.429034586107287,0" rotation="-1.570796251297" scale="0.0312499999999989" color="5" />
+		<NGonNode sides="4" position="0.44256979346938,0.397784586107288,0" rotation="-1.570796251297" scale="0.0312499999999989" color="14" />
+		<NGonNode sides="4" position="0.442569837427567,0.210284537430499,0" rotation="-1.570796251297" scale="0.031249999999998" color="1" />
+		<NGonNode sides="4" position="0.442569835068257,0.241534537430497,0" rotation="-1.570796251297" scale="0.0312499999999989" color="2" />
+		<NGonNode sides="4" position="0.442569837427559,0.335284586107295,0" rotation="-1.570796251297" scale="0.0312499999999988" color="9" />
+		<NGonNode sides="4" position="-0.0822498510021775,0.308221237847441,0" rotation="-2.09439492225647" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="6" position="-0.0395615709386563,0.382159538564107,0" rotation="-2.09439492225647" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="4" position="-0.11349984125199,0.254094644481644,0" rotation="-2.09439492225647" scale="0.0624999999999977" color="1" />
+		<NGonNode sides="4" position="-0.144749831501802,0.199968051115846,0" rotation="-2.09439492225647" scale="0.0624999999999977" color="1" />
+		<NGonNode sides="4" position="-0.175999860142701,0.145841481877743,0" rotation="-2.09439492225647" scale="0.0624999999999977" color="1" />
+		<NGonNode sides="3" position="0.032607218440405,0.382159554498862,0" rotation="-3.14159226417542" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="0.0867337930362505,0.413409575576529,0" rotation="-3.14159226417542" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="0.140860398753731,0.444659522199054,0" rotation="-3.14159226417542" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="0.104775982509587,0.444659586097805,0" rotation="-2.09439492225647" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="0.0506494008880731,0.413409577188944,0" rotation="-2.09439492225647" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="-0.00347719247772413,0.444659567438756,0" rotation="-2.09439492225647" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="0.0326071921590483,0.444659570163051,0" rotation="-1.04719758033752" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="-0.20064595727281,0.103153180354867,0" rotation="-1.04719758033752" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="-0.25477254591999,0.0719031819321672,0" rotation="-1.04719758033752" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="-0.308899134567169,0.0406531835094673,0" rotation="-1.04719758033752" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="-0.363025716188691,0.00940319557292608,0" rotation="-1.04719758033752" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="-0.344983519689687,0.0406531952749258,0" rotation="0" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="-0.290856932924638,0.0719031952749247,0" rotation="0" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="3" position="-0.236730346159589,0.103153195274924,0" rotation="0" scale="0.0624999999999977" color="2" />
+		<NGonNode sides="24" position="0.291712154855802,-0.145315551189623,0" rotation="-0.785398185253143" scale="0.0312499999999989" color="13">
+			<Joints>-2.47634348557999,-0.763271959532898,0 -0.522699574041392,-2.7169158710715,0 2.22035038777243,-2.7169158710715,0 3.18474776488483,-1.7525184939591,0 3.29742629073451,-1.33199651056614,0 3.05018204232823,-1.26574761387244,0 2.08635789197992,0.413412083674323,0 2.13095634689869,0.57985578337022,0 2.63144005363948,1.08033949011102,0 2.63144005363948,1.23751349775933,0 2.37255690682063,1.49639664457819,0 2.54567947869412,1.67558144182371,0 2.80624755182382,1.41501336869401,0 2.80624755182382,0.939715103032454,0 2.34312897709015,0.476596528298786,0 2.31287004862871,0.363668669898098,0 2.1199129431393,1.0142256704868,0 3.09081941802011,0.0433191956059898,0 3.18327737476669,-0.30173859653625,0 3.1287841082494,-0.396123702814592,0 2.78993537474259,-0.486917947314051,0 2.08442035614453,0.976647411512815,0 3.19462794873493,-0.133560181077591,0 3.34640996469417,-0.700018376312706,0 3.27871584701444,-0.952656262867032,0 3.20293055037399,-0.996410924283011,0 3.07696700104646,-0.962659092964942,0 -2.76525459063899,1.49229430784679,0 -2.88535526796448,1.52447518734659,0 -2.96221136563121,1.48010229866984,0 -3.09566084967179,0.982062043986539,0 -1.87723119060634,-0.236367615078908,0 -1.10022226564079,-0.0281687011226144,0 1.34694091817868,2.50335695711773,0 1.24738425016874,2.60291362512766,0 1.24738425016874,2.6809732517295,0 1.53553336823345,2.96912236979421,0 2.37149445490797,2.74512727171593,0 2.80661785063359,2.31000387599031,0 3.33643381697145,1.39233570363194,0 3.58775440490965,0.454394500458492,0 3.58775440490965,-0.431642979732401,0 3.43759794648481,-0.992034511658499,0 3.38382697263351,-1.0458054855098,0 1.69607217004582,-1.97751707043605,0 1.66978305078165,-2.07562939921618,0 1.71821878897903,-2.15952255867614,0 2.21919555452045,-2.29375887842972,0 2.57038079795963,-2.19965907605647,0 3.04330211178063,-1.72673776223547,0 1.53349205567906,2.67704642936314,0 1.45454485199612,2.75599363304608,0 1.45454485199612,2.85349527339431,0 1.54346304842201,2.9424134698202,0 2.35380030783107,2.72528425556469,0 2.78554066743093,2.29354389596483,0 3.13720363303201,1.68444577240341,0 3.31298587207279,1.6373450634087,0 3.39055780828572,1.6821312416628,0 1.64395648825397,3.31746009310043,0 1.68625165360593,3.39071746840456,0 0.279601230562426,-1.51930343660064,0 0.228069694439165,-1.71162174760472,0 0.228069694439165,-1.79231500163752,0 0.247217839667944,-1.86377685250204,0 0.283148902951422,-1.92601127967899,0 0.337692222920218,-1.98055459964779,0 0.408261317809446,-2.02129768557855,0 0.485813810047091,-2.04207781324465,0 0.520184349708309,-2.04207781324465,0 0.554368176150246,-2.05123734193397,0 0.58379845907553,-2.06822892370321,0 0.605362659467703,-2.08979312409538,0 0.619973503655359,-2.11509984856988,0 0.626491412681788,-2.13942501621562,0 0.626491412681788,-2.16357573963798,0 0.620242111528304,-2.18689844905458,0 0.608690312757942,-2.20690675144366,0 0.5916232190982,-2.2239738451034,0 0.57147489774742,-2.23560648385899,0 0.549251355880709,-2.24156126395514,0 0.527589782089763,-2.24156126395514,0 0.506973956921554,-2.23603727025001,0 0.487696612640299,-2.22490749033997,0 0.47212191172616,-2.20933278942583,0 0.461648846651761,-2.19119290860599,0 0.456044869857378,-2.17027858248492,0 0.456044869857378,-2.14640308663932,0 0.473487466755491,-2.08130642879962,0 0.473487466755491,-2.06246454906075,0 0.468548053287289,-2.04403040703782,0 0.459035037109689,-2.027553379685,0 0.418121102439962,-1.95668836609948,0 0.410339110831755,-1.92764557803357,0 0.410339110831755,-1.89771584251445,0 0.417854670779553,-1.86966739094194,0 0.497086446576414,-1.57397037809414,0 0.671820764821965,-2.04207781324465,0 1.22696930244088,-2.19082941557896,0 0.208005432828958,-1.78650259135037,0 0.169907432251579,-1.85249026401718,0 0.116900143115604,-1.90549755315315,0 0.0532698620043347,-1.94223451308135,0 -0.0219084528662033,-1.96237848183925,0 -0.0977635027384322,-1.96237848183925,0 -0.734623472405459,-1.79173236727526,0 0.396015467659475,-1.92252512023832,0 0.377815269691038,-1.94072531820676,0 0.356388907044588,-1.95309583444844,0 0.330832442076826,-1.95994366859795,0 0.303275667039418,-1.95994366859795,0 0.273884710491474,-1.95206838552615,0 0.25060429793057,-1.93862743306727,0 0.231306497598708,-1.9193296327354,0 0.218194778802816,-1.89661946960636,0 0.211711627331438,-1.87242401892202,0 0.211711627331438,-1.83437960779238,0 -0.405641328204322,1.0490680571139,0 -0.390050805357805,1.10725268049367,0 0.93286034477595,2.43016383062742,0 0.984585586924379,2.43016383062742,0 1.16298630598946,2.6085645496925,0 -0.416654444864944,1.05136647073686,0 -0.399364372215331,1.11589390033177,0 0.928125615126727,2.44338388767383,0 0.977997916846811,2.44338388767383,0 1.32559703586933,2.79098300669635,0 1.41841921971443,2.79098300669635,0 0.785638605916825,0.29699567756141,0 0.867291165425305,0.21534311805293,0 1.00435198622117,-0.0220531872925936,0 1.14992708880552,-0.167628289876948,0</Joints>
+			<Lines>0,1,2 1,2,2 2,3,2 3,4,2 4,5,2 6,7,2 7,8,2 8,9,2 9,10,2 11,12,2 12,13,2 13,14,2 14,15,2 16,17,8 17,18,8 18,19,8 19,20,8 21,22,12 22,23,12 23,24,12 24,25,12 25,26,12 27,28,5 28,29,5 29,30,5 30,31,5 31,32,5 33,34,12 34,35,12 35,36,12 36,37,12 37,38,12 38,39,12 39,40,12 40,41,12 41,42,12 42,43,12 43,25,12 44,45,12 45,46,12 46,47,12 47,48,12 48,49,12 49,24,12 50,51,5 51,52,5 52,53,5 53,54,5 54,55,5 55,56,5 56,57,5 57,58,5 53,59,5 59,60,5 61,62,8 62,63,8 63,64,8 64,65,8 65,66,8 66,67,8 67,68,8 68,69,8 69,70,8 70,71,8 71,72,8 72,73,8 73,74,8 74,75,8 75,76,8 76,77,8 77,78,8 78,79,8 79,80,8 80,81,8 81,82,8 82,83,8 83,84,8 84,85,8 85,86,8 86,87,8 87,88,8 88,89,8 89,90,8 90,91,8 91,92,8 92,93,8 93,94,8 94,95,8 95,96,8 69,97,8 97,98,8 62,99,8 99,100,8 100,101,8 101,102,8 102,103,8 103,104,8 104,105,8 94,106,8 106,107,8 107,108,8 108,109,8 109,110,8 110,111,8 111,112,8 112,113,8 113,114,8 114,115,8 115,116,8 116,62,8 117,118,8 118,119,8 119,120,8 120,121,8 121,34,8 122,123,5 123,124,5 124,125,5 125,126,5 126,127,5 127,51,5 128,129,5 129,130,5 130,131,5</Lines>
+			<Children>
+				<NGonNode sides="6" position="-0.66292506813528,0.0970917376664904,0" rotation="-0.785398185253143" scale="0.499999999999994" color="7" />
+				<NGonNode sides="6" position="0.173591235005836,0.321235592921357,0" rotation="-0.785398185253143" scale="0.499999999999994" color="7" />
+				<NGonNode sides="6" position="-0.0505526568143207,-0.515280700422119,0" rotation="-0.785398185253143" scale="0.499999999999994" color="7" />
+				<NGonNode sides="6" position="-0.341724046439923,0.571385848151945,0" rotation="-0.785398185253143" scale="0.124999999999998" color="7" />
+				<NGonNode sides="6" position="-0.494817149270163,0.724478957674097,0" rotation="-0.785398185253143" scale="0.124999999999998" color="7" />
+				<NGonNode sides="6" position="-0.438781176315123,0.933608031009966,0" rotation="-0.785398185253143" scale="0.124999999999998" color="7" />
+				<NGonNode sides="6" position="-0.229652100529844,0.989643994823682,0" rotation="-0.785398185253143" scale="0.124999999999998" color="7" />
+				<NGonNode sides="6" position="-0.0765589976996046,0.83655088530153,0" rotation="-0.785398185253143" scale="0.124999999999998" color="7" />
+				<NGonNode sides="6" position="0.561819774076126,-1.12765314023512,0" rotation="0.261799395084381" scale="0.499999999999994" color="8" />
+				<NGonNode sides="3" position="0.731268770433247,0.470664829757935,0" rotation="-0.785398185253143" scale="0.499999999999994" color="8" />
+				<NGonNode sides="3" position="1.08482216875367,0.824218212624048,0" rotation="-0.785398185253143" scale="0.499999999999994" color="8" />
+				<NGonNode sides="3" position="0.323020491413505,0.878913124738393,0" rotation="0.261799395084381" scale="0.499999999999994" color="8" />
+				<NGonNode sides="3" position="0.676573887429995,1.23246650306892,0" rotation="0.261799395084381" scale="0.499999999999994" color="8" />
+				<NGonNode sides="3" position="0.805983397993817,0.749503603694138,0" rotation="0.261799395084381" scale="0.499999999999994" color="8" />
+				<NGonNode sides="3" position="1.15953677850437,1.10305699485163,0" rotation="0.261799395084381" scale="0.499999999999994" color="8" />
+				<NGonNode sides="3" position="0.955412657427722,1.3071811340741,0" rotation="1.30899691581726" scale="0.499999999999994" color="8" />
+				<NGonNode sides="3" position="0.601859247166878,0.953627757765275,0" rotation="1.30899691581726" scale="0.499999999999993" color="8" />
+				<NGonNode sides="6" position="1.71721433654661,1.25248621404377,0" rotation="1.30899691581726" scale="0.499999999999993" color="8" />
+				<NGonNode sides="6" position="1.10484190235354,1.86485864574678,0" rotation="1.30899691581726" scale="0.499999999999993" color="8" />
+				<NGonNode sides="6" position="1.94135821995481,2.08900249757227,0" rotation="1.30899691581726" scale="0.499999999999993" color="8" />
+				<NGonNode sides="6" position="-0.274696547090661,-1.35179698579092,0" rotation="1.30899691581726" scale="0.499999999999993" color="8" />
+				<NGonNode sides="6" position="-0.887068970604074,-0.739424543408265,0" rotation="1.30899691581726" scale="0.499999999999993" color="8" />
+				<NGonNode sides="12" position="1.88129900215558,-0.774099777168236,0" rotation="1.30899691581726" scale="0.499999999999993" color="8" />
+				<NGonNode sides="4" position="2.0343921689654,0.280214366442053,0" rotation="2.87979292869568" scale="0.249999999999996" color="12" />
+				<NGonNode sides="4" position="2.275873603726,0.215509523764245,0" rotation="2.87979292869568" scale="0.249999999999996" color="12" />
+				<NGonNode sides="4" position="2.87090845469807,-1.16867441936247,0" rotation="2.87979292869568" scale="0.249999999999996" color="12" />
+				<NGonNode sides="4" position="2.93561329737588,-0.92719298460187,0" rotation="2.87979292869568" scale="0.249999999999996" color="12" />
+				<NGonNode sides="4" position="1.48672435996135,-1.76370922971073,0" rotation="2.87979292869568" scale="0.249999999999996" color="12" />
+				<NGonNode sides="4" position="1.72820579472195,-1.82841407238854,0" rotation="2.87979292869568" scale="0.249999999999996" color="12" />
+				<NGonNode sides="4" position="1.45839538590867,2.39518872661449,0" rotation="-2.35619497299194" scale="0.249999999999996" color="12" />
+				<NGonNode sides="4" position="1.6351720112898,2.57196549155703,0" rotation="-2.35619497299194" scale="0.249999999999996" color="12" />
+				<NGonNode sides="4" position="2.24754442861983,1.6060395035875,0" rotation="-2.35619497299194" scale="0.249999999999996" color="12" />
+				<NGonNode sides="4" position="2.42432120926416,1.7828161135364,0" rotation="-2.35619497299194" scale="0.249999999999996" color="12" />
+				<NGonNode sides="12" position="-1.62885066077686,1.06301798073599,0" rotation="-2.35619497299194" scale="0.499999999999993" color="5" />
+				<NGonNode sides="4" position="-2.02342478008739,2.05262760872485,0" rotation="-2.87979364395142" scale="0.249999999999996" color="5" />
+				<NGonNode sides="4" position="-1.78194326992717,2.1173322437229,0" rotation="-2.87979364395142" scale="0.249999999999996" color="5" />
+				<NGonNode sides="4" position="-2.68316476792743,1.21611161255566,0" rotation="-1.83259630203247" scale="0.249999999999996" color="5" />
+				<NGonNode sides="4" position="-2.61845990776481,1.4575930556126,0" rotation="-1.83259630203247" scale="0.249999999999996" color="5" />
+				<NGonNode sides="4" position="-2.4653666523216,1.72275800862473,0" rotation="-2.35619497299194" scale="0.249999999999996" color="5" />
+			</Children>
+		</NGonNode>
+		<NGonNode sides="4" position="0.29171216104503,-0.0110068938452124,0" rotation="-1.57079648971558" scale="0.0312499999999995" color="2" />
+		<NGonNode sides="4" position="0.32647379833687,-0.0155833550513444,0" rotation="-1.83259582519531" scale="0.0312499999999995" color="2" />
+		<NGonNode sides="4" position="0.256950522261991,-0.015583343724565,0" rotation="-1.30899715423584" scale="0.0312499999999996" color="2" />
+		<NGonNode sides="4" position="0.224557830408374,-0.0290008359020736,0" rotation="-1.0471978187561" scale="0.0312499999999996" color="2" />
+		<NGonNode sides="4" position="0.358866488671804,-0.029000841989772,0" rotation="-2.09439516067505" scale="0.0312499999999996" color="2" />
+		<NGonNode sides="4" position="0.224557822156513,-0.261630260090252,0" rotation="-2.09439516067505" scale="0.0312499999999996" color="2" />
+		<NGonNode sides="4" position="0.25695051231751,-0.275047751667261,0" rotation="-1.83259582519531" scale="0.0312499999999995" color="2" />
+		<NGonNode sides="4" position="0.358866479602453,-0.261630265360459,0" rotation="-1.0471978187561" scale="0.0312499999999995" color="2" />
+		<NGonNode sides="4" position="0.3264737863243,-0.275047750069615,0" rotation="-1.30899715423584" scale="0.0312499999999996" color="2" />
+		<NGonNode sides="4" position="0.191405556127374,-0.0738718581837531,0" rotation="-0.523599028587341" scale="0.0078124999999999" color="2" />
+		<NGonNode sides="4" position="0.179686808832066,-0.0941693302165746,0" rotation="-0.523599028587341" scale="0.0078124999999999" color="2" />
+		<NGonNode sides="4" position="0.183593060543745,-0.0874035077377474,0" rotation="-0.523599028587341" scale="0.0078124999999999" color="2" />
+		<NGonNode sides="4" position="0.179686805557429,-0.196461766987498,0" rotation="0.523598790168762" scale="0.0078124999999999" color="2" />
+		<NGonNode sides="4" position="0.18359305565601,-0.203227590397648,0" rotation="0.523598790168762" scale="0.0078124999999999" color="2" />
+		<NGonNode sides="4" position="0.187499305754591,-0.209993413807798,0" rotation="0.523598790168762" scale="0.0078124999999999" color="2" />
+		<NGonNode sides="4" position="0.191405553282861,-0.216759238771987,0" rotation="0.523598790168762" scale="0.0078124999999999" color="2" />
+		<NGonNode sides="4" position="0.411876036846383,-0.105029643804426,0" rotation="0.261799395084381" scale="0.0156249999999998" color="2" />
+		<NGonNode sides="4" position="0.41592008199588,-0.120122233385867,0" rotation="0.261799395084381" scale="0.0156249999999998" color="2" />
+		<NGonNode sides="4" position="0.415920081382597,-0.170508874140961,0" rotation="-0.261799395084381" scale="0.0156249999999998" color="2" />
+		<NGonNode sides="4" position="0.411876033692917,-0.185601465147266,0" rotation="-0.261799395084381" scale="0.0156249999999998" color="2" />
+		<NGonNode sides="4" position="0.223819877287805,0.179034457585411,0" rotation="-1.57079696655273" scale="0.03125" color="5" />
+		<NGonNode sides="4" position="0.255069877287798,0.179034437592978,0" rotation="-1.57079696655273" scale="0.03125" color="5" />
+		<NGonNode sides="4" position="0.286319877287792,0.179034417600546,0" rotation="-1.57079696655273" scale="0.03125" color="5" />
+		<NGonNode sides="4" position="0.317569877287785,0.179034397608113,0" rotation="-1.57079696655273" scale="0.03125" color="5" />
+		<NGonNode sides="4" position="0.348819877287779,0.179034377615681,0" rotation="-1.57079696655273" scale="0.03125" color="5" />
+		<NGonNode sides="4" position="-0.12493817647365,0.382159540983121,0" rotation="3.14159226417542" scale="0.0625" color="1" />
+		<NGonNode sides="4" position="-0.187438176473646,0.382159565321519,0" rotation="3.14159226417542" scale="0.0625" color="1" />
+		<NGonNode sides="4" position="-0.249938176473641,0.382159589659918,0" rotation="3.14159226417542" scale="0.0625" color="1" />
+		<NGonNode sides="4" position="-0.312438176473636,0.382159613998317,0" rotation="3.14159226417542" scale="0.0625" color="1" />
+		<NGonNode sides="4" position="-0.366564813132288,0.265533048278917,0" rotation="-2.61799430847168" scale="0.125" color="1" />
+		<NGonNode sides="4" position="-0.304064859733141,0.15727984590086,0" rotation="-2.61799430847168" scale="0.125" color="1" />
+		<NGonNode sides="6" position="-0.397814768277685,0.382159655973007,0" rotation="-2.09439563751221" scale="0.0625" color="1" />
+		<NGonNode sides="3" position="-0.433899198290002,0.319659673852798,0" rotation="-1.04719829559326" scale="0.0625" color="1" />
+		<NGonNode sides="4" position="-0.369629769576219,0.0833415936575425,0" rotation="-1.04719829559326" scale="0.0625" color="1" />
+		<NGonNode sides="4" position="-0.400879763267027,0.137468185036691,0" rotation="-1.04719829559326" scale="0.0625" color="1" />
+		<NGonNode sides="12" position="0.267137387778461,0.0849461932206027,0" rotation="-1.57079637050629" scale="0.0312499999999986" color="2">
+			<Children>
+				<NGonNode sides="8" position="0.658918597300243,5.27643398973154E-08,0" rotation="-1.57079637050629" scale="0.999999999999956" color="2">
+					<Children>
+						<NGonNode sides="6" position="-3.78551976709662E-08,0.341081418593108,0" rotation="-1.57079637050629" scale="0.999999999999952" color="2">
+							<Children>
+								<NGonNode sides="4" position="-0.366025366385145,-2.18557209274994E-08,0" rotation="-1.57079637050629" scale="0.999999999999949" color="2">
+									<Children>
+										<NGonNode sides="3" position="1.26184192955625E-08,-0.211324848730717,0" rotation="-1.57079637050629" scale="0.999999999999944" color="2" />
+									</Children>
+								</NGonNode>
+							</Children>
+						</NGonNode>
+					</Children>
+				</NGonNode>
+			</Children>
+		</NGonNode>
+		<NGonNode sides="4" position="0.412416314904362,0.082465090642722,0" rotation="0" scale="0.124999999999982" color="2">
+			<Children>
+				<NGonNode sides="6" position="-2.03019879081445E-05,-0.067912986070002,0" rotation="0.523598790168762" scale="0.499999999999927" color="2" />
+			</Children>
+		</NGonNode>
+	</Children>
+</NGonNode>

@@ -1,0 +1,17 @@
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Editor.exe
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Editor.pdb
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Core.dll
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Data.dll
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Editor.Tools.dll
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Visualization.dll
+L:\Development\Sienna\Software\AE.Editor\bin\Release\OpenTK.Math.dll
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Data.pdb
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Core.pdb
+L:\Development\Sienna\Software\AE.Editor\bin\Release\OpenTK.Math.pdb
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Editor.Tools.pdb
+L:\Development\Sienna\Software\AE.Editor\bin\Release\AE.Visualization.pdb
+L:\Development\Sienna\Software\AE.Editor\obj\Release\ResolveAssemblyReference.cache
+L:\Development\Sienna\Software\AE.Editor\obj\Release\AE.Editor.Properties.Resources.resources
+L:\Development\Sienna\Software\AE.Editor\obj\Release\AE.Editor.csproj.GenerateResource.Cache
+L:\Development\Sienna\Software\AE.Editor\obj\Release\AE.Editor.exe
+L:\Development\Sienna\Software\AE.Editor\obj\Release\AE.Editor.pdb

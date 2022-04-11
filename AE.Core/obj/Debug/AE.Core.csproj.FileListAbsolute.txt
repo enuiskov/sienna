@@ -1,0 +1,10 @@
+L:\Development\Sienna\Software\AE.Core\bin\Debug\AE.Core.dll
+L:\Development\Sienna\Software\AE.Core\bin\Debug\AE.Core.pdb
+L:\Development\Sienna\Software\AE.Core\obj\Debug\ResolveAssemblyReference.cache
+L:\Development\Sienna\Software\AE.Core\obj\Debug\AE.Core.dll
+L:\Development\Sienna\Software\AE.Core\obj\Debug\AE.Core.pdb
+U:\Development\Sienna\Software\AE.Core\bin\Debug\AE.Core.dll
+U:\Development\Sienna\Software\AE.Core\bin\Debug\AE.Core.pdb
+U:\Development\Sienna\Software\AE.Core\obj\Debug\ResolveAssemblyReference.cache
+U:\Development\Sienna\Software\AE.Core\obj\Debug\AE.Core.dll
+U:\Development\Sienna\Software\AE.Core\obj\Debug\AE.Core.pdb

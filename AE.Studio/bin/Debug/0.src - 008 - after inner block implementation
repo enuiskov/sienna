@@ -1,0 +1,1914 @@
+(
+%intbla2 { bla;bla;bla;bla;bla;bla;bla;bla; };
+*reset {mode 254};
+%prolog
+{
+	get_FP; //~~ parent FP;
+	//!!!;
+	set_FP (get_SP);
+};
+%epilog
+{
+	//!!!;
+	get_FP; dup; 
+	get;
+	//get;
+	//!!!;
+	set_FP;
+	set_SP;
+};
+%cond_before
+{
+	//~~ St(1,2)=value-to-compare, ???St(3)=pointer-to-jump-if-not-equal???;
+	sub(dup,(get st2));
+	jpos abs,^EndOfBlock;
+	drop,drop;
+
+	:BegOfBlock; //~~ pointer-to-jump from the condblock-epilog;
+};
+%cond_after
+{
+	jpos ^BegOfBlock; //~~ that pointer, defined in prolog;
+	drop;
+
+	:EndOfBlock; //~~ pointer-to-jump;
+};
+//%cond_before
+//{
+	//sub(dup,(get st2));
+	//jpos abs,^EndOfBlock;
+	//drop,drop;
+	//:BegOfBlock;
+//};
+//%cond_after
+//{
+	//jpos ^BegOfBlock;
+	//drop;
+	//:EndOfBlock;
+//};
+
+
+*st1 {sub get_SP,-1};
+*st2 {sub get_SP,-2};
+*st3 {sub get_SP,-3};
+*st4 {sub get_SP,-4};
+*st5 {sub get_SP,-5};
+*st6 {sub get_SP,-6};
+
+*neg
+{
+	//!!!;
+	
+	dup;
+	sub (set st2 0);
+	
+	
+};
+*abs
+{
+	//!!!;
+	dup;
+	jpos ^POS;
+	drop;
+	neg;
+	:POS;
+};
+
+test1 (iX,iY,iZ,oLen,oErr,_Loc1,_Loc2,_Loc3, _MyFunc1,_MyFunc2)
+{
+	!!!;
+	
+	10;
+	
+	
+	10; {bla;bla;bla; sub 1};
+	
+	bla; bla; bla;
+	drop;
+	bla; bla; bla;
+	
+	!!!;
+	
+	10002; //~~ get-something-type;
+	(
+		10000; {bla;bla;bla;0};
+		10001; {bla;bla;bla;0};
+		10002; {bla;bla;111;222;333;bla;bla;0};
+		10003; {bla;bla;bla;0};
+		10004; {bla;bla;bla;0};
+		
+		bla;bla;bla;
+		drop;
+		bla;bla;bla;
+	);
+	
+	
+	
+	!!!;
+	
+	
+	sub(dup,(get st2));
+	jpos abs,^EndOfBlock;
+	drop,drop;
+	:BegOfBlock;
+	(
+		bla;bla;bla;
+		
+		1;
+	);
+	jpos ^BegOfBlock;
+	drop;
+	:EndOfBlock;
+	
+	
+		
+	:Label1;
+		bla;bla;bla;
+		!!!;
+	jpos 1,^Label2;
+	
+	bla;bla;bla;
+	:Label2;
+		bla;bla;bla;
+	
+
+	//~~ ;
+};
+
+sampleword1 (iX,iY,iZ,oLen,_LocalLen,_X)//~~ mode 32;
+{
+	//!!!;
+	
+	//:Label1;
+	!!!;
+
+	sub 1 sub 2 3; //~~;
+	sub 3,2; sub 1;
+
+	3,2; sub; 1; sub;
+	_X; 2; sub; 1; sub;
+	sub (sub 3,2),1;
+
+	//push 1,2,3;
+	push (push 2),(push 3) (push 1);
+	!!!;
+	
+	push (push 1),2 3;
+	push 1,2 3;
+	//sub 5,3;
+	//sub 5 3;
+////	push 1,2,3,4,5;
+////	push 1 2 3,4,5;
+////	
+	oLen (get iY),(get iZ)     (get iX);
+	
+	!!!;
+	iX,iY,12345;
+	2017,08,15;
+	///iX,iY,iZ;
+	!!!;
+	//iX; iZ;
+	oLen (iX);
+	
+	_LocalLen
+	(
+		iX; iY; sub;
+		sub (iZ);
+		
+		sub (iX),(iY);
+		sub;
+	);
+};
+sampleword2 (iName,iAge,iPassportNum,oHumanInfo,oError)
+{
+	bla;bla;bla;bla;
+	//!!!;
+	
+	sub (iPassportNum),1000000000;
+	
+	oHumanInfo (sub (iPassportNum),1000000000);
+	oError     0;
+	bla;bla;bla;
+	//!!!;
+	bla;bla;bla;
+	//!!!;
+	bla;bla;bla;
+	
+	//oError;
+	//push iName;
+	//get;
+	//push _Local;
+	//!!!;
+	set 255 "SAMPLEWORD";
+};
+word1 (iX,oY) {bla; inline1; word2; inline1; bla;};
+word2 (iX,oY) {bla; !!!; inline1; bla;};
+*inline1 {bla; inline2; bla;};
+*inline2 {bla; push "Inline1"; bla;};
+
+!program (oError)
+{
+	111,222,333;
+	test1;
+	//!!!;
+	
+	1,2,3; drop;drop;drop;
+	2,3 1; drop;drop;drop;
+	3 2 1; drop;drop;drop;
+	
+	//!!!;
+	
+	//sub 3,2; drop;
+	push "Vasya",42,1234567890;
+	//!!!;
+	bla;bla;bla;
+	sampleword1;
+	//~~word1;
+	bla;bla;bla;
+	//here;
+	//!!!;
+	
+	///reset;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*reset_X    { mode 254; };
+*hault_X    { mode 255; };
+//dup       { osp++; push 3; xmov; osp--; };
+//~~dup_X       { xmov -1; };
+*dup_X       { push -1; xmov;};
+//neg       <?; dup; osp--; osp--; push 0; osp++; sub; };
+*neg_X       { dup; xmov 0 -4; drop; drop; sub; };
+*add_X       { neg; sub; };
+*inc_X       { sub -1; };
+*dec_X       { sub +1; };
+*sign_X      { jpos ^POS; neg; jpos ^NEG; ret; :POS; ret +1; :NEG; ret -1; };
+*compare_X   { sub; sign; };
+*swap_n_X    { dup; dup; sub -2; xmov; dup; xmov 6; xmov 4; drop; neg; sub 2; xmov; drop; drop; drop; xmov -4; drop; drop; };
+*swap_X      { swap_n 3; drop; };
+
+*xget_X      { dup; sub -2; xmov; drop; };
+*xset_X      { neg; sub +1; xmov; drop; drop; };
+*xmovup_X    { xmov -3; drop; drop; };
+*true_X      { ret 1; };
+*false_X     { ret 0; };
+//~~*not_X       { jpos ^1; neg; jpos ^1; drop; here; ret 1; :1; ret 0; };
+*not_X       { jpos ^1; neg; jpos ^1; drop; push 1; jpos 1 ^Exit; :1; push 0; :Exit};
+
+*make12345_X { push N-111 N-2222 N-33333 N-444444 N-5555555; };
+*goto_X      { dup; xset 1 3; csp--; jpos; };
+//is-zero? { not; };
+*case_X      { xget 3; xget 3; sub; not; jpos ^Jumping; drop;drop;drop; ret; :Jumping; xmov -3; xset 1 5; drop; drop; csp--; jpos; };
+//jump      { push 1; swap; csp--; jpos; };
+//jif0      { swap; dup; push ^POS; jpos; neg; push ^NEG; jpos; osp--; osp--; csp--; jump; :POS; :NEG; swap; drop; };
+//jifeq
+//{
+//	//here;
+//	dup; xmov 5; xmov 5; osp--; compare; push ^IfJumping; 
+//	jif0;
+//	
+//	osp--;osp--;ret;
+//	
+//	:IfJumping; xmov -4; osp--;osp--;osp--; csp--; jump;
+//};
+//jif1      { here; swap; dup; push 1; sub; push ^IFJUMPING; jif0; osp--; push -3; xmov; osp--; osp--; ret; :IFJUMPING; osp--; csp--; jump; };
+*equals?_X   { xget 2; xget 2; sub; not; xset 3; drop; jpos ^True; ret; :True; ret 1; };
+*dignode_X  { unfold; dec; swap; };
+
+
+*delete_X    { dup; jpos ^OK; error "WTF: non-positive offxset specified"; :OK; dup;dup; <*; sub -2; xmov; neg; sub 1; xmov; neg; sub 4; *>; drop; drop; drop; drop; };
+*insert_X    { xget 2; xget 2; <*; push 7; xget 4; xget 3; sub; neg; sub; dup; xmov; neg; sub -1; xmov; drop; drop; dec; *>; drop; xget 2; neg; sub 4; xmov; drop;drop;drop;};
+
+//xget; { push 0; push iA; };
+//xget 5;
+//xset 4;
+*tsmword1_X
+{
+	push "Local" "Local" "Local";
+	push "Arg1" "Arg2" "Arg3";
+	tsmword2;
+	here;
+};
+*tsmword2_X
+{
+	push "Local" "Local" "Local";
+	push "RES";
+	here;
+	xmov -8; drop;drop;drop;drop;drop;drop;drop;
+//	ret;
+//	
+//	xmov -8; drop 7;
+//	ret 8;
+};
+*offxset_X //~~ converts stack offxset form BP-relative to SP-relative;
+{
+	
+};
+osmword1_X (iX,iY,iZ)
+{
+	//push "Local" "Local" "Local";
+	//push "Local" "Local" "Local";
+	//push "< oHumanInfo" "< oError";
+	push 444 5555 66666;
+	osmword2;
+	here;
+	drop;drop;drop;drop;
+	//ret;
+};
+osmword2_X (iName,iAge,iSocNumber,i1,i2,i3,oHumanInfo,oDiff,oError,o1,o2,o3,_Local1,_Local2,_Local3,_1,_2,_3)
+{
+	here;
+	
+	push iName;
+	//push _Local;
+	here;
+	
+	def _Local1,_Local2,_Local3;
+	//~~ ================================================================;
+	//~~ ========= RETURN ADDRESS BETWEEN ===============================;
+	//~~ ================================================================;
+	
+	//~~ this requires signature processing AFTER the call (prolog and epilog);
+	
+	i1,i2,i3,o1,o2;                       //~~ signature known before call;
+	i1,i2,i3;                             //~~ prepared inputs before call;
+
+	
+	get _1; get _2; get _3; myproc;       //~~ CALLING PROCEDURE;
+	get _1,_2,_3;           myproc;       //~~ BTW, may be short form?;
+	i1,i2,i3,^RET;                        //~~ pushed return address;
+	
+	                                       //~~ > PROLOG BEGINS;
+	i1,i2,i3,^RET,BP;                      //~~ pushed caller's BasePointer;
+	i1,i2,i3,^RET,BP,o1,o2;                //~~ pushed outputs;
+	i1,i2,i3,^RET,BP,o1,o2,_1,_2,_3;       //~~ pushed locals (if needed);
+	                                       //~~ > PROLOG ENDS;
+	                                      
+	i1,i2,i3,^RET,BP,o1,o2,_1,_2,_3,1,2,3; //~~ 'pushed' anonymous stack operands;
+	
+	set o1; set o2;                        //~~ outputs have set;
+	ret;                                   //~~ BEGIN THE RETURN FROM PROCEDURE;
+	
+	i1,i2,i3,^RET,BP,o1,o2,_1,_2,_3,1,2,3; //~~ that's what we have at this moment;
+	
+	//~~ CASE: InputCount > OutputCount;
+	                                       //~~ EPILOG BEGINS;
+	i1,i2,i3,^RET,BP,o1,o2;                //~~   rolled SP to last output (o2);
+	o1,o2,i3,^RET,BP,o1,o2;                //~~   copied outputs;
+	o1,o2,i3,^RET,BP;                      //~~   rolled SP to BP;
+	o1,o2,^RET,BP,BP;                      //~~   shifted RET&BP - with (IC-OC) steps;
+	o1,o2,^RET,BP;                         //~~   rolled SP to BP;
+	o1,o2,^RET;                            //~~   restored BP;
+	                                       //~~ EPILOG ENDS;
+
+	o1,o2;                                 //~~ returned from procedure;
+
+	//~~ CASE: InputCount < OutputCount;
+	                                       //~~ EPILOG BEGINS;
+	i1,i2,^RET,BP,o1,o2,o3;                //~~   rolled SP to last output (o3);
+	i1,i2,^RET,BP,o1,o2,o3,^RET,BP;        //~~   saved(pushed) RET and BP;
+	o1,o2,o3,^RET,BP,o2,o3,^RET,BP;        //~~   moved outputs, RET and BP;
+	o1,o2,o3,^RET,BP;                      //~~   rolled SP to BP;
+	o1,o2,o3,^RET;                         //~~   restored BP;
+	                                       //~~ EPILOG ENDS;
+	                                      
+	o1,o2,o3;                              //~~ returned from procedure;
+	
+	//~~ ================================================================;
+	//~~ ========= RETURN ADDRESS AFTER =================================;
+	//~~ ================================================================;
+	
+	//~~ this requires signature processing BEFORE the call;
+	
+	i1,i2,i3;                             //~~ prepared inputs before call;
+	i1,i2,i3,o1,o2,^RET;                  //~~ procedure has called;
+	
+	//~~ ================================================================;
+	//~~ === OUTPUTS BEFORE INPUTS (needs complex stack operations) =====;
+	//~~ ================================================================;
+	
+	i1,i2,i3;                             //~~ prepared inputs before call;
+	o1,o2,^RET,i1,i2,i3;                  //~~ procedure called;
+	o1,o2,i1,i2,i3,^RET,_1,_2,_3,1,2,3;   //~~;
+	
+	//~~ OR;
+	
+	i1,i2,i3;                             //~~ prepared inputs before call;
+	i1,i2,i3,^RET;                        //~~ procedure called;
+	i1,i2,i3,^RET,i1,i2,i3;               //~~;
+	o1,o2,i3,^RET,i1,i2,i3;               //~~;
+	o1,o2,^RET,i1,i2,i3;                  //~~;
+	o1,o2,^RET;                           //~~;
+	
+	
+
+	here;
+	push "Local" "Local" "Local";
+	push "RES";
+	
+	sp iName; xget;
+	
+	xget [offs iAge];
+	sub 18;
+	equals 0;
+	xset [offs _Local1]; 
+	
+	
+	
+	
+	
+	xmov _Local2,iName;
+	xmov _2,iAge;
+	sub _2,-1;
+	
+	//def _1,_2,_3,_Local1;
+	push 111,222,333 _Local1,_Local2,_Local3;
+	
+	xget iAge; xget _Local1; sub; xset oDiff;
+	
+	
+	
+	xset oError;
+	
+	
+	//here;
+	
+	
+	//ret 1 8 5;
+	//ret[1,8,5]; //~~ oValCount, rollback;
+	
+	
+	xmov -9; drop;drop;drop;drop;drop;
+	xmovup;
+	//here;
+	xmovup;
+	//xmovup 4;
+};
+*bla3_inline_X
+{
+	bla;bla;bla;here;
+};
+bla3_call_X
+{
+	bla;bla;bla;here; drop; ret;
+};
+*jif1_X
+{
+	//here;
+	xmov 0 2; drop;
+	//xget 2;
+	sub 1; not; bla;bla;bla;bla;// here;
+	
+	jpos ^Jumping; here; drop; movup; jpos 1 ^Exit;
+	
+	
+	:Jumping;
+		here;
+		jpos;
+	:Exit;
+		here;
+};
+*word1_X {bla; bla; bla; bla; word2; bla; bla; bla; bla; };
+*word2_X {bla; bla; bla; bla; bla; };
+
+old_program_X (i1,i2,i3,o1,o2)
+{
+	//here;
+	//bla;bla;bla;bla;bla;
+	//word1;
+	//bla;bla;bla;bla;bla;
+	//here;
+//	push 111 2222 33333 444444 5555555;
+//	xmov -1; drop;
+//	xmov 0 -3; drop;
+//	xmov 0 -3; drop;
+	bla;bla;bla;
+	push 0;
+	jif1 ^L1;
+		bla;bla;bla;bla;
+	
+	:L1;
+		here;
+		bla;bla;bla;
+	
+	here;
+	bla3_inline;
+	bla3_inline;
+	here;
+	bla3_call;
+	bla3_call;
+	here;
+
+	//drop;drop;drop;drop;
+	here;
+	push 42;
+	dup;
+	here;
+	inc;
+	inc;
+	inc;
+	here;
+	
+	dup;
+	<*;
+		dup;
+		inc;
+	*>;
+	push 1111; push 22222; push 333333;
+	//here;
+	osmword1;
+//	push 1;
+//	sub -5;
+//	dup;
+//	dup;
+//	
+	
+	//here;
+	xget 2;
+	GetBaseGroupingBlock;
+	//here;
+	ProcessBlock;
+	xmovup;
+	
+	here;
+	unfold-list;
+	drop;
+	unfold-list;
+	here;
+};
+
+//CallFunction;
+//{
+//	
+//};
+GetBaseGroupingBlock_X (iExpNode,oBlockNode)
+{
+	//here;
+	xget 2;//dup;
+	
+	unfE 1; drop;
+	unfL 1; drop;
+	unfI 1; drop;
+	//xmovup;
+	xset 3;
+	//here;
+	//unfold; //drop;
+};
+ProcessBlock_X (iNode)
+{
+	//here;
+	node-length; jpos ^Children;
+	drop;drop; fold-list 0; ret;
+	
+	:Children;
+		//dup;
+		push "-- RETVAL --";
+		//xmov "RETVALHERE" -4; drop; drop;
+		//here;
+		xget 2;
+		unfold-node 1;
+		<*;
+			//here;
+			//dec;
+			xget 2;
+			//here;
+			ProcessExpression;
+			//here;
+			
+			//xget 2;
+			//here;
+			//~~ xsetting return value;
+			xget 4; sub -5; xset;
+			
+			//drop;
+			//~~xget 3; xset 5;
+			xmovup;//~~xset 2;
+			
+			//drop;drop;
+			//xget 2; xset 4; xset 2;
+			//dup;
+			
+			jpos ^NextExpression; drop;drop;
+			<*;
+				//~~ rexmoving queue;
+				dec; xmovup;
+			*>;
+			drop; ret;
+			
+			:NextExpression;
+				xmovup;
+				dec;
+		*>;
+		//here;
+		drop;
+
+
+//	here;
+//	x-unfold-node 1;
+//	
+//	dup; jpos ^Children; //~~ empty block allowed, returns empty list;
+//	drop;
+//	fold-list; ret;
+//	
+//	:Children;
+//	<*;
+//		dec;
+//		xget 2;
+//		ProcessExpression;
+//		xset 3;
+//	*>;
+//	drop;
+};
+ProcessExpression_X (iExpNode,oList,oDoProceedNext)//~~ S0=iExpNode -> S0=oExpList,S1=oDoProceedNext;
+{
+	get-node-role;
+		case $.SemanticRole.ExpOneList    ^OneList;
+		case $.SemanticRole.ExpAssignment ^Assignment;
+		case $.SemanticRole.ExpCustom     ^Custom;
+		case $.SemanticRole.Unknown       ^Assignment;
+		error "Not implemented";
+	drop;
+	
+	:OneList;
+		//here;
+		ProcessExpression-OneList;
+		ret;
+	:Assignment;
+		//here;
+		ProcessExpression-Assignment;
+		//here;
+		ret;
+	:Custom;
+		here;
+		ret;
+};
+ProcessExpression-OneList (iExpNode,oList)
+{
+	//here;
+	push "NOTHINGTOWRITE";
+	push 0; //~~ is write mode?;
+	xget 3;
+	unfE 1; drop;
+	ProcessList;
+	//here;
+	
+	xmovup;
+	
+	xset 1 4; //~~ do proceed next expression;
+	xmovup;
+	//true;
+	
+	
+	//here;
+	//drop;
+	//push 1;
+	//fold-list 111 222 333 3;
+};
+ProcessExpression-Assignment_X (iExpNode,oList)
+{
+	//here;
+	dup;
+	unfE 1;
+	
+	drop;
+	//here;
+	//~~ processing source list;
+	push "NOTHINGTOWRITE";
+	push 0; xget 4; ProcessList; xmovup; xmovup; xmovup; //here;
+	unfold-list;
+	
+		
+	dup; sub -2; xget;
+	unfL 1;
+	
+	//~~ determining the type of assignment: list-to-list, folding and unfolding a tuple;
+	dup; sub -2; xget;
+	xmov 0 4; drop;
+	//here;
+	//~~ S0 and S1 are the list lengths;
+	sub;
+	not; jpos ^ListToList; error "Tuples are not implemented yet";
+	
+	
+	:ListToList;
+		dup;
+		//here;
+		<*;
+			//here;
+			//~~ computing zero-based offxset to grow;
+			push 3; xget 2; sub; //neg;
+			
+			//here;
+			//~~ list item to read;
+			xget 3; dup; neg; sub; sub -4; //~~ count+count+3;
+			xget 2; neg; sub; dup; //~~ adding zero-based offxset;
+			xmov; drop;
+			
+			
+			push 1; //~~ the 'write-mode' argument;
+			
+			//here;
+			//~~ list item to write
+			xget 5; xget 5; sub; sub -6; xget;
+			
+			//here;
+			ProcessListItem;
+			//here;
+			
+			drop;drop;drop;drop;drop;
+			
+//			get-node-value;// xmovup;
+//			get-variable;
+//			
+//			here;
+//			set-variable;
+//			
+//			
+			dec;
+		*>;
+	
+		//~~dup; sub -2; xget;
+		//here;
+		drop;
+		<*; dec; xmovup; *>; drop;
+		//here;
+		fold-list;
+		xset 1 4;
+		xmovup;
+		
+		//here;
+		//<*; dec; xmovup; *>; drop;
+		//drop;
+		//drop;
+};
+ProcessList_X (iNode,iIsWriteMode,ioValueToWrite,oList)
+//~~ S0=iNode,S1=iIsWriteMode,S2=VALUETOWRITE_NOT_USED -> S0=oList;
+{
+	//drop;//drop;
+//	fold-list 1111 2222 3333 3;
+//	ret;
+
+	//here;
+	dup; unfL 1;
+	dup;
+	<*;
+		//here;
+		push "------";
+		
+		//here;
+		//~~ node;
+		xget 3; xget 3; sub; sub -5; xmov;// drop;
+		//here;
+		//~~ optional value to write;
+		//here;
+		xget 4; sub -9; dup; xmov;
+		//xget 10;
+		//dup; sub -5; xget;
+		
+		//here;
+		//~~ write-mode flag;
+		dup; xmov; drop;//xget 10;
+		//xget 2; sub -5; xget;
+		
+		//~~<?; here; ?>;
+		
+		xget 4;
+		//here;
+		ProcessListItem;
+		//here;
+		
+		xmov -7;  drop; drop; drop; drop; drop;
+		neg;
+		xmov;     drop; drop;
+		
+		dec;
+		//here;
+	*>;
+	//here;
+	drop;
+	fold-list; //~~ expects [Count,Item1,Item2, .. ItemN];
+	//xmov -4; drop; drop; drop;
+};
+ProcessListItem_X (iNode,iIsWriteMode,iValueToWrite,oList)
+ //~~ S0=iNode,S1=iIsWriteMode,S2=iValueToWrite(opt); -> S0=oList(opt);
+{
+	//xget 2; <?; here; ?>; drop;
+	
+//	fold-list 111 2222 3333 3;
+//	
+//	ret;
+	
+	//here;
+	//xget 2;
+	//drop;
+	//~~ can return folded list;
+	push "-- MEMBERBASE --";
+	xget 2;
+	
+	unfI 1;//here;
+	<*;
+		//here;
+		dup;
+		//~~ if is last atom in list-item (uses write-mode flag);
+		equals? 1; <?; xmov 7; drop; ?>;
+		
+		//drop; 0 - [iIsWriteMode = 0];
+		//dup;
+		//~~ value-to-write;
+		xget 2; sub -6; xget;
+		//~~  write-mode flag;
+		xget 2;
+		//~~ member base;
+		xget 4; sub -5; xget;
+		
+		//here;
+		///xget 4; <?; here; ?>; drop;
+		xget 6;
+		//here;
+		ProcessAtom;
+		
+		//here;
+		//xget 4; <?; here; ?>; drop;
+		//here;
+		
+		xget 7; sub -8; xset;
+		drop; drop; drop; drop; drop;
+		xmovup;
+		dec;
+	*>;
+	//here;
+	drop;
+	//xset 3; drop;
+};
+ProcessAtom_X (iNode,iMemberBase,iIsWriteMode,iValueToWrite,oValue)
+//~~ S0=iNode,S1=iMemberBase,S2=iIsWriteMode,S3=iValueToWrite(opt); -> S3=oValue(opt)
+{
+	//~~xget 3; <?; here; ?>; drop;
+	
+	xget 3; jpos ^WriteMode; drop;
+		ProcessAtom-Read;
+		ret;
+	:WriteMode;
+		ProcessAtom-Write;
+		ret;
+//	
+//	//here;
+//	//error "NI";
+//	//drop;
+//	dup;
+//	is-node?;
+//	<?;
+//		drop;	
+//		//here;
+//		//push $.SyntaxNodeType.NumInt31;
+//		get-node-type; //dup; sub 0; here;
+//			case $.SyntaxNodeType.NumInt32 ^NumInt32;
+//			case $.SyntaxNodeType.String   ^NumInt32;
+//			//~~case 19 ^LocalIdentifier;
+//			//case LocalIdentifier ^LocalIdentifier;
+//			case $.SyntaxNodeType.Identifier      ^Identifier;
+//			case $.SyntaxNodeType.LocalIdentifier ^LocalIdentifier;
+//			
+//			case $.SyntaxNodeType.ArgumentBlock   ^ArgumentBlock;
+//			case $.SyntaxNodeType.GroupingBlock   ^GroupingBlock;
+//			
+//			error "Unresolved";
+//		
+//		:NumInt32;
+//			//here;
+//			//drop;	
+//			get-node-value;
+//			
+//			//here;
+//			goto ^EONode;
+//			
+//		:Identifier;
+//			//here;
+//			//~~push 0; push 5; xmov; drop;
+//			xmov 0 5; dup; xmov; drop;
+//			//here;
+//			get-node-value;
+//			get-member;
+//			xmovup;
+//			
+//			//dup;
+//			//xset "------" 2;
+//			//here;
+//			//~~push -4; xmov; drop; drop; swap;
+//			//xmov -4; drop; //drop;
+//			
+//			goto ^EONode;
+//			//here;
+//			
+//		:LocalIdentifier;
+//			//drop;
+//			//here;
+//			
+//			get-node-value;// xmovup;
+//			get-variable;
+//			get-variable-value;
+//			goto ^EONode;
+////		Identifier,
+////			Instruction,
+////			InputIdentifier,
+////			OutputIdentifier,
+////			LocalIdentifier,
+////			GlobalIdentifier,
+////			FunctionIdentifier,
+////			Word,
+////
+////			Type,
+////			PackedTuple,
+////		
+//		:ArgumentBlock;
+//			//here;
+//			//error "Using ArgumentBlock as a first item";
+//			ProcessBlock;
+//			xget 4;
+//			call-function;
+//			//here;
+//			xmov -4; drop; drop; drop;
+//			
+//			goto ^EONode;
+//			
+//		:GroupingBlock;
+//			//here;
+//			ProcessBlock;
+//			xmovup;
+//			//here;
+//			goto ^EONode;
+////			here;
+////			Emulate_ProcessBlock;
+////			here;
+////			
+//		:EONode;
+//			//here;
+//			//xset 4;
+//			//drop;
+//			//here;
+//		//true;
+//	?>;
+//	ret;
+//	
+//	:WriteMode;
+//		here;
+//		
+//		get-node-type;
+//		case $.SyntaxNodeType.GroupingBlock ^Grou
+//		
+//		xget 4;
+//		xget 2;
+//		get-node-value;
+//		set-variable;
+//		//get-object-type;
+//		drop;
+};
+ProcessAtom-Read_X (iNode)
+{
+	//here;
+	
+	dup;
+	is-node?;
+	<?;
+		drop;	
+		//here;
+		//push $.SyntaxNodeType.NumInt31;
+		get-node-type; //dup; sub 0; here;
+			case $.SyntaxNodeType.NumInt32 ^NumInt32;
+			case $.SyntaxNodeType.String   ^NumInt32;
+			//~~case 19 ^LocalIdentifier;
+			//case LocalIdentifier ^LocalIdentifier;
+			case $.SyntaxNodeType.Identifier      ^Identifier;
+			case $.SyntaxNodeType.LocalIdentifier ^LocalIdentifier;
+			
+			case $.SyntaxNodeType.ArgumentBlock   ^ArgumentBlock;
+			case $.SyntaxNodeType.GroupingBlock   ^GroupingBlock;
+			
+			error "Unresolved";
+		
+		:NumInt32;
+			//here;
+			//drop;	
+			get-node-value;
+			
+			//here;
+			ret;
+			
+		:Identifier;
+			//here;
+			//~~push 0; push 5; xmov; drop;
+			xmov 0 5; dup; xmov; drop;
+			//here;
+			get-node-value;
+			get-member;
+			xmovup;
+			
+			//dup;
+			//xset "------" 2;
+			//here;
+			//~~push -4; xmov; drop; drop; swap;
+			//xmov -4; drop; //drop;
+			
+			ret;
+			//here;
+			
+		:LocalIdentifier;
+			//drop;
+			//here;
+			
+			get-node-value;// xmovup;
+			get-variable;
+			get-variable-value;
+			ret;
+//		Identifier,
+//			Instruction,
+//			InputIdentifier,
+//			OutputIdentifier,
+//			LocalIdentifier,
+//			GlobalIdentifier,
+//			FunctionIdentifier,
+//			Word,
+//
+//			Type,
+//			PackedTuple,
+//		
+		:ArgumentBlock;
+			//here;
+			//error "Using ArgumentBlock as a first item";
+			ProcessBlock;
+			xget 4;
+			call-function;
+			//here;
+			xmov -4; drop; drop; drop;
+			
+			ret;
+			
+		:GroupingBlock;
+			//here;
+			ProcessBlock;
+			xmovup;
+			//here;
+			ret;
+//			here;
+//			Emulate_ProcessBlock;
+//			here;
+//			
+		//:EONode;
+			//here;
+			//xset 4;
+			//drop;
+			//here;
+		//true;
+	?>;
+	error "ND";
+};
+ProcessAtom-Write_X (iNode)
+{
+	//here;
+	dup;
+	get-node-type;
+		case $.SyntaxNodeType.GroupingBlock   ^GroupingBlock;
+		case $.SyntaxNodeType.ArgumentBlock   ^ArgumentBlock;
+		case $.SyntaxNodeType.Identifier      ^Identifier;
+		case $.SyntaxNodeType.LocalIdentifier ^LocalIdentifier;
+		
+		error "NI";
+	
+	:LocalIdentifier;
+		//here;
+		xget 5;
+		xget 2;
+		get-node-value;
+		set-variable;
+		//get-object-type;
+		drop;
+		xmovup;
+		ret;
+		
+	:Identifier;
+		//here;
+		//~~push 0; push 5; xmov; drop;
+		xget 5;
+		xget 4;
+		xget 3;
+		
+		//xmov 0 5; dup; xmov; drop;
+		//here;
+		get-node-value;
+		set-member;
+		//here;
+		xmovup;
+		
+		//dup;
+		//xset "------" 2;
+		//here;
+		//~~push -4; xmov; drop; drop; swap;
+		//xmov -4; drop; //drop;
+		
+		ret;
+	:ArgumentBlock;
+		//here;
+		
+		ProcessBlock;
+		xget 6;xget 6;xget 3;xget 7;
+		
+		call-function;
+		//here;
+		xmov -7; drop;drop;drop;drop;drop;drop;
+			
+		ret;
+	:GroupingBlock;
+		//here;
+		//~~ check expression count: allowed only 1 expression in block;
+		node-length; equals? 1; not;
+		<?;
+			drop;
+			error "Only 1 expression allowed";
+		?>;
+		drop;
+		
+		//~~ unflolding;
+		dup; unfGB 1; drop;
+		//here;
+		
+		//~~ check list count: allowed only 1 list in the only expression;
+		node-length; equals? 1; not;
+		<?;
+			drop;
+			error "Only 1 list allowed";
+		?>;
+		drop;
+		
+		//here;
+		//~~ processing list;
+		unfE 1; drop; unfL 1;
+		<*;
+			here;
+		*>;
+		
+		here;
+		ret;
+};
+
+//ProcessAtom-Function
+//{
+//	here;
+//	//~~push 0; push 4; xmov; drop; push 0; compare;
+//	xget 2; compare 0;
+//	<?;
+//		drop;
+//	
+//		//~~ push 0; push 5; xmov; drop;
+//		xget 3; get-node-type; equals? $.SyntaxNodeType.BLAADASF;
+//		<?;
+//			drop;
+//			
+//			
+//			here;
+//			true;
+//		?>;
+//		drop;
+//		here;
+//		
+//		ret;
+//	?>;
+//	drop;
+//};
+Emulate_ProcessBlock_X (iNode,oStrHW,oNum1,oNum2,oResCount)
+{
+	push "Hello, World!" 222 111 3;
+};
+MyTestFunction (iList,oList)
+{
+	//here;
+	dup;
+	unfold-list;
+	<*; sub 1; xmov -3; drop; drop; *>; drop;
+	
+	
+	fold-list "YO-HO-HO!" 222 333 444 555 5;
+};
+
+);
+//(_X,_Y,_Str 111,222,"Hello, World".ToString[12345]);
+//(_X,_Y,_Str 111,222,"Hello, World");
+//~~(111,"Hello, World",_MyObject.Name.Substring[1,(1 + gSomething)]);
+//(_MyObj.Name.Substring[1,(1 + gSomething)]);
+//(_MyObj.MemA.MemB.MemC.FuncA[1,(1 + gSomething)].FuncB[_MyObj]);
+//("11111","22222","33333");
+//(_MyObj.MemA.MemB.MemC.FuncA,44444,555555);
+//(_MyObj.MemA.MemB.MemC.FuncA[].AAA.BBB.CCC,44444,555555);
+//(_MyObj.MemA.MemB.MemC.FuncA[11111,22222,33333].AAA.BBB.CCC,44444,555555);
+(
+	//_Node.Children[1].Children[0]  _MyChild;
+	
+	//_Str,_X,_Y   "Hello, World!",_MyObj.Age,_MyNum;
+	////_Str,_X,_Y   "Hello, World!",_MyObj.Age,_MyNum;
+	////~~_Str,_X,_Y,_Z _MyNum;
+	//_X,_Y,_Str 42,12345,"Hello, World!";
+	//(123,456) 123456;
+	//(111,222) (333,444);
+	_TEST                _MyObj.MemA.MemB.MemC.FuncA[333,444,555];
+	
+	_MyObj.Items[12345]  "First item";
+	_X,_Y                _MyObj.Age,42;
+	_X,_Y                _Y,_X;
+		
+	_Z           56;
+	_MyObj.Age   _Z;
+	_MyObj.Age;
+	
+	_Name1       _MyObj.MemA.MemB.MemC;
+	_MyObj.MemA  2;
+	_Name2       _MyObj.Name;
+	
+	_MyObj;
+	
+
+	
+	//''
+
+//	_List (123,456);
+	
+//	_X          11111;
+//	_X,_Y       11111,22222;
+	//_X,_Y,_Str  11111,22222,"Hello";
+//	
+//	_PosXY,(_W,_H) (111,222),(333,444);
+//	
+//	
+//	_TEST _MyObj.MemA.MemB.MemC.FuncA[333,444,555];
+	//42 + _MyObj.Age;
+	//_MyObj.MemA.MemB.MemC.FuncA[11111,22222,"Hello, FuncA!"],11111,22222;
+	//_MyObj.MemA.MemB.MemC.FuncA["Inputs1"] "Inputs2";
+	//88,88,88,88,88,88,88,88,88,88,88;
+	//55555555;
+	//66666666;
+	//77777777;
+	//111,111111,111111111;
+	//222,222222,222222222;
+	//_MyObj.Age,333333,_MyObj.Name;
+);
+//(_MyObj.MemA.MemB.MemC,_MyObj.Name,_MyObj.Age,12345,"Hello, World!");
+//(_MyObj.MemA.MemB.MemC.FuncA[111,222,"Hello, World!"].FuncB[_MyObj]);
+//((111,222,"Hello, World!"));
+//(i1 * 2);
+//~~(2.718281828,"Hello, World!");
+//(_X 111; _Y 222);
+_X,_Y (123,iForm.Name,_MyObj.Name.Func[1,2,_Name.ToString[]],SomethingElse);
+
+
+//RealNumber {Value;
+//_MyRealNumber RealNumber[];
+
+//_StringValue  $.Value.$str.Substring[0,3];
+//_MyRealNumber._StringValue;
+
+//Expression -> List -> ListItem -> Atom(inc. Block) -> Expression;
+//";"          " "     ","         "."      "[,],(,),{,}"     
+
+
+
+	get (sub #EAX -3);
+
+	mov EAX,ST0;
+	mov eax,st0;
+	mov eax,O[ebp * 2 + 4];
+
+	mov EAX,ST0;
+	mov R0,ST0;
+	mov r0,st0;
+
+
+	mov #EAX,#ST0;
+	mov #eax,#st0;
+	mov #eax,O[#ebp * 2 + 4];
+
+	mov #EAX,#ST0;
+	mov #R0,#ST0;
+	
+
+	mov @EAX,@ST0;
+	mov @eax,@st0;
+	mov @eax,O[@ebp * 2 + 4];
+
+	mov @EAX,@ST0;
+	mov @R0,@ST0;
+
+
+	mov %EAX,%ST0;
+	mov %eax,%st0;
+	mov %eax,O[%ebp * 2 + 4];
+
+	mov %EAX,%ST0;
+	mov %R0,%ST0;
+
+
+	mov &EAX,&ST0;
+	mov &eax,&st0;
+	mov &eax,O[&ebp * 2 + 4];
+
+	mov &EAX,&ST0;
+	mov &R0,&ST0;
+
+
+	mov *EAX,*ST0;
+	mov *eax,*st0;
+	mov *eax,O[*ebp * 2 + 4];
+
+	mov *EAX,*ST0;
+	mov *R0,*ST0;
+
+	
+
+	set oDest;
+
+	get @IP;
+	get iOffs;
+	sub;
+	get;
+	set oDest;
+
+
+
+
+
+mymov (iDest,iOffs,oDest)
+{
+//	get
+//	(
+//		bla;bla;bla;bla;bla;
+//		push 111;push 111;push 111;push 111;push 111;
+//		drop;drop;drop;drop;drop;
+//		
+//		push i
+//		sub @IP -3
+//	);
+
+
+	get iDest;
+	set oDest;
+
+	get %IP;
+	get iOffs;
+	sub;
+	get;
+	set oDest;
+};
+dup (i1,o1,o2)
+{
+	get %IP;
+	sub 1;
+	
+};
+get (iOffs,oValue)
+{
+	here;
+};
+prolog {here; bla;};
+epilog {here; bla;};
+
+sampleword1 (iX,iY,iZ,oLen,_LocalLen)//~~ mode 32;
+{
+	here;
+
+	//iX; iZ;
+	oLen (iX);
+	_LocalLen
+	(
+		iX; iY; sub;
+		sub (iZ);
+		
+		sub (iX),(iY);
+		sub;
+	);
+
+	iX; iY; sub; oLen;
+	oLen (iX; iY; sub);
+	oLen (iX; sub(iX));
+	oLen (sub (iX),(iY));
+
+	oLen (sub (iX),(iY));
+	set oLen (sub (get iY),(get iX));
+
+	//push iX,iY,iZ;
+	//push iX iY iZ;
+	//get (push iX);
+	set oLen (sub (get iY),(get iX));
+	set oLen (bla;bla;bla; sub (bla;bla;bla;get iY),(bla;bla;get iX;bla;bla;); bla;bla;);
+	
+	set oLen
+	(
+		get iY;
+		get iX;
+		sub;
+	);
+
+	push iY; get;
+	push iX; get;
+	sub;
+	push oLen; set;
+
+
+
+	set oLen
+	(
+		get iY;
+		get iX;
+		sub;
+	);
+
+
+	set oLen
+	(
+		bla;bla;bla;
+		sub
+		(
+			bla;bla;bla;
+			get iY
+		),
+		(
+			bla;bla;
+			get iX;
+			bla;bla;
+		);
+		bla;bla;
+	);
+	//set oLen (sub (iY),(iX));
+	oLen (sub (iY),(iX));
+	oLen (iY;iX;sub);
+
+	oLen (sub iY,iX);
+
+	oLen (_Local);
+
+
+	_Local
+	(
+		
+	);
+	
+	
+	here;
+	get iX; dup;
+	set oLen;
+	
+	push 1;
+	push 3;
+	mov;
+	
+	mov 1,3;
+	mov @sp+1,@fp+3;
+	
+	
+	//_LocalLen 42;
+	get iX;
+	sub (get iY);
+	set oLen;
+
+	get iX;
+	sub 1;
+	set cAi;
+
+	while (get cAi; compare 0; positive?)
+	(
+		bla;bla;bla;bla;
+		bla;bla;bla;bla;
+		bla;bla;bla;bla;
+		
+		set cAi (get cAi; sub 1);
+	);
+
+	
+	push iX.addr;
+	
+	get iX.addr;
+	set oLen.addr;
+	
+	
+	
+	push 111,222,333;
+	mov oLen, _LocalLen;
+	here;
+	
+	mov _LocalLen,2;
+	rofs _LocalLen; //~~ rel to stack pointer (#sp);
+	aofs oLen;      //~~ rel to frame pointer (#fp);
+	
+	
+	push iX; //~~ push address of iX;
+	get  iX; //~~ push VALUE of iX;
+	iX;      //~~ ???;
+	_123;    //~~ push value;
+	
+	#IP;     //~~ push current IP (LOOPS);
+	
+//	LIST OF BASIC INSTRUCTIONS
+//	push?;
+//	get;
+//	set;
+//	mov;
+//	jpos;
+//	sub;
+//	call;
+//	ret;
+//	
+	
+	
+	
+	
+	
+	
+	_TotalItemCount,cIi iItems.Count,0; loop 
+	(
+		bla;bla;bla;
+		
+		inc cIi;
+		
+		compare _TotalItemCount;
+		jpos ^Break;
+		
+		
+		break;
+	);
+	
+	oLen 123;
+	oLen
+	(
+		bla;bla;bla; _123; sub 0;
+	);
+	_Local1
+	(
+		
+	);
+	
+	cItemLen 1;
+	oLen cItemLen; //~~ assignment: address to value?;
+	
+	
+	
+	//ProcessSomething(iX,iY,iZ);
+	
+	
+
+
+	here;
+	
+	set oLen
+	(
+		here;
+		push 1234567890;
+		sub 0;
+		jpos 0 ^NotZero; drop;
+		bla;bla;bla;
+		:NotZero;
+		bla;bla;bla;
+		here;
+	);
+	
+	here;
+	get
+	(
+		push iX;
+		sub 0;
+		bla;bla;bla;bla;
+		bla;bla;bla;bla;
+		bla;bla;bla;bla;
+		bla;bla;bla;bla;
+		bla;
+	);
+	here;
+	get
+	(
+		here;
+		bla;bla;bla;bla;bla;
+		push 111;push 111;push 111;push 111;push 111;
+		drop;drop;drop;drop;drop;
+		
+		push iX;
+		
+		//sub @IP -3
+	);
+	here;
+
+
+
+
+	here;
+	push iY; //resolve;
+	
+	//push oLen;
+	//here;
+	get iX; set _LocalLen;
+	sub 11;
+	set oLen;
+	//name _LocalLen;
+	
+	get iX;
+	get iY;
+	sub;
+	dup;
+	set oLen;
+	///get oLen;
+	
+	inc _LocalLen;
+	set oLen;
+	here;
+	//push iY;
+	//push iZ;//; get;
+	//~~get iY;
+	push iX,iY,iZ;
+	get;
+	here;
+	//push "Local" "Local" "Local";
+	//push "Local" "Local" "Local";
+	//push "< oHumanInfo" "< oError";
+	push "Vasya",30,1234567890;
+	sampleword2;
+	here;
+	drop;drop;drop;drop;
+	//ret;
+};
+sampleword2 (iName,iAge,iPassportNum,oHumanInfo,oError)
+{
+	//here;
+	
+	
+	oHumanInfo (sub (iPassportNum) 1000000000);
+	oError     0;
+	//oError;
+	//push iName;
+	//get;
+	//push _Local;
+	here;
+};
+
+saffsaword (iX,iY,iZ,oLen,oErr,_Loc1,_Loc2,_Loc3, _MyFunc1,_MyFunc2)
+{
+	loop;
+	dup;
+	{
+		bla;bla;bla;
+		dec;
+	};
+	drop;
+
+
+	get-object-type,3;
+	{
+		bla;bla;bla;
+	};
+	drop;
+	bla;bla;bla;
+
+
+	equals (get-object-type,3);
+	1,
+	 {
+		bla;bla;bla;
+	 };
+	0,
+	 {
+		bla;bla;bla;
+	 };
+	drop;
+
+	get-object-type;
+	1;
+	 {
+		bla;bla;bla;bla;bla;bla;
+		bla;bla;bla;bla;bla;bla;
+		bla;bla;
+		bla;bla;
+	 };
+	2;
+	 {
+		bla;bla;bla;bla;bla;bla;
+		bla;bla;bla;bla;bla;bla;
+		bla;bla;
+		bla;bla;
+	 };
+	3;
+	 {
+		bla;bla;bla;bla;bla;bla;
+		bla;bla;bla;bla;bla;bla;
+		bla;bla;
+		bla;bla;
+	 };
+	4;
+	 {
+		bla;bla;bla;bla;bla;bla;
+		bla;bla;bla;bla;bla;bla;
+		bla;bla;
+		bla;bla;
+	 };
+	error "Unknown type";
+
+
+
+	compare _Loc1,iX;
+		case +1  ^LabelGT;
+		case  0  ^LabelEQ;
+		case -1  ^LabelLT;
+		
+	compare _Loc1,iX;
+		case +1  {bla;bla;bla;};
+		case  0  {bla;bla;bla;};
+		case -1  {bla;bla;bla;};
+	
+	compare _Loc1,iX;
+		case +1  {bla;bla;bla; +1};
+		case  0  {bla;bla;bla; -1};
+		case -1  {bla;bla;bla; goto ^OK};
+		error "WTFE: Unresolved";
+
+	:OK;
+		bla;bla;bla;
+
+	compare _Loc1,iX;
+		case true
+		{
+			bla;bla;bla;bla;bla;bla;
+			bla;bla;bla;
+			bla;bla;bla;
+			
+			
+			how_to_keep_tos?;
+		};
+		case false
+		{
+			bla;bla;bla;
+			bla;bla;bla;
+			bla;bla;bla;
+		};
+		case -1
+		{
+			bla;bla;bla;
+			bla;bla;bla;
+			bla;bla;bla;
+		};
+	
+	
+	
+	//~~ save begin address of sup-procedure to _fMyFunc;
+	set _fMyFunc1 {bla;bla;bla;bla;bla;};
+	
+	if (equals? iX,_Loc1) _fMyFunc1;
+
+	
+	
+	if (equals? iX,_Loc1) {bla;bla;bla};
+	
+	if (equals? iX,_Loc1) {bla;bla;bla}
+	else {bla;bla;};
+	
+	
+	if   (equals? iX,_Loc1)            {bla;bla;bla};  //~~ when executed...;
+	elif (equals iX,(sub _Loc2,_Loc1)) {bla;bla;bla;}; //~~ must keep 1 or 0..:;
+	elif (equals iX,(sub 0,iY))        {bla;bla;bla;}; //~~ to indicate elif/else...;
+	else                               {bla;bla;};     //~~ to skip execution;
+	
+	
+	if   (false) {bla; 1}; //~~ not invoked, push 0;
+	elif (true)  {bla; 1}; //~~ invoked, push 1 (each inline block after own exec...;
+	elif (false) {bla; 1}; //~~ must push 1 on the data stack;
+	else         {bla; 1};
+	endif;                 //~~ drop TOS (1 or 0);
+	
+	//~~ block's opcode sequence;
+	//~~ note that opener is already known;
+	closer_index; firstbla;bla;bla;bla;lastbla;  push 1; //~~ pushed 1 anyway; 
+	//~~ after any block execution, 1 remains on the TOS anyway;
+	
+	
+	
+	
+	
+	iX,iY,iZ;
+
+	1,2,3; 2,3 1; 3 2 1; drop;drop;drop;drop;
+	//drrrrop;
+	drop;
+	drop;drop;drop;drop;
+
+	_Loc1 (gMyFunc(_Loc1),(_Loc2),(_Loc3));
+	oLen (gMyFunc(iX),(iY),(_Loc3));
+	
+	//set ^oLen (get ^iName);
+	//get ^iName;
+	//set ^oLen;
+	
+	//set ^_Loc1;
+	
+	
+	
+	oLen iX;
+	oLen (sub iX,iY);
+	
+	//oLen (sub (get ^oLen),iY);
+	//oLen (sub (get *oLen),iY);
+	
+	iX;    //~~ read-only;
+	oLen;  //~~ write-only;
+	_Loc1; //~~ read/write;
+	
+	oiX (sub iX,5);
+	
+	
+
+	set _Loc3 (gMyFunc (get _Loc1),(get _Loc2),(get _Loc3));
+	set _Loc3
+	(
+		gMyFunc
+		(
+			get _Loc1
+		),
+		(
+			get _Loc2
+		),
+		(
+			get _Loc3
+		)
+	);
+	set oLen
+	(
+		
+	);
+	set oErr
+	(
+		
+	);
+
+
+
+
+
+	_Loc3 (gMyFunc (get _Loc1),(get _Loc2),(get _Loc3));
+	_Loc3
+	(
+		gMyFunc
+		(
+			get _Loc1
+		),
+		(
+			get _Loc2
+		),
+		(
+			get _Loc3
+		)
+	);
+	oLen
+	(
+		bla;
+	);
+	oErr
+	(
+		bla;
+	);
+
+
+
+	//MyFunc iX,iY,iZ _OuV1,_OuV2;
+	//MyFunc 111,222,333 _OuV1,_OuV2;
+	//MyFunc (111,222,333 _OuV1,_OuV2);
+	!!!; //~~ ^^^^ signature!;
+	//i1,i2,i3; i2,i3 i1; i3 i2 i1;
+	//!!!;
+};

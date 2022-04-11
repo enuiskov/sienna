@@ -1,0 +1,7 @@
+L:\Development\Sienna\Software\AE.Drawing\obj\Debug\ResolveAssemblyReference.cache
+L:\Development\Sienna\Software\AE.Drawing\bin\Debug\AE.Drawing.dll
+L:\Development\Sienna\Software\AE.Drawing\bin\Debug\AE.Drawing.pdb
+L:\Development\Sienna\Software\AE.Drawing\bin\Debug\AE.Core.dll
+L:\Development\Sienna\Software\AE.Drawing\bin\Debug\AE.Core.pdb
+L:\Development\Sienna\Software\AE.Drawing\obj\Debug\AE.Drawing.dll
+L:\Development\Sienna\Software\AE.Drawing\obj\Debug\AE.Drawing.pdb

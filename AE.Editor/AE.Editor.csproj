@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{08536CCC-9515-4823-A7CA-960E0CC1CA31}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AE.Editor</RootNamespace>
+    <AssemblyName>AE.Editor</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="!SampleObject.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Controls\EditorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GraphicsEngineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GraphicsEngine3DControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FontRendererControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FillerGraphicsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MatrixTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WC+Graphics.cs">
+    </Compile>
+    <Compile Include="Frames\BufferConsole\BC+.cs" />
+    <Compile Include="Frames\BufferConsole\BC+Commands.cs" />
+    <Compile Include="Frames\BufferConsole\BC+Events.cs" />
+    <Compile Include="Frames\BufferConsole\BC+Handlers.cs" />
+    <Compile Include="Frames\BufferConsole\BC+Objects.cs" />
+    <Compile Include="Frames\TableFrame.cs" />
+    <Compile Include="Frames\GdiConsoleFrame.cs" />
+    <Compile Include="EditorMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditorMainForm.Designer.cs">
+      <DependentUpon>EditorMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\MemoryImageFrame.cs" />
+    <Compile Include="TestMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestMainForm.Designer.cs">
+      <DependentUpon>TestMainForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AE.Core\AE.Core.csproj">
+      <Project>{AEC1AF15-AA7C-4D7F-8A2D-3F3CA535DCF7}</Project>
+      <Name>AE.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AE.Data\AE.Data.csproj">
+      <Project>{F1D24AD1-BDF1-4C51-AA6F-CD3CD9BDC8F1}</Project>
+      <Name>AE.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AE.Editor.Tools\AE.Editor.Tools.csproj">
+      <Project>{EA49F9BA-857E-4359-8D9F-898A98022F10}</Project>
+      <Name>AE.Editor.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AE.Visualization\AE.Visualization.csproj">
+      <Project>{4899C32C-9E2B-4DB5-8BE9-CE1F40D6FCB6}</Project>
+      <Name>AE.Visualization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenTK.Math\OpenTK.Math.csproj">
+      <Project>{55777971-EE03-4F44-AE08-F3BFB5B43CFE}</Project>
+      <Name>OpenTK.Math</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Frames\BufferConsole\GlyphRenderingOGL\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
