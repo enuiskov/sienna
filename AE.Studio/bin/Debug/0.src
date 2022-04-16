@@ -86,18 +86,7 @@ mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 	);
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	:DontSwap;
-	
 	
 	//!!!;
 	set oV 0;

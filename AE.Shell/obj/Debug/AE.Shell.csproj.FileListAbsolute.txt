@@ -7,12 +7,3 @@ L:\Development\Sienna\Software\AE.Shell\obj\Debug\AE.Properties.Resources.resour
 L:\Development\Sienna\Software\AE.Shell\obj\Debug\AE.Shell.csproj.GenerateResource.Cache
 L:\Development\Sienna\Software\AE.Shell\bin\Debug\AE.Core.dll
 L:\Development\Sienna\Software\AE.Shell\bin\Debug\AE.Core.pdb
-U:\Development\Sienna\Software\AE.Shell\bin\Debug\AE.Shell.exe
-U:\Development\Sienna\Software\AE.Shell\bin\Debug\AE.Shell.pdb
-U:\Development\Sienna\Software\AE.Shell\bin\Debug\AE.Core.dll
-U:\Development\Sienna\Software\AE.Shell\bin\Debug\AE.Core.pdb
-U:\Development\Sienna\Software\AE.Shell\obj\Debug\ResolveAssemblyReference.cache
-U:\Development\Sienna\Software\AE.Shell\obj\Debug\AE.Properties.Resources.resources
-U:\Development\Sienna\Software\AE.Shell\obj\Debug\AE.Shell.csproj.GenerateResource.Cache
-U:\Development\Sienna\Software\AE.Shell\obj\Debug\AE.Shell.exe
-U:\Development\Sienna\Software\AE.Shell\obj\Debug\AE.Shell.pdb

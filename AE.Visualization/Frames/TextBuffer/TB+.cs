@@ -84,7 +84,10 @@ namespace AE.Visualization
 	public partial class TextBufferFrame : Frame
 	{
 		public TextBufferSettings Settings;
-		public Bitmap        SheetImage;
+		public Rectangle          BufferRegion;
+		public Size               BufferSize;//{get{return new Size((int)(this.Width / this.CharWidth), (int)(this.Height / this.LineHeight));}}
+
+		public Bitmap             SheetImage;
 		//public FontInfo       FontData;
 		//public FontGlyphAtlas FontAtlas;
 
@@ -94,9 +97,6 @@ namespace AE.Visualization
 		//public float     CharWidth; //{get{return this.FontSize * 0.7f;}}
 		//public float     LineHeight;//{get{return this.FontSize + 2f;}}
 
-		public Rectangle BufferRegion;
-		public Size      BufferSize;//{get{return new Size((int)(this.Width / this.CharWidth), (int)(this.Height / this.LineHeight));}}
-		
 		private TextBufferRow[] Rows;
 		
 		static TextBufferFrame()
@@ -242,8 +242,11 @@ namespace AE.Visualization
 				}
 			}
 
+
 			if(this.IsTextureMode) this.UpdateGlyphs(true);
 			else                   this.UpdateShapes(true);
+			
+			
 		}
 		
 		//private void TextBufferFrame_Resize(GenericEventArgs iEvent)

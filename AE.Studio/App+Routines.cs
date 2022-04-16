@@ -24,16 +24,23 @@ namespace AE
 			var _NoisePatt = "-noise";
 
 			var _Args = Studio.Args;
-			var _AppMode = _Args[0];
+			var _AppMode = "";
 			{
+				if(_Args.Length >= 1)
+				{
+					_AppMode = _Args[0];
+				}
+
+				if(_AppMode == "") _AppMode = "NGonSchemeFrame";
+
 				if(_AppMode == _ClockPatt || _AppMode == _NoisePatt)
 				{
 					_AppMode = "";
 				}
 			}
 
-			var _IsClock = _Args[0].Contains(_ClockPatt) || (_Args.Length >= 2 && _Args[1].Contains(_ClockPatt)) || (_Args.Length >= 3 && _Args[2].Contains(_ClockPatt));
-			var _IsNoise = _Args[0].Contains(_NoisePatt) || (_Args.Length >= 2 && _Args[1].Contains(_NoisePatt)) || (_Args.Length >= 3 && _Args[2].Contains(_NoisePatt));
+			var _IsClock = (_Args.Length >= 1 && _Args[0] == _ClockPatt) || (_Args.Length >= 2 && _Args[1].Contains(_ClockPatt)) || (_Args.Length >= 3 && _Args[2].Contains(_ClockPatt));
+			var _IsNoise = (_Args.Length >= 1 && _Args[0] == _NoisePatt) || (_Args.Length >= 2 && _Args[1].Contains(_NoisePatt)) || (_Args.Length >= 3 && _Args[2].Contains(_NoisePatt));
 
 
 			//this.InitWorkarounds(iCanvas);
@@ -111,14 +118,19 @@ namespace AE
 						 //Workarounds.MainConsoleFrame = _MainConsole;
 						
 					}
-					iCanvas.Frame.Children.Add(_DebugConsole);
+					///iCanvas.Frame.Children.Add(_DebugConsole);
 					iCanvas.Frame.Children.Add(_MainConsole);
 					
-					///iCanvas.Frame.Children.Add(new FPSMeterFrame  {Name = "???",        Bounds = new Rectangle(0,205,64,30), Palette = new GdiColorPalette(), Margin = new Padding(-1,0,0,-1)});
+					//iCanvas.Frame.Children.Add(new FPSMeterFrame  {Name = "???",        Bounds = new Rectangle(0,205,64,30), Palette = new GdiColorPalette(), Margin = new Padding(-1,0,0,-1)});
 					
 					iCanvas.Frame.Children[0].Focus();
-					///iCanvas.Frame.Children[1].Focus();
+					//iCanvas.Frame.Children[1].Focus();
 					//iCanvas.Frame.Focus();
+
+					///_MainConsole.Focus();
+
+					iCanvas.MainFrame = iCanvas.Frame.Children[0];
+					iCanvas.RecentNonMainFrame = _MainConsole;
 				}
 			}
 			

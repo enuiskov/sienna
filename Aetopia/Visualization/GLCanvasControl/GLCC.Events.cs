@@ -220,20 +220,8 @@ namespace AE.Visualization
 			{
 				switch((Keys)iEvent.KeyCode)
 				{
-					case Keys.Escape:
+					case Keys.Oemtilde:
 					{
-						if(Keyboard.IsKeyToggled(Keys.Scroll)) System.Windows.Forms.Application.Exit();
-						//G.Application
-						//if(this.ActiveFrame != this.m
-						///G.Screen
-						
-						//if(this.MainFrame != null)
-						//{
-						//    if(this.MainFrame.IsActive)
-						//    {
-								
-						//    }
-						//}
 						if(this.Canvas.MainFrame != null)
 						{
 							if(this.Canvas.MainFrame.IsActive)
@@ -251,7 +239,15 @@ namespace AE.Visualization
 							iEvent.Handled = true;
 						}
 						iEvent.Handled = true;
+
 						break;
+					}
+					case Keys.Escape:
+					{
+						if(Keyboard.IsKeyToggled(Keys.Scroll)) System.Windows.Forms.Application.Exit();
+				
+						goto case Keys.Oemtilde;
+						///break;
 					}
 				    ///case Keys.F5: ZoomableFrame.Routines.Tests.Atlas(Workarounds.SchemeFrame); break;
 					//case Keys.F9:

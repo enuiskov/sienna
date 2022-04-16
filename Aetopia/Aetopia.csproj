@@ -53,6 +53,7 @@
     <Compile Include="Miscellaneous\AudioPlayer.Routines.cs" />
     <Compile Include="Simulation\SixDOF.cs" />
     <Compile Include="Visualization\Fonts.cs" />
+    <Compile Include="Visualization\Frames\Common\Consoles\BufferConsoleGDI.cs" />
     <Compile Include="Visualization\Frames\Common\Scheme\ObjectModel\Project.cs" />
     <Compile Include="Visualization\Frames\Common\Scheme\ObjectModel\SchemeNode.cs" />
     <Compile Include="Visualization\Frames\Common\Scheme\SchemeFrame.cs" />

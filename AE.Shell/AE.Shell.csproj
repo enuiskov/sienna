@@ -71,7 +71,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Start.MIDI.cs" />
+    <Compile Include="Start.TUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

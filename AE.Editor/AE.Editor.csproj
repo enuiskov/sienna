@@ -101,11 +101,6 @@
     </Compile>
     <Compile Include="Controls\WC+Graphics.cs">
     </Compile>
-    <Compile Include="Frames\BufferConsole\BC+.cs" />
-    <Compile Include="Frames\BufferConsole\BC+Commands.cs" />
-    <Compile Include="Frames\BufferConsole\BC+Events.cs" />
-    <Compile Include="Frames\BufferConsole\BC+Handlers.cs" />
-    <Compile Include="Frames\BufferConsole\BC+Objects.cs" />
     <Compile Include="Frames\TableFrame.cs" />
     <Compile Include="Frames\GdiConsoleFrame.cs" />
     <Compile Include="EditorMainForm.cs">
