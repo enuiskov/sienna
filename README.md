@@ -54,19 +54,16 @@
 |`[Space]`                  |  Update node information and line connections    |
 |`[H]`                      |  Hold to draw lines with the arc helper          |
 |`[U],[I],[O]`              |  Set port type: **U**ndefined, **I**nput, **O**utput |
-
 |`[Q]/[W]`                  |  Change polygon type                             |
 |`[A]/[S], [Alt]+[Wheel]`   |  Change color                                    |
 |`[Z]/[X], [Shift]+[Wheel]` |  Rotate object                                   |
 |`[=]/[-], [Ctrl]+[Wheel]`  |  Scale object                                    |
-
 |`[Ctrl]+[C]`               |  Copy selected nodes                             |
 |`[Ctrl]+[V]`               |  Paste selected nodes                            |
 |`[Ctrl]+[O]`               |  Load scheme from current slot                   |
 |`[Ctrl]+[S]`               |  Save scheme to current slot ('Num0' by default) |
 |`[NumPad0..9]`             |  Load scheme from specified slot                 |
 |`[Ctrl]+[NumPad0..9]`      |  Save scheme to specified slot                   |
-
 |`[F11]`                    |  Toggle gradient mode                            |
 |`[F12]`                    |  Toggle perspective/orthographic view            |
 |`[Alt]+[F12]`              |  Toggle volume rendering mode (perspective view) |
