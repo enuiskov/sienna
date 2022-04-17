@@ -97,6 +97,7 @@ namespace AE.Visualization
 
 
 			//this.Write(iEvent.KeyChar);
+			
 		}
 		protected override void OnKeyDown(KeyEventArgs iEvent)
 		{
@@ -336,7 +337,7 @@ namespace AE.Visualization
 				//case Keys.Down     : this.MoveCursor(0,+1); break;
 			}
 
-			this.Invalidate(1);
+			//this.Canvas.IsValidated = false;
 		}
 		protected override void OnMouseDown(MouseEventArgs iEvent)
 		{
@@ -364,6 +365,7 @@ namespace AE.Visualization
 			//var _DocLimits = new TextBufferSize(this.CurrentDocument.CurrentRow.Cells.Count, this.CurrentDocument.Rows.Count);
 
 			//this.CurrentDocument.Cursor.Position = new TextBufferOffset(Math.Min(_CellOffs.X, _DocLimits.Width), Math.Min(_CellOffs.Y, _DocLimits.Height));
+			///this.Canvas.IsValidated = false;
 		}
 		//protected override void OnMouseUp(MouseEventArgs iEvent)
 		//{
@@ -432,7 +434,8 @@ namespace AE.Visualization
 					this.CurrentDocument.Selection.Update(this.CurrentDocument.Cursor.Position);
 				}
 				///this.Canvas.Invalidate();
-				this.Invalidate(1);
+				this.Canvas.Invalidate();
+				///this.Invalidate(1);
 			}
 
 			var _RightButton = this.Canvas.Dragmeter.RightButton; if(_RightButton.IsDragging)
@@ -448,8 +451,9 @@ namespace AE.Visualization
 				this.CurrentDocument.ScrollBy(0, (int)_VScrollDelta);
 				//_RightButton.Offset.Y - _RightButton.Origin.Y;
 				
-				
+				this.Canvas.Invalidate();
 			}
+			
 		}
 		//protected override void OnMouseMove(MouseEventArgs iEvent)
 		//{

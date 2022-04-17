@@ -33,6 +33,7 @@ namespace AE.Editor
 
 			this.CanvasControl = new GdiCanvasControl{Dock = System.Windows.Forms.DockStyle.Fill};
 			{
+				///this.CanvasControl.RefreshTimer.Interval = 200;
 				//this.Canvas.Dock = WF.DockStyle.Fill;
 
 				//this.Canvas.Canvas.Frame = new GdiFrame{Name = "RootFrame", Palette = new GdiColorPalette(0.5,0), Canvas = this.Canvas.Canvas, Dock = AE.Visualization.DockStyle.Fill};
@@ -102,6 +103,10 @@ namespace AE.Editor
 
 		public void TryAutoStep()
 		{
+			var _IsFastMode = Keyboard.IsKeyToggled(AE.Visualization.Keys.CapsLock);
+			this.CanvasControl.RefreshTimer.Interval = _IsFastMode ? 1 : 200;
+
+
 			var _AEDLDoc = this.CodeEditor.CurrentDocument as CodeEditorFrame.AEDLDocument;
 			var _Iter = _AEDLDoc.Interpreter;
 
@@ -109,14 +114,16 @@ namespace AE.Editor
 			//if(_Iter.Context.ReadyState == ExecutionReadyState.CompileError) return;
 			//if(_Iter.Context.ReadyState == ExecutionReadyState.RuntimeError) return;
 
-			if(Keyboard.IsKeyToggled(AE.Visualization.Keys.CapsLock))
+			if(_IsFastMode)
 			{
 				_Iter.StepMode = ExecutionStepMode.Fast;
+				this.CanvasControl.Canvas.Invalidate();
 			}
 			if(_Iter.StepMode != ExecutionStepMode.Interactive)
 			{
 				this.Step(0);
 			}
+			
 		}
 		public void Step(int iDirection)
 		{
@@ -619,7 +626,20 @@ namespace AE.Editor
 		//        }
 		//    }
 		//}
-		
+
+		//protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs e)
+		//{
+		//   base.OnKeyDown(e);
+
+		//   this.Invalidate();
+		//}
+		//protected override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
+		//{
+		//   this.Invalidate();
+
+		//   base.OnMouseMove(e);
+		//}
+
 		public void QQQ_ProcessInitial()
 		{
 			///this.Step(0);

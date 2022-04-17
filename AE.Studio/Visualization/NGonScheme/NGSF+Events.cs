@@ -44,7 +44,9 @@ namespace AE.Visualization
 				case Keys.C: this.CopyObjects(); break;
 				case Keys.V: this.PasteObjects(); break;
 
+				case Keys.O: this.LoadScheme(this.CurrentSlotID); break;
 				case Keys.S: this.SaveScheme(this.CurrentSlotID); break;
+				
 				
 				case Keys.NumPad0: this.SaveScheme("Num0"); break;
 				case Keys.NumPad1: this.SaveScheme("Num1"); break;
@@ -59,7 +61,7 @@ namespace AE.Visualization
 			}
 			else if(iEvent.Alt) switch(iEvent.KeyCode)
 			{
-				case Keys.O:   this.LoadScheme(this.CurrentSlotID); break;
+				
 				case Keys.F12: this.VolumeRenderingMode = (this.VolumeRenderingMode + 1) % 4; break;
 
 				
