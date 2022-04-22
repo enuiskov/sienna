@@ -14,5 +14,9 @@ Thumbs.db
 *.ncb
 *.suo
 *.user
+*.cache
+*.Cache
+*.resources
+*.FileListAbsolute.txt
 BuildLog.htm
 */obj*

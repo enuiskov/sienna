@@ -3,8 +3,3 @@ L:\Development\Sienna\Software\AE.Data\bin\Debug\AE.Data.pdb
 L:\Development\Sienna\Software\AE.Data\obj\Debug\ResolveAssemblyReference.cache
 L:\Development\Sienna\Software\AE.Data\obj\Debug\AE.Data.dll
 L:\Development\Sienna\Software\AE.Data\obj\Debug\AE.Data.pdb
-U:\Development\Sienna\Software\AE.Data\bin\Debug\AE.Data.dll
-U:\Development\Sienna\Software\AE.Data\bin\Debug\AE.Data.pdb
-U:\Development\Sienna\Software\AE.Data\obj\Debug\ResolveAssemblyReference.cache
-U:\Development\Sienna\Software\AE.Data\obj\Debug\AE.Data.dll
-U:\Development\Sienna\Software\AE.Data\obj\Debug\AE.Data.pdb

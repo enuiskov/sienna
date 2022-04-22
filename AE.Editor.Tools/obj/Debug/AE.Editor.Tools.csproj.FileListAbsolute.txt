@@ -20,14 +20,3 @@ U:\!C1\Development\Sienna\Software\AE.Editor.Tools\bin\Debug\AE.Visualization.pd
 U:\!C1\Development\Sienna\Software\AE.Editor.Tools\obj\Debug\ResolveAssemblyReference.cache
 U:\!C1\Development\Sienna\Software\AE.Editor.Tools\obj\Debug\AE.Editor.Tools.dll
 U:\!C1\Development\Sienna\Software\AE.Editor.Tools\obj\Debug\AE.Editor.Tools.pdb
-U:\Development\Sienna\Software\AE.Editor.Tools\bin\Debug\AE.Editor.Tools.dll
-U:\Development\Sienna\Software\AE.Editor.Tools\bin\Debug\AE.Editor.Tools.pdb
-U:\Development\Sienna\Software\AE.Editor.Tools\bin\Debug\AE.Core.dll
-U:\Development\Sienna\Software\AE.Editor.Tools\bin\Debug\AE.Data.dll
-U:\Development\Sienna\Software\AE.Editor.Tools\bin\Debug\AE.Visualization.dll
-U:\Development\Sienna\Software\AE.Editor.Tools\bin\Debug\AE.Data.pdb
-U:\Development\Sienna\Software\AE.Editor.Tools\bin\Debug\AE.Core.pdb
-U:\Development\Sienna\Software\AE.Editor.Tools\bin\Debug\AE.Visualization.pdb
-U:\Development\Sienna\Software\AE.Editor.Tools\obj\Debug\ResolveAssemblyReference.cache
-U:\Development\Sienna\Software\AE.Editor.Tools\obj\Debug\AE.Editor.Tools.dll
-U:\Development\Sienna\Software\AE.Editor.Tools\obj\Debug\AE.Editor.Tools.pdb

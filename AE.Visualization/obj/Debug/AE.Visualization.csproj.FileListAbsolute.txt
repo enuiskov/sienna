@@ -12,10 +12,3 @@ U:\!C1\Development\Sienna\Software\AE.Visualization\bin\Debug\AE.Core.pdb
 U:\!C1\Development\Sienna\Software\AE.Visualization\obj\Debug\ResolveAssemblyReference.cache
 U:\!C1\Development\Sienna\Software\AE.Visualization\obj\Debug\AE.Visualization.dll
 U:\!C1\Development\Sienna\Software\AE.Visualization\obj\Debug\AE.Visualization.pdb
-U:\Development\Sienna\Software\AE.Visualization\bin\Debug\AE.Visualization.dll
-U:\Development\Sienna\Software\AE.Visualization\bin\Debug\AE.Visualization.pdb
-U:\Development\Sienna\Software\AE.Visualization\bin\Debug\AE.Core.dll
-U:\Development\Sienna\Software\AE.Visualization\bin\Debug\AE.Core.pdb
-U:\Development\Sienna\Software\AE.Visualization\obj\Debug\ResolveAssemblyReference.cache
-U:\Development\Sienna\Software\AE.Visualization\obj\Debug\AE.Visualization.dll
-U:\Development\Sienna\Software\AE.Visualization\obj\Debug\AE.Visualization.pdb
