@@ -118,7 +118,7 @@ namespace AE.Visualization
 			//this.Width;
 			//var _ColOffsets = new int[]{5,90,215};
 			//var _Brush
-
+			var _RowH = this.Font.Height + 2;
 			
 			var _MaxRowsToShow = Math.Min(this.Data.Count, this.Height / 10);
 			for(var cRi = 0; cRi < _MaxRowsToShow; cRi++)
@@ -144,7 +144,7 @@ namespace AE.Visualization
 				*/
 
 
-				iGrx.FillRectangle(cBackBrush, new Rectangle(3, cY, this.Width - 6, this.Font.Height + 2));
+				iGrx.FillRectangle(cBackBrush, new Rectangle(3, cY, this.Width - 6, _RowH));
 
 				for(var cCi = 0; cCi < cRow.Count; cCi ++)
 				{
@@ -160,7 +160,7 @@ namespace AE.Visualization
 
 				if(cRi == this.Data.Boundary)
 				{
-					iGrx.DrawLine(new Pen(this.Palette.Glare, 1), 2, cY - 1, this.Width - 2, cY - 1);
+					iGrx.DrawLine(new Pen(this.Palette.Glare, 1), 2, cY + _RowH, this.Width - 2, cY + _RowH);
 				}
 			}
 

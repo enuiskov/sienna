@@ -1,5 +1,6 @@
 //~~(1;;); //~~ forces syntax error after double ';';
 (
+*test_bug {42; drop;};
 *!1 {get_SP};
 *!2 {sub get_SP,-4};
 *!3 {sub get_SP,-8};
@@ -27,17 +28,47 @@
 
 
 
-
-
-
-
 *push  {};
 *bla   {nop};
 *dup   {get !1};
 *movup {set !2};
 
 //*!0 {sub get_SP,+1};
-*j<=0 {csp++; jlez};
+//*j<=0 {csp++; jlez};
+*eqz?
+{
+	//!!!;
+	
+	jpos,drop (dup),            ^0;
+	jpos,drop (sub 0,(get !2)), ^0;
+	
+	    ret drop,1;
+	:0; ret drop,0;
+};
+*jz   
+{
+	//!!!;
+	jpos (get,eqz? !2),^J; drop;
+	
+	//!!!;
+	set !2; ret;
+	
+	//set (get,eqz? !2),!3;
+	
+	//!!!;
+	//set !2;
+	//~~ csp++;
+	//jpos;
+	//drop;
+	//!!!;
+	//drop;
+	//ret;
+	:J;
+	//!!!;
+	set !2; goto2;
+	//:RET;
+	//!!!;
+};
 
 *reset  {mode 254};
 
@@ -69,14 +100,16 @@
 	//	!!!;
 };
 
+
 //~~mul   (iOp1,iOp2,oV,_Neg2,cI)
 //~~mul   (iOp1'$i32,iOp2'$i32,oV'$i32,_Neg2'$i32,cI'$i32)
 mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 {
-	!!!;
-//	get,sign iOp1;
-//	get,sign iOp2;
-//	
+	//!!!;	
+	jz (get iOp1),^Z; drop;
+	jz (get iOp2),^Z; drop;
+	//!!!;
+	
 	jpos (sub (get iOp2; get iOp1)),^DontSwap;
 	(
 		drop;
@@ -88,9 +121,11 @@ mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 	
 	:DontSwap;
 	
-	//!!!;
+	///!!!;
 	set oV 0;
 	set _Neg2 (get,neg iOp2);
+	
+	
 	
 	//!!!;
 	set cI (get,abs iOp1); :I; jpos,drop (dec,dup),^I
@@ -100,15 +135,18 @@ mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 	);
 	//!!!;
 	set oV (mulsign (get oV; get,sign iOp1));
-	
 	//!!!;
+	ret;
+	
+	:Z; set oV 0;
 };
 
 *abs     {dup; jpos ^RET; drop; neg; :RET;};
 *sign    {jpos ^POS; neg; jpos ^NEG; ret; :POS; ret +1; :NEG; ret -1; };
 *clamp01 {sign; inc; dup; jpos ^GE0; drop; ret; :GE0; dec};
 
-*goto    {csp++; set_IP};
+*goto    {csp++;       set_IP;};
+*goto2   {csp++,csp++; set_IP;};
 
 *case    {jpos (not sub (get !3; get !2)),^J; drop3; ret; :J; drop; movup; csp++; set_IP};
 *not     {jpos ^1; neg; jpos ^1; drop; ret 1; :1; ret 0};
@@ -140,7 +178,7 @@ test (_L1,_L2)
 	set _L1 4;
 	set _L2 5;
 	
-	ssssssss
+	ssssssss;
 	
 	
 	
@@ -168,7 +206,7 @@ test (_L1,_L2)
 	//set (get !2; get !2); inc;
 	//set (get !5; get !2); drop5;
 };
-//fillsquare(iA,iR,iG,iB,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW)
+//fillrect(iA,iR,iG,iB,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW)
 //{
 //	//!!!;
 //	set _MaxX  (add (get iX; get iW));
@@ -197,8 +235,8 @@ test (_L1,_L2)
 //	!!!;
 //};
 *screensize {30,20};
-//~~fillsquare(iColor,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
-//fillsquare
+//~~fillrect(iColor,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
+//fillrect
 //(
 //	iColor'@i32,
 //	iX'@i32,
@@ -237,19 +275,12 @@ test (_L1,_L2)
 //	
 //};
 
-fillsquare(iColor'$i32,iX'$i32,iY'$i32,iW'$i32,iH'$i32,iScrW'$i32,iScrH'$i32,_MaxX,_MaxY,_ScanW,cX'$f64,cY'$f64,cBase)
-
-//fillsquare'$i32 (iColor,iX,iY,iW,iH,iScrW,iScrH)
+fillrect(iColor'$i32,iX'$i32,iY'$i32,iW'$i32,iH'$i32,iScrW'$i32,iScrH'$i32,_MaxX,_MaxY,_ScanW,cX'$f64,cY'$f64,cBase)
+//fillrect'$i32 (iColor,iX,iY,iW,iH,iScrW,iScrH)
 {
-	///@alloc $i32 (_MaxX,_MaxY,_ScanW,cX'$f64,cY'$f64,cBase);
-	
-	
-	///fillsquare'[_Color,cX,cY,_W,_H,gScrW,gScrH];
-	
 	//!!!;
 	set _MaxX  (add (get iX; get iW));
 	set _MaxY  (add (get iY; get iH));
-	
 	//!!!;
 	set _ScanW (mul (get iScrW; 1));
 	
@@ -257,15 +288,15 @@ fillsquare(iColor'$i32,iX'$i32,iY'$i32,iW'$i32,iH'$i32,iScrW'$i32,iScrH'$i32,_Ma
 	(
 		set cX (get iX); :X; jpos,drop (sub (get _MaxX; get cX)),^X
 		(
-			set cBase (!!!,mul,!!! (get _ScanW; get cY); add (get cX));
+			set cBase (mul (get _ScanW; get cY); add (get cX));
+			!!!;
 			rgba (get cBase) (get iColor);
-			
 			//!!!;
 			*inc cX;
 			//!!!;
 		);
 		*inc cY;
-		!!!;
+		//!!!;
 	);
 	!!!;
 };
@@ -300,44 +331,44 @@ drawimage
 	//!!!;
 	//afsf;
 	//!!!;
-	fillsquare (white, 0,0,30,20,screensize);
+	fillrect (white, 0,0,30,20,screensize);
 	//!!!;
 	//!!!;
-	fillsquare (black, 1,1,28,1,screensize);
-	fillsquare (black, 28,1,1,18,screensize);
-	fillsquare (black, 1,18,28,1,screensize);
-	fillsquare (black, 1,1,1,18,screensize);
+	fillrect (black, 1,1,28,1,screensize);
+	fillrect (black, 28,1,1,18,screensize);
+	fillrect (black, 1,18,28,1,screensize);
+	fillrect (black, 1,1,1,18,screensize);
 	//!!!;
 	//reset;
-	//fillsquare (black, 1,1,28,18,screensize);
+	//fillrect (black, 1,1,28,18,screensize);
 	
 	//!!!;
 	
-	//fillsquare (white, 2,2,26,16,screensize);
+	//fillrect (white, 2,2,26,16,screensize);
 	
-	fillsquare (red,   6,3,10,8,screensize);
-	fillsquare (green, 10,6,10,8,screensize);
+	fillrect (red,   6,3,10,8,screensize);
+	fillrect (green, 10,6,10,8,screensize);
 	//!!!;
-	fillsquare (blue,  4,7,20,3,screensize);
+	fillrect (blue,  4,7,20,3,screensize);
 	//!!!;
-	//fillsquare (white, 2,2,26,16,screensize);
-	fillsquare (red,   7,4,10,8,screensize);
-	fillsquare (green, 11,7,10,8,screensize);
-	fillsquare (blue,  5,8,20,3,screensize);
+	//fillrect (white, 2,2,26,16,screensize);
+	fillrect (red,   7,4,10,8,screensize);
+	fillrect (green, 11,7,10,8,screensize);
+	fillrect (blue,  5,8,20,3,screensize);
 	//!!!;
-	//fillsquare (white, 2,2,26,16,screensize);
-	fillsquare (red,   8,5,10,8,screensize);
-	fillsquare (green, 12,8,10,8,screensize);
-	fillsquare (blue,  6,9,20,3,screensize);
+	//fillrect (white, 2,2,26,16,screensize);
+	fillrect (red,   8,5,10,8,screensize);
+	fillrect (green, 12,8,10,8,screensize);
+	fillrect (blue,  6,9,20,3,screensize);
 	//!!!;
-	//fillsquare (white, 2,2,26,16,screensize);
-	fillsquare (red,   9,6,10,8,screensize);
-	fillsquare (green, 13,9,10,8,screensize);
-	fillsquare (blue,  7,10,20,3,screensize);
+	//fillrect (white, 2,2,26,16,screensize);
+	fillrect (red,   9,6,10,8,screensize);
+	fillrect (green, 13,9,10,8,screensize);
+	fillrect (blue,  7,10,20,3,screensize);
 	//!!!;
-	//fillsquare (black,  2,2,26,16,screensize);
-	//fillsquare (yellow, 1,1,28,18,screensize);
-	//fillsquare (black,  0,0,30,20,screensize);
+	//fillrect (black,  2,2,26,16,screensize);
+	//fillrect (yellow, 1,1,28,18,screensize);
+	//fillrect (black,  0,0,30,20,screensize);
 	//!!!;
 	
 	reset;
@@ -361,11 +392,63 @@ testproc (rTestVar,iName,iAge,iPassNum,o1,oError; "#+*4")
 
 *break {!!!;};
 
+mtest(r0,r1, i0,i1,i2, o0,o1,o2,o3, _1,_2,_3)
+{
+	
+	!!!;
+	//!!!;
+	set r0 101;
+	set r1 102;
+	set o0 777;
+	set o1 778;
+	set o2 779;
+	set o3 780;
+	//!!!;
+	ret;
+};
+*test_AAA {111; test_BBB;};
+*test_BBB {222; test_CCC;};
+*test_CCC {333; };
+
 !program// (oError)
 {
+//	777;
+//	!!!,mtest (11,22, 333,444,555);
+//	!!!;
+//	mtest;
+//	///!!!;
+//	1;
+//	!!!,test_AAA();
+//	!!!;
+//	neg 2;// drop2;
+//	
+//	1,2,3,4,5;
+//	1,2,3,4,5;
+//	//!!!,neg 5;
+//	!!!,neg (40,41,42,43,44,45);
+//	
+//	!!!;
+//	mtest (11,22,333,444,555);
 	//!!!;
-	#ffffffffx16;
-	not;
+	//eqz?  0;
+	//eqz? +1;
+	//eqz? +10;
+	//eqz? -10;
+	//drop4;
+	//!!!;
+//	
+	
+	//!!!;
+	//!!!;
+	//#ffffffffx16;
+	
+	//sign +50;
+	//sign -50;
+	//sign   0;
+	//!!!;
+//
+	//!!!;
+	//not;
 	//!!!;
 	//!!!;
 	drawimage;

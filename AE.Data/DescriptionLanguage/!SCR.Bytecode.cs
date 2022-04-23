@@ -647,7 +647,9 @@ namespace AE.Data.DescriptionLanguage
 				
 			*/
 
-			//this.AppendOpcode("break");
+			//this.
+			///this.AppendOpcode("epilog_begin");
+			this.CurrentOpcode.EpilogOffset = this.Program.Data.Count-1;
 
 			///~~ skip locals;
 			this.AppendOpcode("get_FP");
@@ -1199,7 +1201,8 @@ namespace AE.Data.DescriptionLanguage
 		///public ExecutionStepMode SrcSteppingMode;
 		///public ExecutionStepMode DstSteppingMode;
 
-		///public int    BasePointer;
+		public int    BasePointer;
+
 		public static explicit operator Int32 (CallInfo iInfo)
 		{
 			return iInfo.SrcAddress;
@@ -1207,6 +1210,10 @@ namespace AE.Data.DescriptionLanguage
 		public static explicit operator CallInfo (Int32 iSrcAddress)
 		{
 			return new CallInfo{Opcode = null, SrcAddress = iSrcAddress, DestAddress = -1};
+		}
+		public override string ToString()
+		{
+			return this.Opcode.Name + " - " + this.Opcode.Type;
 		}
 	}
 	
@@ -1223,6 +1230,7 @@ namespace AE.Data.DescriptionLanguage
 		//public bool              IsInline;
 		//public bool              IsInternal;
 		public int               DefinitionOffset;
+		public int               EpilogOffset;
 		///public ExecutionStepMode SteppingMode;
 
 		public OpcodeSignature   Signature;
@@ -1247,11 +1255,13 @@ namespace AE.Data.DescriptionLanguage
 		public class OpcodeSignature
 		{
 			public OpcodeSignatureItem[] Items;
-			public int ReferenceCount {get{var oCount = 0; foreach(var cItem in this.Items){if(cItem.Type == OpcodeSignatureItemType.Reference)  oCount ++;} return oCount;}}
-			public int InputCount     {get{var oCount = 0; foreach(var cItem in this.Items){if(cItem.Type == OpcodeSignatureItemType.Input)  oCount ++;} return oCount;}}
-			public int OutputCount    {get{var oCount = 0; foreach(var cItem in this.Items){if(cItem.Type == OpcodeSignatureItemType.Output) oCount ++;} return oCount;}}
-			public int LocalCount     {get{var oCount = 0; foreach(var cItem in this.Items){if(cItem.Type == OpcodeSignatureItemType.Local)  oCount ++;} return oCount;}}
-			
+
+			public int ReferenceCount;
+			public int InputCount;
+			public int OutputCount;
+			public int LocalCount;
+
+
 			public OpcodeSignatureItem GetByName(string iIdentName)
 			{
 				foreach(var cItem in this.Items)
@@ -1278,6 +1288,8 @@ namespace AE.Data.DescriptionLanguage
 
 				var oSig = new OpcodeSignature{Items = new OpcodeSignatureItem[_ItemCount]};
 				{
+
+
 					for(var cIi = 0; cIi < _ItemCount; cIi ++)
 					{
 						var cAtomNode     = _ItemList[cIi][0];
@@ -1285,10 +1297,10 @@ namespace AE.Data.DescriptionLanguage
 						
 						OpcodeSignatureItemType cItemType; switch(cAtomNode.Type)
 						{
-							case SyntaxNodeType.ReferenceIdentifier : cItemType = OpcodeSignatureItemType.Reference; break;
-							case SyntaxNodeType.InputIdentifier     : cItemType = OpcodeSignatureItemType.Input;     break;
-							case SyntaxNodeType.OutputIdentifier    : cItemType = OpcodeSignatureItemType.Output;    break;
-							case SyntaxNodeType.LocalIdentifier     : cItemType = OpcodeSignatureItemType.Local;     break;
+							case SyntaxNodeType.ReferenceIdentifier : cItemType = OpcodeSignatureItemType.Reference; oSig.ReferenceCount ++; break;
+							case SyntaxNodeType.InputIdentifier     : cItemType = OpcodeSignatureItemType.Input;     oSig.InputCount     ++; break;
+							case SyntaxNodeType.OutputIdentifier    : cItemType = OpcodeSignatureItemType.Output;    oSig.OutputCount    ++; break;
+							case SyntaxNodeType.LocalIdentifier     : cItemType = OpcodeSignatureItemType.Local;     oSig.LocalCount     ++; break;
 
 							default : throw new Exception("WTFE");
 						}

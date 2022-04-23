@@ -23,7 +23,7 @@ namespace AE.Visualization
 		///public bool         NeedsCompleteUpdate = true;  ///~~ forces ;
 		public bool         NeedsBufferReset_GDI = true;
 		//public bool         IsBufferValidated    = false;
-
+		private bool BlinkingCursorState_ = false;
 		///public bool         IsBufferSynchronized = false;
 
 
@@ -200,14 +200,11 @@ namespace AE.Visualization
 				(_CursorPos.Y - _ScrollOffs.Y) * this.Settings.LineHeight - 1,/// + (this.Settings.LineHeight * 0.0f),
 				
 
-
-
-
 				this.Settings.CharWidth / 2,
 				this.Settings.LineHeight
 			);
 			
-			var _Alpha   = DateTime.Now.Millisecond > 500 ? 1.0f : 0.0f;///Math.Sin(DateTime.Now.Millisecond / 1000.0 * Math.PI * 8.0) * 0.5 + 0.5;
+			var _Alpha   = (this.BlinkingCursorState_ =! this.BlinkingCursorState_) ? 1.0f : 0.2f; /// DateTime.Now.Millisecond > 500 ? 1.0f : 0.0f;///Math.Sin(DateTime.Now.Millisecond / 1000.0 * Math.PI * 8.0) * 0.5 + 0.5;
 
 			iGrx.FillRectangle(new SolidBrush(Color.FromArgb((byte)(_Alpha * 255), this.Palette.GlareColor)), _CrsRect);
 			///GLCanvasControl.Routines.Drawing.DrawRectangle(PrimitiveType.Quads, Color.FromArgb((byte)(_Alpha * 255), this.Palette.GlareColor), _CrsRect);

@@ -433,9 +433,9 @@ namespace AE.Visualization
 				{
 					this.CurrentDocument.Selection.Update(this.CurrentDocument.Cursor.Position);
 				}
-				///this.Canvas.Invalidate();
 				this.Canvas.Invalidate();
-				///this.Invalidate(1);
+				
+				this.Invalidate(1);
 			}
 
 			var _RightButton = this.Canvas.Dragmeter.RightButton; if(_RightButton.IsDragging)
@@ -504,6 +504,8 @@ namespace AE.Visualization
 			base.OnMouseWheel(iEvent);
 
 			this.CurrentDocument.ScrollBy(0, -iEvent.Delta / 40);
+
+			this.Canvas.Invalidate();
 		}
 
 		

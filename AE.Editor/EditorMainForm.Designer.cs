@@ -121,15 +121,19 @@ namespace AE.Editor
 
 		void RefreshTimer_Tick(object sender, EventArgs e)
 		{
+			var _IsExecMode = Keyboard.IsKeyToggled(AE.Visualization.Keys.Scroll);
+			var _IsFastMode = Keyboard.IsKeyToggled(AE.Visualization.Keys.CapsLock);
 			
-			
-			if(Keyboard.IsKeyToggled(AE.Visualization.Keys.Scroll))
+			if(_IsExecMode)
 			{
 			//    var _AEDLDoc = this.EditorControl.CodeEditor.CurrentDocument as CodeEditorFrame.AEDLDocument;
 			//    _AEDLDoc.Interpreter.TryAutoStep();
 
 				this.EditorControl.TryAutoStep();
 			}
+
+			this.EditorControl.CanvasControl.RefreshTimer.Interval = _IsExecMode && _IsFastMode ? 1 : 200;
+
 			//throw new NotImplementedException();
 			//if(Keyboard.IsKeyToggled(AE.Visualization.Keys.CapsLock))
 			//{
@@ -298,27 +302,29 @@ namespace AE.Editor
 				{
 					if(iEvent.Control)
 					{
-						var _DocPath     = _AEDLDoc.URI;
-						var _DocFileName = Path.GetFileName(_DocPath);
+						if(Directory.Exists(EditorMainForm.BackupDirectory))
+						{
+							var _DocPath     = _AEDLDoc.URI;
+							var _DocFileName = Path.GetFileName(_DocPath);
 
-						var _BackupDirName  = DateTime.Now.ToString("yyyyMMdd");
-						var _BackupDirPath = EditorMainForm.BackupDirectory + "\\" + _BackupDirName;
+							var _BackupDirName  = DateTime.Now.ToString("yyyyMMdd");
+							var _BackupDirPath = EditorMainForm.BackupDirectory + "\\" + _BackupDirName;
 
-						var _BackupFileName = _DocFileName + "." + DateTime.Now.ToString("yyyyMMdd-hhmmss") + ".bak";
-						var _BackupFilePath = Path.Combine(_BackupDirPath, _BackupFileName);
+							var _BackupFileName = _DocFileName + "." + DateTime.Now.ToString("yyyyMMdd-hhmmss") + ".bak";
+							var _BackupFilePath = Path.Combine(_BackupDirPath, _BackupFileName);
 
-						Directory.CreateDirectory(_BackupDirPath);
-						//if(!Directory.Exists(_BackupDirPath))
-						//{
-						//    Directory.CreateDirectory(_BackupDirPath);
-						//}
-						//try
-						//{
-							File.Copy(_DocPath, _BackupFilePath);
-						//}
-						//catch(IOException)
-						//{}
-						
+							Directory.CreateDirectory(_BackupDirPath);
+							//if(!Directory.Exists(_BackupDirPath))
+							//{
+							//    Directory.CreateDirectory(_BackupDirPath);
+							//}
+							//try
+							//{
+								File.Copy(_DocPath, _BackupFilePath);
+							//}
+							//catch(IOException)
+							//{}
+						}
 						_AEDLDoc.Save();
 					}
 					break;
@@ -389,25 +395,6 @@ namespace AE.Editor
 			base.OnLoad(e);
 
 			this.OnResize(null);
-			///this.RefreshTimer.Start();
-
-
-
-			
-			
-			this.EditorControl.QQQ_ProcessInitial();
-
-			//this.EditorControl.CodeEditor..CurrentDocument as 
-			//this.EditorControl.UpdateDebugData();
-
-			/////this.EditorControl.C
-			////this.EditorControl.MakeStepsUntilEntryPoint();
-			//this.EditorControl.Step(0);
-			
-			//this.EditorControl.UpdateDebugData();
-			//this.EditorControl.
-
-			///this.EditorControl.CanvasControl.Canvas.InverseColorTheme();
 
 			this.SetDesktopBounds(50,50,800,600);
 		}
@@ -416,18 +403,6 @@ namespace AE.Editor
 			base.OnResize(e);
 
 			if(!this.Visible) return;
-			
-
-			
-			///this.EditorControl.Bounds = new Rectangle
-			//(
-			//    0,
-			//    this.MainMenu.Height + 1,
-			//    this.ClientSize.Width - 3,
-			//    this.ClientSize.Height - this.MainMenu.Height - this.Status.Height - 1
-			//);
-
-			//this.VS
 		}
 	}
 }

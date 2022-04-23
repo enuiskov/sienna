@@ -4,6 +4,7 @@ using System.Text;
 //using System.Windows.Forms;
 using WF = System.Windows.Forms;
 using AE.Visualization;
+using AE.Data;
 using AE.Data.DescriptionLanguage;
 //using AE.Visualization.
 
@@ -43,10 +44,10 @@ namespace AE.Editor
 				{
 					_RootFrame.Children.Add(this.CodeEditor = new CodeEditorFrame {Name = "CodeEditor", Margin = new AE.Visualization.Padding(0,0,300,0), Palette = new GdiColorPalette(0.5,2.5,0.5), Dock = AE.Visualization.DockStyle.None});
 					///_RootFrame.Children.Add(this.Variables  = new TableFrame      {Name = "Variables", Bounds = new System.Drawing.Rectangle(0,0,300,150), Palette = new GdiColorPalette(0.5,2.5,0.5), Dock = AE.Visualization.DockStyle.Fill});
-					_RootFrame.Children.Add(this.Variables  = new TableFrame      {Name = "Variables", Bounds = new System.Drawing.Rectangle(0,0,300,150), Palette = new GdiColorPalette(0.5,2.5,0.5), Margin = new AE.Visualization.Padding(-1,0,0,-1)});
+					_RootFrame.Children.Add(this.Variables  = new TableFrame      {Name = "Variables", Bounds = new System.Drawing.Rectangle(0,0,300,100), Palette = new GdiColorPalette(0.5,2.5,0.5), Margin = new AE.Visualization.Padding(-1,0,0,-1)});
 
-					_RootFrame.Children.Add(this.Operands   = new TableFrame      {Name = "Operands", Bounds = new System.Drawing.Rectangle(0,0,300,250), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,150,0,300), ColumnWidths = new int[]{20,10,80,-1,75}});
-					_RootFrame.Children.Add(this.Calls      = new TableFrame      {Name = "Calls",    Bounds = new System.Drawing.Rectangle(0,0,300,100), Palette = new GdiColorPalette(0.5,2.5,0.5),   Margin = new AE.Visualization.Padding(-1,-1,0,200), ColumnWidths = new int[]{20,-1,75}});
+					_RootFrame.Children.Add(this.Operands   = new TableFrame      {Name = "Operands", Bounds = new System.Drawing.Rectangle(0,0,300,250), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,100,0,300), ColumnWidths = new int[]{40,10,80,-1,25}});
+					_RootFrame.Children.Add(this.Calls      = new TableFrame      {Name = "Calls",    Bounds = new System.Drawing.Rectangle(0,0,300,100), Palette = new GdiColorPalette(0.5,2.5,0.5),   Margin = new AE.Visualization.Padding(-1,-1,0,200), ColumnWidths = new int[]{30,-1,75}});
 					///_RootFrame.Children.Add(this.Console    = new GdiConsoleFrame {Name = "Console", Bounds = new System.Drawing.Rectangle(0,0,300,0), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,500,0,0)});
 					_RootFrame.Children.Add(this.Image      = new MemoryImageFrame {Name = "MemoryImage", Bounds = new System.Drawing.Rectangle(0,0,300,200), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,-1,0,0)});
 					//this.Console    = new BufferConsoleFrame {Name = "Debug", Bounds = new System.Drawing.Rectangle(0,0,300,0), Palette = new GdiColorPalette(0.5,2.5,0.5), Margin = new AE.Visualization.Padding(-1,0,0,100)};
@@ -104,11 +105,14 @@ namespace AE.Editor
 		public void TryAutoStep()
 		{
 			var _IsFastMode = Keyboard.IsKeyToggled(AE.Visualization.Keys.CapsLock);
-			this.CanvasControl.RefreshTimer.Interval = _IsFastMode ? 1 : 200;
-
+			//this.CanvasControl.RefreshTimer.Interval = _Iter.StepMode == ExecutionStepMode.Fast ? 1 : 200;
+			
+		
 
 			var _AEDLDoc = this.CodeEditor.CurrentDocument as CodeEditorFrame.AEDLDocument;
 			var _Iter = _AEDLDoc.Interpreter;
+
+			
 
 			//if()
 			//if(_Iter.Context.ReadyState == ExecutionReadyState.CompileError) return;
@@ -119,11 +123,13 @@ namespace AE.Editor
 				_Iter.StepMode = ExecutionStepMode.Fast;
 				this.CanvasControl.Canvas.Invalidate();
 			}
+
+			
+
 			if(_Iter.StepMode != ExecutionStepMode.Interactive)
 			{
 				this.Step(0);
 			}
-			
 		}
 		public void Step(int iDirection)
 		{
@@ -268,6 +274,8 @@ namespace AE.Editor
 		}
 		public string FormatNumber(int iNumber)
 		{
+			if(iNumber == 0xabcdef) return ".";
+
 			if(this.DoShowHexNumbers)
 			{
 				return "0x" + iNumber.ToString("x");
@@ -293,132 +301,141 @@ namespace AE.Editor
 			{
 				return;
 			}
-			///if(_Interpreter.Context.Scopes.Count == 0)
-			//{
-			//    return;
-			//}
-
-			///goto DrawingImage;
-			//this.Variables.Data.Clear();
-			//{
-
 
 			//var _Variables = _Interpreter.Context.CurrentScope.Identifiers.Locals;
 			{
-			//    var _Scope = _Interpreter.Context.CurrentScope;
-			//    {
 				    this.Variables.Data.AddRow("&this", "null", "NULL");
-					///this.Variables.Data.AddRow
-					//(
-					//    "&retv",
-					//    _Scope.ReturnValue != null ? _Scope.ReturnValue.ToString() : "null",
-					//    _Scope.ReturnValue != null ? _Scope.ReturnValue.GetType().Name : "NULL"
-					//);
-				//}
-				
-				//foreach(var cVar in _Variables)
-				//{
-				//    var cName = cVar.Key;
-				//    //var cValue = cVar.Value;
-
-				//    var cType = cVar.Value != null ? cVar.Value.GetType().Name : "-";
-				//    var cValue = cVar.Value.Value != null ? cVar.Value.Value.ToString() : "<NULL>";
-
-				//    //if(cType.Length > _MaxTypeStrLen) cType = cType.Substring(cType.Length - _MaxTypeStrLen, _MaxTypeStrLen);
-
-				//    this.Variables.Data.AddRow(cName, cValue, cType);
-				//}
-
 				
 				this.Variables.Data.AddRow("&FP",FormatNumber(_Interpreter.Context.FramePointer),"");
 				this.Variables.Data.AddRow("&SP",FormatNumber(_Interpreter.Context.DataStack.Pointer),"");
 				this.Variables.Data.AddRow("&IP",FormatNumber(_Interpreter.Context.Program.Counter),"");
-
-				if(_Interpreter.Context.Program.Counter >= 0 && _Interpreter.Context.Program.CurrentInstruction.Name != null)
-				{
-					this.Variables.Data.AddRow("&Opcode",_Interpreter.Context.Program.CurrentInstruction.Name,"");
-				}
+				this.Variables.Data.AddRow("&Opcode",_Interpreter.Context.Program.Counter >= 0 && _Interpreter.Context.Program.CurrentInstruction.Name != null ? _Interpreter.Context.Program.CurrentInstruction.Name : "-","");
+			
 			}
 			//this.Operands.Data.Clear();
 			var _Operands = _Interpreter.Context.DataStack;
 			{
-				
-				//var _MaxTypeStrLen = 20;
+				var _CellStyles = this.CodeEditor.Documents[0].Settings.CellStyles;
 
-				//var _ForeBrush = CHSAColor.Glare;
-
-				var _ValueColor  = new CHSAColor(0.6f,0f,1,0.2f);
-				var _IdentColor  = new CHSAColor(0.6f,4f,1,0.2f);
-				var _TypeColor   = new CHSAColor(0.6f,0f,0,0.2f);
-				var _VarColor    = new CHSAColor(0.6f,3f,1,0.2f);
-				var _NodeColor   = new CHSAColor(0.6f,8f,1,0.2f);
-				var _LabelColor  = new CHSAColor(0.6f,2f,1,0.5f);
-				
-				
-				
-				if(_Operands.Pointer <= 250)
-				{
-				
-				}
-		
-				/////for(var cOi = _Operands.Items.Length - 1; cOi >= 0; cOi--)
-				
-				///var _FrOi = Math.Min(Math.Max(_Operands.Position - 15, 0), _Operands.Items.Length - 1);
-				///var _FrOi = _Operands.Position;// - 15, 0), _Operands.Items.Length - 1);
-				///var _ToOi = Math.Min(_FrOi + 16, _Operands.Items.Length - 1);
-				
-				//var _FrOi = _Operands.Items.Length - 1;// - 15, 0), _Operands.Items.Length - 1);
-
-
-				//var _FrOi = Math.Min(Math.Max(_Operands.Position + 15, 0),_Operands.Items.Length - 1);
-				//var _FrOi = Math.Min(Math.Max(_Operands.Position + ((this.Operands.Height - 14) / 14), 0),_Operands.Items.Length - 1);
-				///var _FrOi = Math.Min(Math.Max(_Operands.Pointer - 1 + (this.Operands.Height / 14), 0),_Operands.Names.Length - 1);
-				///var _ToOi = _Operands.Pointer;
-
-				//var _OpdPtrAligned = _Operands.Pointer - (_Operands.Pointer % 4);
-
-				//var _FrameHeight = this.Operands.Height;
 				var _RowHeight = 14;
 				var _TotalRows = this.Operands.Height / _RowHeight;
 				
-				var _MinPtr = 0;
-				var _MaxPtr = _Operands.BaseOffset - 1-3;
+				//var _MinPtr = 0;
+				//var _MaxPtr = _Operands.BaseOffset - 1-3;
 				
 				///var _PtrAligned = _Operands.Pointer - (_Operands.Pointer % 4);
  
-				var _Step = 4;
+				var _Size4 = 4;
 				var _ToOi = _Operands.Pointer;
 				//var _FrOi = Math.Min(Math.Max(_PtrAligned, _MinPtr),_MaxPtr);/// _Operands.Pointer + (Math.Min(_TotalRows) * 4) - 1; //Math.Min(Math.Max(_Operands.Pointer - 1 + (this.Operands.Height / 14), 0),_Operands.Data.Length - 1);
 				//var _FrOi = Math.Min(Math.Max(_ToOi + (4 * 1000), _MinPtr),_MaxPtr);/// _Operands.Pointer + (Math.Min(_TotalRows) * 4) - 1; //Math.Min(Math.Max(_Operands.Pointer - 1 + (this.Operands.Height / 14), 0),_Operands.Data.Length - 1);
-				var _FrOi = _Operands.BaseOffset - _Step;
+				var _FrOi = _Operands.BaseOffset - _Size4;
 				
+				var _CallInfo = _Interpreter.Context.CallStack.Pointer != 256 ? _Interpreter.Context.CallStack.Peek() : null;
 
-				
-				for(var cOi = _FrOi; cOi >= _ToOi; cOi -= _Step)
+				var _CallBaseOffset = _CallInfo != null ? _Operands.BaseOffset - _CallInfo.BasePointer : 0;
+				//var _
+
+				///if(_CallInfo == null)
+
+				//_CallInfo.Opcode.Opcode.Signature.
+
+				var _Sig = _CallInfo != null ? _CallInfo.Opcode.Signature : null;
+				var _DoShowSig = _CallInfo != null && _Sig != null;
+				int _SigTotalCount = 0, _SigOuterCount = 0, _SigInnerCount = 0;
 				{
-					//var cOpd
-					//var cName = cOpd.Key;
-					//var cValue = cVar.Value;
-					//var cStackI = _Operands.Count - cOi;
-					///var cStackI = cOi - _Operands.Position;
-					///var cMarker = cStackI == -1 ? "►" : "";
-					var cStackI = cOi;
-					var cMarker = cStackI == _Operands.Pointer - 1 ? "►" : "";
+					if(_DoShowSig)
+					{
+						_SigTotalCount = _Sig.Items.Length;
+						_SigOuterCount = _Sig.ReferenceCount + _Sig.InputCount;
+						_SigInnerCount = _Sig.OutputCount + _Sig.LocalCount; 
+					}
+				}
 
-					///var cMovI   = -(cStackI + 2);
+				for(int cRi = 0, cOi = _FrOi; cOi >= _ToOi; cRi ++, cOi -= _Size4)
+				{
+					///var cStackI = (_CallBaseOffset - (_Operands.BaseOffset - cOi)) / 4;
+					///var cStackI = (_CallBaseOffset - 1 - (_Operands.BaseOffset - cOi)) / 4;
+					var cStackI = (_CallBaseOffset - 0 - (_Operands.BaseOffset - cOi)) / 4 - 0;
 
-					MemoryItemInfo cItem   = null;/// _Operands..InfoMap[cOi];
+					///cStackI == ZERO TWICE: ROUNDING BUG / 4
 
+					var cMarker = "";//cOi == _Operands.Pointer - 1 ? "►" : "";
+
+					
+					//MemoryItemInfo cItem = new MemoryItemInfo();/// _Operands..InfoMap[cOi];
+					//OpcodeSig cSigItem = 
+					var cName = "-";
+					var cType = "T?";
+					var cForeColor = CHSAColor.Glare;
+					var cBackColor = CHSAColor.Transparent;
+					{
+						if(_CallInfo != null)
+						{
+							if(cStackI == +1)
+							{
+								///cName = "^";	
+								///cName = "[" + _CallInfo.Opcode.Name + "]";
+								///cBackColor = CHSAColor.SemiTransparent;
+							}
+							else if(cStackI == 0)
+							{
+								
+							}
+						}
+
+						if(_DoShowSig)
+						{
+							//var cIsOuter = cStackI >= 2 && cStackI - 2 < _SigOuterCount;
+							//var cIsInner = cStackI < 0 && cStackI + 1 > -_SigInnerCount;
+
+							var cIsOuter = cStackI >=  1;/// && cStackI - 1 < _SigOuterCount;
+							var cIsInner = cStackI <  -1;/// && cStackI + 2 > -_SigInnerCount;
+							
+							///cStackI == 0 TWICE!
+
+							if(cStackI == 0)
+							{
+							
+							}
+
+
+							///if(false)
+							if(cIsOuter || cIsInner)
+							{
+								var _SigIndex = _SigOuterCount - (cStackI + 0) - (cIsOuter ? 0 : 2);
+
+								if(_SigIndex >= 0 && _SigIndex < _SigTotalCount)
+								{
+									var cSigItem = _Sig.Items[_SigIndex];
+									
+									cName = cSigItem.Name;
+									cForeColor = _CellStyles[(int)TokenType.ReferenceIdent - 1 + (int)cSigItem.Type].ForeColor;
+								}
+							}
+
+							///cName = cStackI - 1 == 0 ? "000" : (cStackI > 0 ? "POS" : "NEG");
+							//cItem.
+							//var c_1 = (cOi - _CallInfo.BasePointer) / 4;
+							///var cItemOffs   = (cOi - _CallInfo.BasePointer) / _Size4;
+							///var cItemOffs_R = _ItemCount - 1 - _CallInfo.Opcode.Signature.LocalCount - cItemOffs;
+							///var cN          = cItemOffs_R >= 0 && cItemOffs_R < _ItemCount ? _CallInfo.Opcode.Signature.Items[cItemOffs_R].Name : "###";
+
+							///cName = cN;
+							///_CallInfo.Opcode.Signature.InputCount
+						}
+					}
 					
 					//var cOpd    = cItem != null ? _Operands.InfoMap[cOi] : null;
 					///var cMarker = cStackI == 0 ? "►" : (cMovI > 0 ? cMovI.ToString() : (cMovI == 0 ? "↑" : ""));
 					
-					var cName = (cItem != null && cItem.Name != null) ? cItem.Name : "";
-					var cType      = cItem != null && cItem.Type != null ? cItem.Type.Name : "-";
+
+					//var cName = c_3; ///(cItem != null && cItem.Name != null) ? cItem.Name : "";
+					//var cType      = cItem != null && cItem.Type != null ? cItem.Type.Name : "-";
 					///var cValue     = cItem != null && cItem.FriendlyValue != null ? cItem.FriendlyValue : "NULL";
-					var cValue     = _Operands.Memory.ReadInt32(cStackI - 0);
-					var cForeColor = CHSAColor.Glare;
-					var cBackColor = CHSAColor.Transparent;
+					var cValue =_Operands.Memory.ReadInt32(cOi - 0);
+					//var cForeColor = CHSAColor.Glare;
+					//var cBackColor = CHSAColor.Transparent;
 					//{
 					//    if(cOpd is Label)
 					//    {
@@ -494,11 +511,10 @@ namespace AE.Editor
 					{
 					
 					}
-					this.Operands.Data.AddRow(cForeColor, cBackColor, FormatNumber(cStackI), cMarker, cName, FormatNumber(cValue), cType);
+					this.Operands.Data.AddRow(cForeColor, cBackColor, FormatNumber(cOi), cMarker, cName, FormatNumber(cValue), cType);
 					
 				}
-				
-				if(_Interpreter.Context.CallStack.Pointer <= 255)
+				///if(_Interpreter.Context.CallStack.Pointer <= 255)
 				///if(_Operands.Position < 255)
 				{
 					//var _CallInfo     = _Interpreter.Context.CallStack.Peek().Value as CallInfo;
@@ -508,18 +524,25 @@ namespace AE.Editor
 					//var _TotalOffset  = _OwnItemCount + _BasePointer;
 
 					///this.Operands.Data.Boundary = _TotalOffset - _FrOi;//cStackI - _Interpreter.Context.CallStack[-1].StackPosition;
-					var _FP = _Interpreter.Context.FramePointer;
-					var _SP = _Operands.Pointer;
+					//var _FP = _Interpreter.Context.FramePointer;
+					//var _SP = _Operands.Pointer;
 					
-					//var 
 
+					//var _CurrProc = (_Interpreter.Context.CallStack.Peek().Value as CallInfo);
+					var _CurrProc = _Interpreter.Context.CallStack.Pointer <= 255 ? _Interpreter.Context.CallStack.Peek() : null;
+					this.Operands.Data.Boundary = _CurrProc != null ? (_Interpreter.Context.DataStack.BaseOffset - _CurrProc.BasePointer) / 4 : -123456;// - _BouOffs;///(_FP - _SP);
+					
+					this.Variables.Data.AddRow("&Bou",this.Operands.Data.Boundary.ToString(),"");
 
-					///var _CurrProc = (_Interpreter.Context.CallStack.Peek().Value as CallInfo);
-					var _CurrProc = _Interpreter.Context.CallStack.Peek();
-					//var _CurrProc = (_Interpreter.Context.CallStack[0].Value as CallInfo);
-					var _CurrSig  = _CurrProc.Opcode.Signature;
-					var _BouOffs  = _CurrSig != null ? _CurrSig.ReferenceCount + _CurrSig.InputCount : 0;
-					this.Operands.Data.Boundary = this.Operands.Data.Count - (2 - (_SP - _FP)) - _BouOffs;///(_FP - _SP);
+					this.Operands.Data.Boundary.ToString();
+					////var _CurrProc = (_Interpreter.Context.CallStack[0].Value as CallInfo);
+					//var _CurrSig  = _CurrProc.Opcode.Signature;
+					//var _BouOffs  = _CurrSig != null ? _CurrSig.ReferenceCount + _CurrSig.InputCount : 0;
+					/////this.Operands.Data.Boundary = this.Operands.Data.Count - (2 - (_SP - _FP)) - _BouOffs;///(_FP - _SP);
+
+					//this.Operands.Data.Boundary = this.Operands.Data.Count - (2 - ((_SP - _FP) / 4));// - _BouOffs;///(_FP - _SP);
+
+					
 				}
 			}
 			///this.Operands.Data.Boundary
@@ -530,7 +553,8 @@ namespace AE.Editor
 			{
 				var _InfoColor  = CHSAColor.Transparent;/// new CHSAColor(0.5f,2f,1,0.5f);
 				
-				for(var cCi = _Calls.Pointer; cCi < _Calls.Items.Length; cCi += 4)
+				///for(var cCi = _Calls.Pointer; cCi < _Calls.Items.Length; cCi += 4)
+				for(var cCi = _Calls.Pointer; cCi < _Calls.Items.Length; cCi ++)
 				//for(var cCi = 0; cCi < _Calls.Position; cCi ++)
 				{
 					var cCallInfo = _Calls.Items[cCi];
@@ -549,134 +573,11 @@ namespace AE.Editor
 					{
 						_DstPixels[cPi] = _Interpreter.Context.Memory.ReadInt32(cPi * 4);
 						_DstPixels[cPi] = (int)0xff000000 | _DstPixels[cPi];
-						//_DstPixels[cVi + 0] = 255;
-						//_DstPixels[cVi + 1] = (int)_Operands.Items[cVi + 1].Value;
-						//_DstPixels[cVi + 2] = (int)_Operands.Items[cVi + 2].Value;
-						//_DstPixels[cVi + 3] = (int)_Operands.Items[cVi + 3].Value;
-
-						//var _A = 255;
-						
-						
-						//byte _R = Convert.ToByte(_SrcBytes[cPi * 4 + 0].Value);
-						//byte _G = Convert.ToByte(_SrcBytes[cPi * 4 + 1].Value);
-						//byte _B = Convert.ToByte(_SrcBytes[cPi * 4 + 2].Value);
-
-						//_DstPixels[cPi] = (_A << 24) | (_R << 16) | (_G << 8) | (_B << 0);
 					}
 				}
-				//_Dst
 			}
-			//var _SrcBytes  = _Interpreter.Context.Memory.ReadBytes(0,this.Image.PixelArray.Length / 4);
-			//var _DstPixels = this.Image.PixelArray;
-			//{
-			//    for(var cPi = 0; cPi < _DstPixels.Length; cPi ++)
-			//    {
-			//        //_DstPixels[cVi + 0] = 255;
-			//        //_DstPixels[cVi + 1] = (int)_Operands.Items[cVi + 1].Value;
-			//        //_DstPixels[cVi + 2] = (int)_Operands.Items[cVi + 2].Value;
-			//        //_DstPixels[cVi + 3] = (int)_Operands.Items[cVi + 3].Value;
-
-			//        var _A = 255;
-					
-					
-			//        byte _R = Convert.ToByte(_SrcBytes[cPi * 4 + 0].Value);
-			//        byte _G = Convert.ToByte(_SrcBytes[cPi * 4 + 1].Value);
-			//        byte _B = Convert.ToByte(_SrcBytes[cPi * 4 + 2].Value);
-
-			//        _DstPixels[cPi] = (_A << 24) | (_R << 16) | (_G << 8) | (_B << 0);
-			//    }
-			//    //_Dst
-			//}
 			this.Image.UpdateImage();
 		}
-		///public void MakeStepsUntilEntryPoint()
-		//{
-		//    var _AEDLDoc = this.CodeEditor.CurrentDocument as CodeEditorFrame.AEDLDocument;
-		//    var _Scope = _AEDLDoc.Interpreter.Context.CurrentScope;
-
-			
-		//    while(true)
-		//    {
-		//        var cNode = _AEDLDoc.Interpreter.Context.CurrentScope.CurrentNode;
-
-		//        if(cNode == _AEDLDoc.SyntaxTree.Children[1])
-		//        {
-		//            _AEDLDoc.Interpreter.Context.CurrentScope.Operands.Push(cNode);
-		//            _AEDLDoc.Interpreter.Context.CurrentScope.CurrentPosition ++;
-		//        }
-		//        else if(cNode.Role == SemanticRole.ExpInstruction || cNode.Role == SemanticRole.ExpInstructionLabelDefinition)
-		//        {
-		//            var cValue = cNode.Children[0].Children[0].Children[0].Token.Value; if(cValue == null) continue;
-		//            var cInstrName = cValue.ToString();
-
-		//            if(_Scope.CurrentPosition >= _Scope.Block.Children.Count) break;
-
-		//            //if(cInstrName != "@start")
-		//            //{
-		//                ///(this.ParentForm as EditorMainForm).Step(0);
-		//                _AEDLDoc.Interpreter.Step(0);
-		//            //}
-		//            ///else break;
-					
-		//            break;
-		//        }
-		//        else
-		//        {
-		//            throw new Exception("WTFE: non-intruction '" + cNode.ToString() + "' during non-exec mode");
-		//        }
-		//    }
-		//}
-
-		//protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs e)
-		//{
-		//   base.OnKeyDown(e);
-
-		//   this.Invalidate();
-		//}
-		//protected override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
-		//{
-		//   this.Invalidate();
-
-		//   base.OnMouseMove(e);
-		//}
-
-		public void QQQ_ProcessInitial()
-		{
-			///this.Step(0);
-		}
-		//protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs e)
-		//{
-		//    base.OnKeyDown(e);
-
-		//    var _AEDLDoc = (this.CodeEditor.CurrentDocument as CodeEditorFrame.AEDLDocument);
-		//    _AEDLDoc.Interpreter.Context.Reset();
-		//    _AEDLDoc.UpdateHighlighting();
-		//    this.UpdateDebugData();
-		//}
-		//protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs iEvent)
-		//{
-		//    base.OnKeyDown(iEvent);
-
-
-		//    ///if(iEvent.KeyCode == Keys.F10)
-		//    //{
-		//    //    //if(_AEDLDoc.Interpreter.CurrentNode == null)
-		//    //    //{
-		//    //    //    _AEDLDoc.Interpreter.
-		//    //    //}
-		//    //    ///_AEDLDoc.Interpreter.NextNode();
-		//    //    _AEDLDoc.Interpreter.ProcessNode();
-		//    //    _AEDLDoc.UpdateHighlighting();
-
-		//    //    ///this.Canvas.Control
-		//    //    //this.
-		//    //    //GC.
-		//    //}
-		//}
-		//protected override void OnKeyPress(System.Windows.Forms.KeyPressEventArgs e)
-		//{
-		//    ///base.OnKeyPress(e);
-		//}
 	}
 }
 

@@ -76,7 +76,7 @@ namespace AE.Data.DescriptionLanguage
 
 		///public Stack<Scope>         Scopes;
 		public DescribedMemory      Memory;
-		public ByteStack       DataStack;
+		public ByteStack            DataStack;
 		public MyStack<CallInfo>    CallStack;
 
 		//public Stack<CallInfo>      CallStack;
@@ -494,11 +494,6 @@ namespace AE.Data.DescriptionLanguage
 					//var cStepModeBefore = iIter.StepMode;
 					
 					var _TOKEN =  _Ctx.Program.CurrentInstruction.AssocNode != null ? _Ctx.Program.CurrentInstruction.AssocNode.BegToken : -1;
-
-					if(_TOKEN == 624)
-					{
-					
-					}
 					
 					var cStepInc = _Ctx.ExecuteInstruction(_Ctx.Program.CurrentInstruction);
 

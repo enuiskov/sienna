@@ -36,7 +36,7 @@
 | ---                       |  ---                                             |
 |`[Ctrl]+[~] / [Escape]`    |  Toggle console                                  |
 |`[Alt]+[E/D],[R/F]`        |  Toggle graphics blending modes                  |
-|`[F9]`                     |  Toggle 'inverse video' mode                     |
+|`[F9]`                     |  Toggle light/dark theme                         |
 |`[Alt]+[Enter]`            |  Toggle fullscreen mode                          |
 |`[Alt]+[=/-]`              |  Adjust gamma correction for dark theme          |
 
@@ -83,12 +83,11 @@ Only `~I[KeyCode]` input node types are currently supported.
 ### Code editor
 
 Most keys and keyboard shortcuts work just like they do in any text editor on the Windows platform,
-with these additions:
+with some additions:
 
 | Command                   | Function                                         |
 | ---                       |  ---                                             |
-|`[RightMouse]`             |  Hold to scroll text (like MouseImp's 'DirectScroll') |
-|`[F9]`                     |  Toggle 'inverse video' mode                     |
+|`[RightMouse]`             |  Hold to scroll document                         |
 |`[F4]`                     |  Reset interpreter                               |
 |`[F5]`                     |  Continue                                        |
 |`[F10]`                    |  Step over                                       |
@@ -97,7 +96,10 @@ with these additions:
 |`[F12]`                    |  Toggle hexadecimal numbers                      |
 |`[ScrollLock]`             |  Toggle execution                                |
 |`[CapsLock]`               |  Toggle skipping breakpoints                     |
+|`[Ctrl]+[Shift]+[C]`       |  Comment selection                               |
+|`[Ctrl]+[Shift]+[X]`       |  Uncomment selection                             |
 |`[Ctrl]+[S]`               |  Save file                                       |
+|`[F9]`                     |  Toggle light/dark theme                         |
 
 Continuous execution is active as long as ScrollLock and CapsLock are active, and there
 must be at least one '!!!'-breakpoint in the executable code. Missing breakpoint causes

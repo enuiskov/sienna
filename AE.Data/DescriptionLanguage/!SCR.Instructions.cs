@@ -68,8 +68,7 @@ namespace AE.Data.DescriptionLanguage
 					DestAddress   = _TgtEntryPoint.DefinitionOffset + 1,
 					//SrcSteppingMode = this.Interpreter.StepMode,
 					//DstSteppingMode = _TgtEntryPoint.SteppingMode,
-
-					///BasePointer   = this.CurrentScope.DataStack.Position - 2,
+					BasePointer   = this.DataStack.Pointer - (((_TgtEntryPoint.Type == CustomOpcodeType.Custom ? 2 : 0) - 1) * sizeof(int)),
 				};
 
 				//if(_TgtEntryPoint.IsTSMWord)
@@ -122,33 +121,33 @@ namespace AE.Data.DescriptionLanguage
 			///this.Interpreter.StepMode = ExecutionStepMode.Fast;
 		}
 
-		public void ResolveInternal(string iName)
-		{
-			CustomOpcodeInfo _InternalEntryPoint;
-			{
-				if(this.Program.Opcodes.TryGetValue(iName, out _InternalEntryPoint))
-				{
-					var _CallInfo = new CallInfo
-					{
-						Opcode        = _InternalEntryPoint,
-						//IsInlineCall  = _TgtEntryPoint.Type != CustomOpcodeType.Cu,
-						//Scope         = this.CurrentScope,
-						SrcAddress    = this.Program.Counter,
-						DestAddress   = _InternalEntryPoint.DefinitionOffset + 1,
-						//SrcSteppingMode = this.Interpreter.StepMode,
-						//DstSteppingMode = _TgtEntryPoint.SteppingMode,
+		//public void ResolveInternal(string iName)
+		//{
+		//   CustomOpcodeInfo _InternalEntryPoint;
+		//   {
+		//      if(this.Program.Opcodes.TryGetValue(iName, out _InternalEntryPoint))
+		//      {
+		//         var _CallInfo = new CallInfo
+		//         {
+		//            Opcode        = _InternalEntryPoint,
+		//            //IsInlineCall  = _TgtEntryPoint.Type != CustomOpcodeType.Cu,
+		//            //Scope         = this.CurrentScope,
+		//            SrcAddress    = this.Program.Counter,
+		//            DestAddress   = _InternalEntryPoint.DefinitionOffset + 1,
+		//            //SrcSteppingMode = this.Interpreter.StepMode,
+		//            //DstSteppingMode = _TgtEntryPoint.SteppingMode,
 
-						//BasePointer   = this.CurrentScope.DataStack.Position - 2,
-					};
-					this.CallStack.Push(_CallInfo);
+		//            //BasePointer   = this.DataStack.Pointer - 2,
+		//         };
+		//         this.CallStack.Push(_CallInfo);
 
 
-					this.Program.Counter = _InternalEntryPoint.DefinitionOffset + 1;
-					///this.CallStack.Push(iName);
-				}
-			}
-			///this.CurrentScope.DataStack.Push(_CallInfo);
-		}
+		//         this.Program.Counter = _InternalEntryPoint.DefinitionOffset + 1;
+		//         ///this.CallStack.Push(iName);
+		//      }
+		//   }
+		//   ///this.CurrentScope.DataStack.Push(_CallInfo);
+		//}
 		public Label ResolveLabel(string iName)
 		{
 			//throw new Exception("ND");
@@ -306,12 +305,12 @@ namespace AE.Data.DescriptionLanguage
 			var _TSMCallInfo = this.CallStack.Peek();
 
 
-			this.Program.Counter = _TSMCallInfo.SrcAddress;
 
 			//this.CallStack.Drop();
 
 			if(_TSMCallInfo.Opcode.Type == CustomOpcodeType.Custom)
 			{
+				var _Sig = _TSMCallInfo.Opcode.Signature;
 				//var _OSMCallInfo = (CallInfo)(_DataStack.Data.ReadInt32());
 
 				//if(_OSMCallInfo != _TSMCallInfo)
@@ -322,11 +321,43 @@ namespace AE.Data.DescriptionLanguage
 				//this.Program.Counter = _OSMCallInfo.SrcAddress;
 				//_DataStack.Drop();
 
-				var _RetAddress = _DataStack.PeekInt32();
-				this.Program.Counter = _RetAddress;
+
+				///_TSMCallInfo.Opcode.Signature.Items[2].BaseOffset
+				//var _OutputsAndReferences = new int[_Sig.ReferenceCount + _Sig.OutputCount];
+				//{
+				//   for(int _VVc = _Sig.Items.Length, cVi = 0, cOi = 0; cVi < _VVc; cVi ++)
+				//   {
+				//      if(_Sig.Items[cVi].Type == CustomOpcodeInfo.OpcodeSignatureItemType.Reference || _Sig.Items[cVi].Type == CustomOpcodeInfo.OpcodeSignatureItemType.Output)
+				//      {
+				//         _OutputsAndReferences[cOi ++] = _DataStack.Memory.ReadInt32(this.FramePointer + (_Sig.Items[cVi].BaseOffset * sizeof(int)));
+				//      }
+				//   }
+				//}
+				
+				//_DataStack.Pointer = _TSMCallInfo.BasePointer + (_Sig.InputCount * sizeof(int)) + (2 * sizeof(int));
+
+				//for(int _OOc = _OutputsAndReferences.Length, cOi = 0; cOi < _OOc; cOi ++)
+				//{
+				//   _DataStack.PushInt32(_OutputsAndReferences[cOi]);
+				//}
+				
+
+				///var _RetAddress = _DataStack.PeekInt32();
+
+				///_DataStack.Pointer = _TSMCallInfo.Opcode.Signature.DefinitionOffset;
+
+
+
+				//for(int _IIc = _TSMCallInfo.Opcode.Signature.Items.Length, cIi = 0; cIi < _IIc; cIi ++)
+				//{
+				//   _DataStack.Pointer.Drop();
+				//}
+
+				///this.Program.Counter = _TSMCallInfo.Opcode.EpilogOffset;
 				_DataStack.Drop();
 			}
-
+			
+			this.Program.Counter = _TSMCallInfo.SrcAddress;
 			this.CallStack.Drop();
 			
 			//if(_TSMCallInfo.Opcode.Type == CustomOpcodeType.Custom)
@@ -1109,7 +1140,16 @@ namespace AE.Data.DescriptionLanguage
 						}
 						case "ret" :
 						{
-							this.InvokeReturn();
+							var _CallInfo = this.CallStack.Peek();
+							if(_CallInfo.Opcode.Type == CustomOpcodeType.Custom)
+							{
+								this.Program.Counter = _CallInfo.Opcode.EpilogOffset;
+							}
+							else
+							{
+								this.InvokeReturn();
+							}
+							
 							///oStepIncrement = 0;
 							//var _TSMCallInfo = _CallStack[-1];
 							

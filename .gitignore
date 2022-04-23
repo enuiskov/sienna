@@ -12,10 +12,11 @@ Thumbs.db
 *.zip
 *.rar
 *.ncb
+*.ilk
+*.exp
 *.suo
 *.user
-*.cache
-*.Cache
+*.[Cc]ache
 *.resources
 *.FileListAbsolute.txt
 BuildLog.htm
