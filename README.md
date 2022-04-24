@@ -1,46 +1,8 @@
 # Sienna
 
 ![](docs/screenshots/Scr00.jpg)
-![](docs/screenshots/Scr16.jpg)
 
-<details><summary>Other screenshots</summary>
-
-![](docs/screenshots/Scr01.jpg)
-![](docs/screenshots/Scr02.jpg)
-![](docs/screenshots/Scr03.jpg)
-![](docs/screenshots/Scr04.jpg)
-![](docs/screenshots/Scr05.jpg)
-![](docs/screenshots/Scr06.jpg)
-![](docs/screenshots/Scr07.jpg)
-![](docs/screenshots/Scr08.jpg)
-![](docs/screenshots/Scr09.jpg)
-![](docs/screenshots/Scr10.jpg)
-![](docs/screenshots/Scr11.jpg)
-![](docs/screenshots/Scr12.jpg)
-![](docs/screenshots/Scr13.jpg)
-![](docs/screenshots/Scr14.jpg)
-![](docs/screenshots/Scr15.jpg)
-![](docs/screenshots/Scr17.jpg)
-
-</details>
-
-
-
-## Controls
-
-
-
-### Common
-
-| Command                   | Function                                         |
-| ---                       |  ---                                             |
-|`[Ctrl]+[~] / [Escape]`    |  Toggle console                                  |
-|`[Alt]+[E/D],[R/F]`        |  Toggle graphics blending modes                  |
-|`[F9]`                     |  Toggle light/dark theme                         |
-|`[Alt]+[Enter]`            |  Toggle fullscreen mode                          |
-|`[Alt]+[=/-]`              |  Adjust gamma correction for dark theme          |
-
-### N-gon scheme editor
+## N-gon scheme editor
 
 | Command                   | Function                                         |
 | ---                       |  ---                                             |
@@ -68,7 +30,6 @@
 |`[F12]`                    |  Toggle perspective/orthographic view            |
 |`[Alt]+[F12]`              |  Toggle volume rendering mode (perspective view) |
 
-
 Use console commands to set names, descriptions, and behaviours of selected nodes
 
 | Command                           | Function                         |
@@ -79,11 +40,15 @@ Use console commands to set names, descriptions, and behaviours of selected node
 
 Only `~I[KeyCode]` input node types are currently supported.
 
+![](docs/screenshots/Scr17.jpg)
 
-### Code editor
+[More screenshots](docs/ngsf.md)
+
+
+## Code editor
 
 Most keys and keyboard shortcuts work just like they do in any text editor on the Windows platform,
-with some additions:
+with these additions:
 
 | Command                   | Function                                         |
 | ---                       |  ---                                             |
@@ -102,11 +67,11 @@ with some additions:
 |`[F9]`                     |  Toggle light/dark theme                         |
 
 Continuous execution is active as long as ScrollLock and CapsLock are active, and there
-must be at least one '!!!'-breakpoint in the executable code. Missing breakpoint causes
+must be at least one `!!!`-breakpoint in the executable code. Missing breakpoint causes
 hanging of execution because the interpreter updates the screen every time a breakpoint
 is hit.
 
-### Programming language
+![](docs/screenshots/ed01.gif)
 
 Note that the supported programming language is stack-oriented. The key feature is
 the order of execution of various syntax nodes: expressions are executed in direct order,
@@ -114,3 +79,12 @@ lists - **in reverse**, and finally list-items are executed in direct order agai
 "Atoms" are only supported by the syntax parser, but they are expected to be executed
 in direct order as well.
 
+### Miscellaneous controls (GL)
+
+| Command                   | Function                                         |
+| ---                       |  ---                                             |
+|`[Ctrl]+[~] / [Escape]`    |  Toggle console                                  |
+|`[Alt]+[E/D],[R/F]`        |  Toggle graphics blending modes                  |
+|`[Alt]+[Enter]`            |  Toggle fullscreen mode                          |
+|`[F9]`                     |  Toggle light/dark theme                         |
+|`[Alt]+[=/-]`              |  Adjust gamma correction                         |

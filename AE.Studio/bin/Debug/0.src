@@ -105,10 +105,9 @@
 //~~mul   (iOp1'$i32,iOp2'$i32,oV'$i32,_Neg2'$i32,cI'$i32)
 mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 {
-	//!!!;	
+	//!!!;
 	jz (get iOp1),^Z; drop;
 	jz (get iOp2),^Z; drop;
-	//!!!;
 	
 	jpos (sub (get iOp2; get iOp1)),^DontSwap;
 	(
@@ -118,24 +117,16 @@ mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 		set iOp2;
 	);
 	
-	
 	:DontSwap;
 	
-	///!!!;
 	set oV 0;
 	set _Neg2 (get,neg iOp2);
 	
-	
-	
-	//!!!;
 	set cI (get,abs iOp1); :I; jpos,drop (dec,dup),^I
 	(
-		//!!!;
 		set oV (sub (get oV; get _Neg2));
 	);
-	//!!!;
 	set oV (mulsign (get oV; get,sign iOp1));
-	//!!!;
 	ret;
 	
 	:Z; set oV 0;
@@ -161,7 +152,11 @@ mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 //	jpos ^Jumping; drop;drop;drop; ret; :Jumping; xmov -3; xset 1 5;
 //	drop; drop; csp--; jpos;
 //};
-*loop {dup};
+//*loop {dup};
+
+**sub    {!!!;};
+**equals {!!!;};
+**less?  {get; !3; get; sub; jpos ^TRUE; set !3 0; drop; ret; :TRUE; set !2 1;};
 
 *inc {sub -1};
 *dec {sub +1};
@@ -169,119 +164,16 @@ mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 **inc {dup; dup; get; inc; set !3; set};
 **dec {dup; dup; get; dec; set !3; set};
 
-**sub    {!!!;};
-**equals {!!!;};
-**less?  {get; !3; get; sub; jpos ^TRUE; set !3 0; drop; ret; :TRUE; set !2 1;};
-
-test (_L1,_L2)
-{
-	set _L1 4;
-	set _L2 5;
-	
-	ssssssss;
-	
-	
-	
-		
-	*less? _L1,_L2;
-	!!!;
-	
-};
-*white {#ffffffffx16};
-*black {#ff000000x16};
-*red   {#ffff0000x16};
-*green {#ff00ff00x16};
-*blue  {#ff0000ffx16};
-
-*yellow {#ffffff00x16};
-
-
-*rgba
-{
-	mul 4;
-	set;
-	
-	//set (get !4; get !2); inc;
-	//set (get !3; get !2); inc;
-	//set (get !2; get !2); inc;
-	//set (get !5; get !2); drop5;
-};
-//fillrect(iA,iR,iG,iB,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW)
-//{
-//	//!!!;
-//	set _MaxX  (add (get iX; get iW));
-//	set _MaxY  (add (get iY; get iH));
-//	set _ScanW (mul (get iScrW; 1));
-//	
-//	dup get iY; :NextRow; jpos (sub (get _MaxY; get !2)),^NextRow
-//	(
-//		dup get iX; :NextCell; jpos (sub (get _MaxX; get !2)),^NextCell
-//		(
-//			add (mul (get _ScanW; get !4));
-//			
-//			rgba (get !5) (get iA;get iR;get iG;get iB);
-//			drop;
-//			
-//			
-//			inc;
-//			dup;
-//			//!!!;
-//		);
-//		drop3;
-//		//!!!;
-//		inc;
-//		dup;
-//	);
-//	!!!;
-//};
+*white {#ffffffffx16}; *black {#ff000000x16};
+*red   {#ffff0000x16}; *green {#ff00ff00x16}; *blue {#ff0000ffx16}; *yellow {#ffffff00x16};
 *screensize {30,20};
-//~~fillrect(iColor,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
-//fillrect
-//(
-//	iColor'@i32,
-//	iX'@i32,
-//	iY'@i32,
-//	iW'@i32,
-//	iH'@i32,
-//	iScrW'@i32,
-//	iScrH'@i32,
-//	_MaxX'@i32,
-//	_MaxY'@i32,
-//	_ScanW'@i32,
-//	cX'@i32,
-//	cY'@i32,
-//	cBase'@i32
-//)
+*argb       {set (mul 4)};
 
-//$i32 {System'Int32};
-//@struct Point
-//{
-//	has X'$int32;
-//	has Y'$int32;
-//	
-//	can Project (iMatrix'Matrix4)
-//	{
-//		bla;bla;bla;
-//	};
-//};
-//
-//@struct Size {Width,Height};
-//
-//@struct Rect
-//{
-//	has Location  'Point;
-//	has Size      'Size;
-//	
-//	
-//};
-
-fillrect(iColor'$i32,iX'$i32,iY'$i32,iW'$i32,iH'$i32,iScrW'$i32,iScrH'$i32,_MaxX,_MaxY,_ScanW,cX'$f64,cY'$f64,cBase)
-//fillrect'$i32 (iColor,iX,iY,iW,iH,iScrW,iScrH)
+fillrect(iColor,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
 {
-	//!!!;
 	set _MaxX  (add (get iX; get iW));
 	set _MaxY  (add (get iY; get iH));
-	//!!!;
+	
 	set _ScanW (mul (get iScrW; 1));
 	
 	set cY (get iY); :Y; jpos,drop (sub (get _MaxY; get cY)),^Y
@@ -290,121 +182,48 @@ fillrect(iColor'$i32,iX'$i32,iY'$i32,iW'$i32,iH'$i32,iScrW'$i32,iScrH'$i32,_MaxX
 		(
 			set cBase (mul (get _ScanW; get cY); add (get cX));
 			!!!;
-			rgba (get cBase) (get iColor);
-			//!!!;
+			argb (get cBase) (get iColor);
 			*inc cX;
-			//!!!;
 		);
 		*inc cY;
-		//!!!;
 	);
-	!!!;
+	//!!!;
+};
+drawrect(iColor,iX,iY,iW,iH,iScrW,iScrH)//,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
+{
+	fillrect ((get iColor), (get iX),(get iY),  (get iW),1, screensize);
+	fillrect ((get iColor), (get iX),(get iY),  1,(get iH), screensize);
+	
+	fillrect ((get iColor),  (add (get iX; (get iW; sub 1))),  (get iY),              1, (get iH), screensize);
+	fillrect ((get iColor),  (get iX), (add (get iY; (get iH; sub 1))), (get iW),        1, screensize);
 };
 drawimage
 {
-//	mul 0,5; !!!; drop;
-//	mul -5,60; !!!; drop;
-//	mul 3,5; !!!; drop;
-//	mul 20,30; !!!; drop;
-////	
-//	mul 10,-12; !!!; drop;
+	fillrect (white,  0,  0, 30, 20, screensize);
+	drawrect (black,  1,  1, 28, 18, screensize);
 	
-	//!!!;
+	fillrect (yellow,   6,3, 10,8, screensize);
+	drawrect (red,      6,3, 10,8, screensize);
+	fillrect (blue,     4,7, 20,3, screensize);
 	
-	//rgba 0 (66666666);
-	//!!!;
-//	
-	//set 0 66666666;
-	//set 4 68445154;
-	//set 8 68445154;
-	//set 12 68445154;
-//	
-	//!!!;
-	
-	//rgba 0 (68445154);
-	//rgba 1 black;
-	//rgba 2 white;
-	//rgba 3 black;
-	//rgba 4 red;
-	//rgba 5 green;
-	//rgba 6 blue;
-	//!!!;
-	//afsf;
-	//!!!;
-	fillrect (white, 0,0,30,20,screensize);
-	//!!!;
-	//!!!;
-	fillrect (black, 1,1,28,1,screensize);
-	fillrect (black, 28,1,1,18,screensize);
-	fillrect (black, 1,18,28,1,screensize);
-	fillrect (black, 1,1,1,18,screensize);
-	//!!!;
-	//reset;
-	//fillrect (black, 1,1,28,18,screensize);
-	
-	//!!!;
-	
-	//fillrect (white, 2,2,26,16,screensize);
-	
-	fillrect (red,   6,3,10,8,screensize);
-	fillrect (green, 10,6,10,8,screensize);
-	//!!!;
-	fillrect (blue,  4,7,20,3,screensize);
-	//!!!;
-	//fillrect (white, 2,2,26,16,screensize);
-	fillrect (red,   7,4,10,8,screensize);
-	fillrect (green, 11,7,10,8,screensize);
-	fillrect (blue,  5,8,20,3,screensize);
-	//!!!;
-	//fillrect (white, 2,2,26,16,screensize);
-	fillrect (red,   8,5,10,8,screensize);
-	fillrect (green, 12,8,10,8,screensize);
-	fillrect (blue,  6,9,20,3,screensize);
-	//!!!;
-	//fillrect (white, 2,2,26,16,screensize);
-	fillrect (red,   9,6,10,8,screensize);
-	fillrect (green, 13,9,10,8,screensize);
-	fillrect (blue,  7,10,20,3,screensize);
-	//!!!;
-	//fillrect (black,  2,2,26,16,screensize);
-	//fillrect (yellow, 1,1,28,18,screensize);
-	//fillrect (black,  0,0,30,20,screensize);
-	//!!!;
-	
-	reset;
-	
+	fillrect (green,   10,6, 10,8, screensize);
+	drawrect (black,   10,6, 10,8, screensize);
+	!!!;
 };
-*adrmode {set-address-mode};
-*opdmode {set-operand-mode};
-*@sin {set_ident_name};
-
-//~~testproc (i1,i2,i3,o1,o2,_1,_2,_3,_4);
 testproc (rTestVar,iName,iAge,iPassNum,o1,oError; "#+*4")
 {
-	!!!;
-	//set (sub get_SP,-4) 666;
 	set rTestVar 123456;
 	set o1     555;
 	set oError 42;
-	
-	//!!!;
 };
-
-*break {!!!;};
-
 mtest(r0,r1, i0,i1,i2, o0,o1,o2,o3, _1,_2,_3)
 {
-	
-	!!!;
-	//!!!;
 	set r0 101;
 	set r1 102;
 	set o0 777;
 	set o1 778;
 	set o2 779;
 	set o3 780;
-	//!!!;
-	ret;
 };
 *test_AAA {111; test_BBB;};
 *test_BBB {222; test_CCC;};

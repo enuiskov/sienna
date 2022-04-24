@@ -46,7 +46,7 @@ namespace AE.Editor
 					///_RootFrame.Children.Add(this.Variables  = new TableFrame      {Name = "Variables", Bounds = new System.Drawing.Rectangle(0,0,300,150), Palette = new GdiColorPalette(0.5,2.5,0.5), Dock = AE.Visualization.DockStyle.Fill});
 					_RootFrame.Children.Add(this.Variables  = new TableFrame      {Name = "Variables", Bounds = new System.Drawing.Rectangle(0,0,300,100), Palette = new GdiColorPalette(0.5,2.5,0.5), Margin = new AE.Visualization.Padding(-1,0,0,-1)});
 
-					_RootFrame.Children.Add(this.Operands   = new TableFrame      {Name = "Operands", Bounds = new System.Drawing.Rectangle(0,0,300,250), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,100,0,300), ColumnWidths = new int[]{40,10,80,-1,25}});
+					_RootFrame.Children.Add(this.Operands   = new TableFrame      {Name = "Operands", Bounds = new System.Drawing.Rectangle(0,0,300,250), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,100,0,300), ColumnWidths = new int[]{40,80,10,-1,25}});
 					_RootFrame.Children.Add(this.Calls      = new TableFrame      {Name = "Calls",    Bounds = new System.Drawing.Rectangle(0,0,300,100), Palette = new GdiColorPalette(0.5,2.5,0.5),   Margin = new AE.Visualization.Padding(-1,-1,0,200), ColumnWidths = new int[]{30,-1,75}});
 					///_RootFrame.Children.Add(this.Console    = new GdiConsoleFrame {Name = "Console", Bounds = new System.Drawing.Rectangle(0,0,300,0), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,500,0,0)});
 					_RootFrame.Children.Add(this.Image      = new MemoryImageFrame {Name = "MemoryImage", Bounds = new System.Drawing.Rectangle(0,0,300,200), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,-1,0,0)});
@@ -292,7 +292,6 @@ namespace AE.Editor
 			this.Operands.Data.Clear();
 			this.Calls.Data.Clear();
 
-
 			//if(this..CodeEditor == null) return;
 			//var _DebugPanel = this.EditorControl.DebugPanel;
 			var _Interpreter = (this.CodeEditor.CurrentDocument as CodeEditorFrame.AEDLDocument).Interpreter;
@@ -351,6 +350,7 @@ namespace AE.Editor
 						_SigInnerCount = _Sig.OutputCount + _Sig.LocalCount; 
 					}
 				}
+				var _HighlightedRowAddress = _Operands.Pointer != _Operands.BaseOffset ? _Operands.PeekInt32() : -1;//  _Data.Data.Count > 0 ? this.Operands..Data[this.Operands. -1;
 
 				for(int cRi = 0, cOi = _FrOi; cOi >= _ToOi; cRi ++, cOi -= _Size4)
 				{
@@ -360,7 +360,7 @@ namespace AE.Editor
 
 					///cStackI == ZERO TWICE: ROUNDING BUG / 4
 
-					var cMarker = "";//cOi == _Operands.Pointer - 1 ? "►" : "";
+					var cMarker = cOi == _HighlightedRowAddress ? "►" : "";
 
 					
 					//MemoryItemInfo cItem = new MemoryItemInfo();/// _Operands..InfoMap[cOi];
@@ -511,9 +511,9 @@ namespace AE.Editor
 					{
 					
 					}
-					this.Operands.Data.AddRow(cForeColor, cBackColor, FormatNumber(cOi), cMarker, cName, FormatNumber(cValue), cType);
-					
+					this.Operands.Data.AddRow(cForeColor, cBackColor, FormatNumber(cOi), cName, cMarker, FormatNumber(cValue), cType);
 				}
+
 				///if(_Interpreter.Context.CallStack.Pointer <= 255)
 				///if(_Operands.Position < 255)
 				{

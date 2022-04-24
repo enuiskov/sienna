@@ -111,13 +111,9 @@ namespace AE.Visualization
 		public override void DrawForeground(GraphicsContext iGrx)
 		{
 			if(this.ColumnOffsets == null) this.UpdateColumnOffsets();
-			//var _Font = new 
-			//var _Cter = iGrx.BeginContainer();
-			//{
-			///var _ForeBrush = new SolidBrush(this.Palette.Adapt(CHSAColor.Glare));
-			//this.Width;
-			//var _ColOffsets = new int[]{5,90,215};
-			//var _Brush
+			
+			iGrx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
 			var _RowH = this.Font.Height + 2;
 			
 			var _MaxRowsToShow = Math.Min(this.Data.Count, this.Height / 10);
