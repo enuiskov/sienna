@@ -25,6 +25,7 @@ namespace AE.Visualization
 		//public bool         IsBufferValidated    = false;
 		private bool BlinkingCursorState_ = false;
 		///public bool         IsBufferSynchronized = false;
+		
 
 
 		public TextEditorFrame()
@@ -159,7 +160,7 @@ namespace AE.Visualization
 			///this.CurrentDocument.UpdateLineCells();
 
 			base.DrawForeground(iGrx);
-			///this.DrawExtraTokens(iGrx);
+
 
 			if(this.IsActive && this.CurrentDocument.Cursor.IsVisible)
 			{
@@ -366,59 +367,7 @@ namespace AE.Visualization
 
 			//iGrx.
 		}
-		private void DrawExtraTokens   (GraphicsContext iGrx)
-		{
-			var _ScrOffs = this.CurrentDocument.Scroll.Offset;
-			
-			var _ExpBrush = new SolidBrush(iGrx.Palette.Adapt(new CHSAColor(0.7f,3)));
-			var _LstBrush = new SolidBrush(iGrx.Palette.Adapt(new CHSAColor(0.7f,5)));
-			var _CurrDoc  = this.CurrentDocument;
-
-			for(var cRi = 0; cRi < this.BufferSize.Height; cRi++)
-			{
-				var cLineI = _ScrOffs.Y + cRi; if(cLineI >= _CurrDoc.Lines.Count) break;
-				var cLine = _CurrDoc.Lines[cLineI]; if(cLine.Tokens == null) continue;
-				var cBrush = _ExpBrush;
-					
-				foreach(var cToken in cLine.Tokens)
-				{
-					string cStr; switch(cToken.Type)
-					{
-						case TokenType.ExpressionOpener : cStr = "<";                     break;
-						case TokenType.ExpressionCloser : cStr = ">";                     break;
-						case TokenType.ListOpener       : cStr = "«"; cBrush = _LstBrush; break;
-						case TokenType.ListCloser       : cStr = "»"; cBrush = _LstBrush; break;
-
-						default : continue;
-					}
-
-					//if(cToken.Type != TokenType.ExpressionOpener && cToken.Type != TokenType.ExpressionCloser && cToken.Type != TokenType.TupleOpener && cToken.Type != TokenType.TupleCloser) continue;
-
-					var cColumn = _CurrDoc.GetBufferColumnOffset(cToken.Offset, cLineI);
-				
-					var cMarkRect = new Rectangle
-					(
-						(int)((_CurrDoc.LineNumberOffset - 0.5f + cColumn) * this.Settings.CharWidth),
-						(cRi * this.Settings.LineHeight) + 3,
-						6,6
-					);
-					///iGrx.FillRectangle(_TupBrush, cMarkRect);
-
-					
-					//var cStr = cToken.Type == TokenType.TupleOpener ? "«" : "»";
-					
-					iGrx.DrawString(cStr, new Font(FontFamily.GenericMonospace, 10), cBrush, cMarkRect.X, cMarkRect.Y);
-				}
-
-				//var cPrsState = this.CurrentDocument.Lines[cLineI].LexerState as GenericCodeLexerState;
-				/////var cBrush = cPrsState.IsStringOpen ? _Brush1 : _Brush2;
-				//var cBrush = cLineI > this.CurrentDocument.LexerPosition ? _Brush1 : _Brush2;
-				
-				//iGrx.FillRectangle(cBrush, cMarkRect);
-			}
-
-			//iGrx.
-		}
+		
 
 		//public void ScrollBy(int iHrzDelta, int iVrtDelta)
 		//{

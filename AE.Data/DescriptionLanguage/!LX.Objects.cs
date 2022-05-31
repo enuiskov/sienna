@@ -152,57 +152,19 @@ namespace AE.Data
 	}
 	public class GenericCodeLexerState : TextLexerState
 	{
-		//public bool IsStringOpen
-		//{
-		//    get{return this.TokenStack.Count > 0 && this.TokenStack.Peek() == TokenType.String;}
-		//    set
-		//    {
-		//        if(value == true)
-		//        {
-		//            if(this.TokenStack.Count == 0 || this.TokenStack.Peek() != TokenType.String)
-		//            {
-		//                this.TokenStack.Push(TokenType.String);
-		//            }
-		//            else throw new Exception("WTFE: new string inside another string?");
-		//        }
-		//        else
-		//        {
-		//            if(this.TokenStack.Count > 0 && this.TokenStack.Peek() == TokenType.String)
-		//            {
-		//                this.TokenStack.Pop();
-		//            }
-		//            else throw new Exception("WTFE: no string to close");
-		//        }
-		//    }
-		//}
-
-
-		//public bool IsCommentOpen;
-		//public bool IsGarbageOpen;
-		//public bool IsMultilineCommentOpen;
-		//public bool IsMultilineGarbageOpen;
-
 		public Stack<TokenType> TokenStack;
-		///public Stack<TokenType> SyntaxStack;
-
+		///public bool IsWhitespace;
 
 		public GenericCodeLexerState()
 		{
 			this.TokenStack  = new Stack<TokenType>();
-			///this.SyntaxStack = new Stack<TokenType>();
+			///this.IsWhitespace = false;
 		}
 		public override TextLexerState Clone()
 		{
 			return new GenericCodeLexerState
 			{
-				//IsStringOpen           = this.IsStringOpen,
-				//IsCommentOpen          = this.IsCommentOpen,
-				//IsGarbageOpen          = this.IsGarbageOpen,
-				//IsMultilineCommentOpen = this.IsMultilineCommentOpen,
-				//IsMultilineGarbageOpen = this.IsMultilineGarbageOpen,
-
 				TokenStack               = this.TokenStack  != null ? new Stack<TokenType>(new Stack<TokenType>(this.TokenStack)) : null,
-				///SyntaxStack              = this.SyntaxStack != null ? new Stack<TokenType>(this.SyntaxStack) : null
 			};
 		}
 	}
@@ -367,7 +329,11 @@ namespace AE.Data
 	{
 		Undefined,
 		Pseudotoken,
+
+		ListItemError,
 		ListError,
+		ExpressionError,
+		BlockError,
 
 		Whitespace,
 		Space,
@@ -396,7 +362,7 @@ namespace AE.Data
 		ExpressionDelimiter,      /// "1";"2";
 		ExpressionItemDelimiter,  /// "1" "2";
 		ListItemDelimiter,        /// "1","2";
-		IdentifierDelimiter,      /// iItem.Name
+		AtomDelimiter,      /// iItem.Name
 		
 		
 		Identifier, ///~~ "var _IsIdentifier = ... "
@@ -431,9 +397,11 @@ namespace AE.Data
 		List,        ListOpener,        ListCloser,
 		ListItem,    ListItemOpener,    ListItemCloser,
 		
+		ExpectList,                 /// Expression opened
 		ExpectListItem,             /// List opened
-		ExpectNextListItem,         /// List opened, delimiter found?
-		ExpectListItemContinuation, /// List item added
+		///ExpectNextListItem,      /// List opened, delimiter found?
+		ExpectFirstAtom,            ///
+		ExpectNextAtom,             /// List item added
 
 
 		

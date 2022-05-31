@@ -103,7 +103,7 @@
 
 //~~mul   (iOp1,iOp2,oV,_Neg2,cI)
 //~~mul   (iOp1'$i32,iOp2'$i32,oV'$i32,_Neg2'$i32,cI'$i32)
-mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
+mul (iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 {
 	//!!!;
 	jz (get iOp1),^Z; drop;
@@ -169,7 +169,7 @@ mul(iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
 *screensize {30,20};
 *argb       {set (mul 4)};
 
-fillrect(iColor,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
+fillrect (iColor,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
 {
 	set _MaxX  (add (get iX; get iW));
 	set _MaxY  (add (get iY; get iH));
@@ -189,7 +189,7 @@ fillrect(iColor,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
 	);
 	//!!!;
 };
-drawrect(iColor,iX,iY,iW,iH,iScrW,iScrH)//,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
+drawrect (iColor,iX,iY,iW,iH,iScrW,iScrH)//,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
 {
 	fillrect ((get iColor), (get iX),(get iY),  (get iW),1, screensize);
 	fillrect ((get iColor), (get iX),(get iY),  1,(get iH), screensize);
@@ -216,7 +216,7 @@ testproc (rTestVar,iName,iAge,iPassNum,o1,oError; "#+*4")
 	set o1     555;
 	set oError 42;
 };
-mtest(r0,r1, i0,i1,i2, o0,o1,o2,o3, _1,_2,_3)
+mtest (r0,r1, i0,i1,i2, o0,o1,o2,o3, _1,_2,_3)
 {
 	set r0 101;
 	set r1 102;
@@ -824,24 +824,6 @@ ChA "ChA_1" (attr1 1; attr2 2.0; attr3 "V3";)
 	
 	ChB (1,2.0,"V3");
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

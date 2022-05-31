@@ -97,7 +97,12 @@ namespace AE.Editor.Tools
 			/** Undefined */     new TB.CellStyle(new CHSAColor(0.5f, 6), CHSAColor.Transparent, FontStyle.Bold),
 
 			/** Pseudotoken */ new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.75f), CHSAColor.Transparent),
-			/** TupleError  */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
+			
+			/** ListItemError   */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
+			/** ListError       */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
+			/** ExpressionError */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
+			/** BlockError      */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
+			
 
 			/** Whitespace */ new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
 			/** Space      */ new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),

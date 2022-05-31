@@ -163,7 +163,6 @@ namespace AE.Visualization
 			{
 				this.DeleteSelected();
 
-
 				var _BrkStrBegI = this.Cursor.Position.X;
 				var _BrkStrEndI = this.CurrentLine.Value.Length;
 				var _BrkStrLen  = _BrkStrEndI - _BrkStrBegI;
@@ -1108,11 +1107,12 @@ namespace AE.Visualization
 						var pLexerState = pLine != null ? pLine.LexerState : this.Lexer.DefaultState.Clone();
 						//var cLexerState = pLexerState.Clone();
 
-						var cLexerContext = this.Lexer.CreateContext(cLine.Value, 0, pLexerState.Clone());
+						var cLexerContext = this.Lexer.CreateContext(cLine.Value + "\n", 0, pLexerState.Clone());
 
 						//if(pLine != null)pLine.
 						///cLine.Tokens = this.Lexer.ParseBuffer(cLine.Value, new TextLexerContext(cLexerState as TextLexerState, 0));
 						cLine.Tokens = this.Lexer.ParseBuffer(cLexerContext);
+						
 						///cLine.Tokens = this.Format.ParseString(cLine.Value, pLine != null ? pLine.LexerState : this.Format.DefaultLexerState, out cLine.LexerState);
 						///cLine.LexerState = cLexerState as TextLexerState;
 						cLine.LexerState = cLexerContext.State;

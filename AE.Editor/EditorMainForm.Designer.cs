@@ -296,7 +296,21 @@ namespace AE.Editor
 				}
 				case WF.Keys.F10: {_AEDLDoc.Interpreter.StepMode = AE.Data.DescriptionLanguage.ExecutionStepMode.Interactive; this.EditorControl.Step(0); iEvent.Handled = true; break;}
 				case WF.Keys.F11: {_AEDLDoc.Interpreter.StepMode = AE.Data.DescriptionLanguage.ExecutionStepMode.Interactive; this.EditorControl.Step(iEvent.Shift ? -1 : +1); iEvent.Handled = true;  break;}
-				case WF.Keys.F12: {this.EditorControl.DoShowHexNumbers =! this.EditorControl.DoShowHexNumbers; this.EditorControl.UpdateDebugData();  iEvent.Handled = true;  break;}
+				case WF.Keys.F12:
+				{
+					if(iEvent.Alt)
+					{
+						this.EditorControl.CodeEditor.DoShowSyntax =! this.EditorControl.CodeEditor.DoShowSyntax;
+					}
+					else
+					{
+						this.EditorControl.DoShowHexNumbers =! this.EditorControl.DoShowHexNumbers;
+						this.EditorControl.UpdateDebugData();
+					}
+					
+					iEvent.Handled = true;
+					break;
+				}
 
 				case WF.Keys.S:
 				{
@@ -396,7 +410,8 @@ namespace AE.Editor
 
 			this.OnResize(null);
 
-			this.SetDesktopBounds(50,50,800,600);
+			///this.EditorControl.CanvasControl.Canvas.InverseColorTheme();
+			this.SetDesktopBounds(50,50,1100,800);
 		}
 		protected override void OnResize(EventArgs e)
 		{

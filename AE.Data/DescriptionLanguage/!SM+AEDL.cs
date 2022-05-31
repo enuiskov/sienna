@@ -223,6 +223,7 @@ namespace AE.Data.DescriptionLanguage
 			
 
 			var _GroupBlockCount = 0;
+			var _ArgBlockCount   = 0;
 			var _FuncBlockCount  = 0;
 			
 
@@ -268,6 +269,8 @@ namespace AE.Data.DescriptionLanguage
 						case SyntaxNodeType.Word                  : _WordCount    ++; break;
 
 						case SyntaxNodeType.GroupingBlock         : _GroupBlockCount ++; break;
+						case SyntaxNodeType.ArgumentBlock         : _ArgBlockCount ++; break;
+						
 						case SyntaxNodeType.FunctionBlock         : _FuncBlockCount  ++; break;
 
 

@@ -42,6 +42,7 @@ namespace AE.Data
 			if(iCtx.Offset >= iCtx.Buffer.Length) throw new Exception("return null?");
 
 			var _LexerState = iCtx.State as GenericCodeLexerState;
+			var _TokenStack = _LexerState.TokenStack;
 			
 
 			var oTokens = new TokenInfoList(1);
@@ -59,7 +60,10 @@ namespace AE.Data
 					{
 						var _WsToken = this.ParseWhitespaces(iCtx);
 						///if(_WsToken != null)
-							oTokens.Add(_WsToken);///~~ fix 2022.01.29 - for Aletta compat tests;
+						oTokens.Add(_WsToken);///~~ fix 22;
+
+						
+						///_LexerState.IsWhitespace = true;
 					}
 					else
 					{
@@ -83,7 +87,7 @@ namespace AE.Data
 							else if (cChar == ';')               oTokens.Add(new TokenInfo(TokenType.ExpressionDelimiter, iCtx.Offset, ++iCtx.Offset));
 							//else if (cChar == ":")               oTokens.Add(new Token(TokenType.Colon,     cChar, iCtx.Position, iCtx.Position++));
 							else if (cChar == ',')               oTokens.Add(new TokenInfo(TokenType.ListItemDelimiter,  iCtx.Offset, ++iCtx.Offset));
-							else if (cChar == '\'')               oTokens.Add(new TokenInfo(TokenType.IdentifierDelimiter, iCtx.Offset, ++iCtx.Offset));
+							else if (cChar == '\'')               oTokens.Add(new TokenInfo(TokenType.AtomDelimiter, iCtx.Offset, ++iCtx.Offset));
 
 							else if (cChar == '$')
 							{
@@ -120,21 +124,22 @@ namespace AE.Data
 
 						}
 						//return this.ParseWord();
+						///_LexerState.IsWhitespace = false;
 					}
 				}
 			}
 			return oTokens;
 		}
-		public void          SkipNonTokens     (TextLexerContext iCtx)
-		{
-			while(iCtx.Offset < iCtx.Buffer.Length)
-			{
-				var cChar = iCtx.Buffer[iCtx.Offset];
-				if(cChar != ' ' && cChar != '\t' && cChar != '\r' && cChar != '\n') break;
+		//public void          SkipNonTokens     (TextLexerContext iCtx)
+		//{
+		//   while(iCtx.Offset < iCtx.Buffer.Length)
+		//   {
+		//      var cChar = iCtx.Buffer[iCtx.Offset];
+		//      if(cChar != ' ' && cChar != '\t' && cChar != '\r' && cChar != '\n') break;
 
-				iCtx.Offset++;
-			}
-		}
+		//      iCtx.Offset++;
+		//   }
+		//}
 		public TokenInfo     ParseWhitespaces  (TextLexerContext iCtx)
 		{
 			var _BegOffs  = iCtx.Offset;
@@ -155,6 +160,7 @@ namespace AE.Data
 			}
 			
 			iCtx.Offset = _EndOffs;
+			///(iCtx.State as GenericCodeLexerState).IsWhitespace = true;
 
 			TokenType _TokenType; switch(_FoundWs)
 			{
@@ -167,19 +173,8 @@ namespace AE.Data
 
 				default    : throw new Exception("WTF");
 			}
-			///return new TokenInfo(_TokenType, iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs), _BegOffs, _EndOffs, true);
 			return new TokenInfo(_TokenType, _BegOffs, _EndOffs);
 		}
-		///public TokenInfo     ParseWord         (TextLexerContext iCtx)
-		//{
-		//    var _BegOffs = iCtx.Offset;
-		//    var _EndOffs = iCtx.Offset + 1; while(_EndOffs < iCtx.Buffer.Length && !AEDLLexer.IsWhitespace(iCtx.Buffer[_EndOffs])) _EndOffs++;
-
-		//    iCtx.Offset = _EndOffs;// + 1;
-
-		//    ///return new TokenInfo(TokenType.Word, iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs), _BegOffs, _EndOffs);
-		//    return new TokenInfo(TokenType.Word, _BegOffs, _EndOffs);
-		//}
 		public TokenInfo     ParseBracket      (TextLexerContext iCtx)
 		{
 			var cChar = iCtx.Buffer[iCtx.Offset];
@@ -197,8 +192,7 @@ namespace AE.Data
 				
 				default  : throw new Exception("WTF");
 			}
-			///return new TokenInfo(_TokenType, cChar.ToString(), iCtx.Position, ++iCtx.Position, false, true, _IsOpener);
-			return new TokenInfo(_TokenType, iCtx.Offset, ++iCtx.Offset);
+			return new TokenInfo(_TokenType, iCtx.Offset, ++ iCtx.Offset);
 		}
 		public TokenInfo     ParseNumber       (TextLexerContext iCtx)
 		{
@@ -389,17 +383,8 @@ namespace AE.Data
 			var _BegOffs = iCtx.Offset;
 			var _EndOffs = iCtx.Offset + 3;
 			
+			iCtx.Offset = _EndOffs;
 
-
-			//while(_EndOffs < iCtx.Buffer.Length)
-			//{
-			//    if(
-			//    && Lexer.IsNumberChar(iCtx.Buffer[_EndOffs])) _EndOffs++;
-			//}
-
-			iCtx.Offset = _EndOffs;// + 1;
-
-			///return new TokenInfo(TokenType.PackedTuple, iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs), _BegOffs, _EndOffs);
 			return new TokenInfo(TokenType.PackedTuple, _BegOffs, _EndOffs);
 		}
 		public TokenInfo     ParseIdentifier   (TextLexerContext iCtx)
@@ -407,8 +392,6 @@ namespace AE.Data
 			var _BegOffs = iCtx.Offset;
 			var _EndOffs = iCtx.Offset + 1;
 
-			
-			
 			while(_EndOffs < iCtx.Buffer.Length && AEDLLexer.IsIdentChar(iCtx.Buffer[_EndOffs])) _EndOffs++;
 			
 			var _Str = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs);
@@ -609,70 +592,43 @@ namespace AE.Data
 		}
 		public TokenInfo     ParseString       (TextLexerContext iCtx)
 		{
-			///if(iCtx.Buffer.StartsWith("tytyuy")){}
+			var _LexerState         = iCtx.State as GenericCodeLexerState;
+			var _IsStringOpenBefore = _LexerState.TokenStack.Count != 0 && _LexerState.TokenStack.Peek() == TokenType.String;
 
-			var _LexerState   = iCtx.State as GenericCodeLexerState;
-			var _IsStringOpen = _LexerState.TokenStack.Count != 0 && _LexerState.TokenStack.Peek() == TokenType.String;
+			var _BegOffs = iCtx.Offset;
+			var _EndOffs = iCtx.Offset;
 
-			var _BegOffs       = iCtx.Offset;
-			var _EndOffs       = iCtx.Offset;
-
-			//if(_IsStringOpen && iCtx.Buffer == "{" && iCtx.Offset == 0)
-			//{
-			
-			//}
-			//var _IsTerminated = true;
-			
-			while(_EndOffs < iCtx.Buffer.Length)
+			bool pIsEscapeChar = false, cIsTerminated = false; int _BufferLen = iCtx.Buffer.Length, cOffs = _BegOffs + (_IsStringOpenBefore ? 0 : 1); while(true)
 			{
-				_EndOffs = iCtx.Buffer.IndexOf('"', _EndOffs + (_IsStringOpen ? 0 : 1));
-
-				if(_EndOffs == -1)
+				if(cOffs < _BufferLen)
 				{
-					_EndOffs = iCtx.Buffer.Length;
-					//_EndOffs = _BegOffs - 1; //~~ mark token as unterminated;
+					var cChar = iCtx.Buffer[cOffs];
 
-					//_Is
-					_IsStringOpen = true;
-
-					//if(!_LexerState.IsStringOpen) _LexerState.IsStringOpen = true;
-
-					///if(!_IsStringOpen) _IsStringOpen = true;
-					//else throw new Exception("???");
-
-					break;
+					if(pIsEscapeChar) pIsEscapeChar = false;
+					else
+					{
+						if(cChar == '"')  cIsTerminated = true;
+						if(cChar == '\\') pIsEscapeChar = true;
+					}
+					
+					_EndOffs = ++ cOffs;
+					
+					if(cIsTerminated) break;
 				}
 				else
 				{
-					var _IsQuoteCancelled = false;
-					{
-						///for(int cPos = _EndOffs - 1; cPos >= 0; cPos --, _IsQuoteCancelled =! _IsQuoteCancelled)
-						///{
-						///    if(iCtx.Buffer[cPos] != '\\') break;
-							
-						///}
-						for(int cPos = _EndOffs - 1; cPos >= 0; cPos --)
-						{
-							if(iCtx.Buffer[cPos] == '\\')
-							{
-								_IsQuoteCancelled =! _IsQuoteCancelled;
-							}
-							else break;
-						}
-					}
+					cIsTerminated = false;
+					_EndOffs = cOffs;
 
-					_EndOffs++;
-
-					if(_IsQuoteCancelled) {/**_LexerState.IsStringOpen = false;*/   continue;}
-					///else                  {if(_LexerState.IsStringOpen == true) _LexerState.IsStringOpen = false; break;}
-					else                  {if(_IsStringOpen) _IsStringOpen = false; break;}
+					break;
 				}
 			}
 
-			iCtx.Offset = _EndOffs;
+			iCtx.Offset = !cIsTerminated ? _BufferLen : _EndOffs;
 
-			///return new TokenInfo(TokenType.String, _BegOffs, _IsStringOpen ? _BegOffs - 1 : _EndOffs){Value = iCtx.Buffer.Substring(_BegOffs + 1, _EndOffs - _BegOffs - (_IsStringOpen ? 1 : 2))};
-			return new TokenInfo(TokenType.String, _BegOffs, _IsStringOpen ? _BegOffs - 1 : _EndOffs){Value = iCtx.Buffer.Substring(_BegOffs + 1, Math.Max(0, _EndOffs - _BegOffs - 2))};
+			//return new TokenInfo(TokenType.String, _BegOffs, _IsStringOpen ? _BegOffs - 1 : _EndOffs){Value = iCtx.Buffer.Substring(_BegOffs + 1, _EndOffs - _BegOffs - (_IsStringOpen ? 1 : 2))};
+			///return new TokenInfo(TokenType.String, _BegOffs, cIsTerminated ? _EndOffs : _BegOffs - 1){Value = iCtx.Buffer.Substring(_BegOffs + 1, Math.Max(0, _EndOffs - _BegOffs - 2))};
+			return new TokenInfo(TokenType.String, _BegOffs, cIsTerminated ? _EndOffs : _BegOffs - 1){Value = iCtx.Buffer.Substring(_BegOffs + 0, Math.Max(0, _EndOffs - _BegOffs - 0))};
 		}
 		
 		public TokenInfo     ParseChar         (TextLexerContext iCtx)
@@ -743,348 +699,501 @@ namespace AE.Data
 		}
 		
 
-		public void          AddTokens         (TextLexerContext iCtx, TokenInfoList iNewTokens, TokenInfoList ioTokens)
+		public void          AddTokens         (TextLexerContext iCtx, TokenInfoList iNewTokens, TokenInfoList irTokens)
 		{
 			//var _ParserState = iCtx.State as GenericCodeLexerState;
 			//var _TokenStack = _State.Stack;
 
 			///_ParserState.TokenStack;
-			this.ProcessSyntax(iNewTokens, ioTokens, (iCtx.State as GenericCodeLexerState).TokenStack);
+			this.ProcessSyntax(iCtx, iNewTokens, irTokens, (iCtx.State as GenericCodeLexerState).TokenStack);
 
 
-			ioTokens.AddRange(iNewTokens);
+			irTokens.AddRange(iNewTokens);
 		}
-		public void          ProcessSyntax     (TokenInfoList iNewTokens, TokenInfoList ioTokens, Stack<TokenType> ioStack)
+		public void          ProcessSyntax     (TextLexerContext iCtx, TokenInfoList iNewTokens, TokenInfoList irTokens, Stack<TokenType> irStack)
 		{
 			if(iNewTokens.Count > 1) throw new Exception("WTFE: Unexpected???");
-			
 
 			var _Token         = iNewTokens[0];
 
-			
-			//var _Value = _Token.Value;
-
-			//if(_Token.Fragment == 1)
-			//if(_Token.Fragment == 810)
-			//{
-			
-			//}
-			//var _Type         = _Token.Type;
 			var _IsSingleToken = iNewTokens.Count == 1; if(!_IsSingleToken){}
 			var _TokenType     = _Token.Type;
 			
-			if(_Token.IsWhitespace) return;
-			if(_Token.IsGarbage) return;
 			
+			if(_Token.IsWhitespace || _Token.IsGarbage)
+			{
+				if(irStack.Count == 0 || irStack.Peek() != TokenType.Whitespace)
+				{
+					irStack.Push(TokenType.Whitespace);
+				}
+				return;
+			}
+
+			///var _IsWhitespace = _Token.IsWhitespace;
 			
-			///ListItemContinuations?: ".","[]";
-
-
-
-			//var _IsGrouping = _Token.Type == TokenType.ParenthesisOpener || _Token.Type == TokenType.ParenthesisCloser;
-			//var _IsGrouping = _Token.Type == TokenType.ParenthesisOpener || _Token.Type == TokenType.ParenthesisCloser;
-			//var _IsGrouping = _Token.Type == TokenType.ParenthesisOpener || _Token.Type == TokenType.ParenthesisCloser;
-
-
-			var _IsBlockOpener = _Token.Type == TokenType.ParenthesisOpener || _Token.Type == TokenType.BracketOpener || _Token.Type == TokenType.BraceOpener;
-			var _IsBlockCloser = _Token.Type == TokenType.ParenthesisCloser || _Token.Type == TokenType.BracketCloser || _Token.Type == TokenType.BraceCloser;
-			//var _IsBlockOpener = _Token.Type == TokenType.ParenthesisOpener;
-
-
+			var _IsBlockOpener = _TokenType == TokenType.ParenthesisOpener || _TokenType == TokenType.BracketOpener || _TokenType == TokenType.BraceOpener;
+			var _IsBlockCloser = _TokenType == TokenType.ParenthesisCloser || _TokenType == TokenType.BracketCloser || _TokenType == TokenType.BraceCloser;
+			
 			var _IsLiteral = _TokenType >= TokenType.String && _TokenType <= TokenType.Number;
-			//var _IsContinuation = 
-			//var _IsBlockCloser = _TokenType == TokenType.BlockCloser;
-
-			///var _IsWord        = _TokenType == TokenType.Word;
 			
-
-			var _IsBlock          = _IsBlockOpener || _IsBlockCloser;
-			var _IsIdentifier     = (_TokenType >= TokenType.Identifier && _TokenType < TokenType.IdentifiersEnd);
+			var _IsBlock         = _IsBlockOpener || _IsBlockCloser;
+			var _IsIdentifier    = (_TokenType >= TokenType.Identifier && _TokenType < TokenType.IdentifiersEnd);
 			var _IsListItem      = _IsLiteral || _IsIdentifier || _IsBlockOpener;/// /**/ || _IsWord; /**/
 			var _IsListItemDelim = _TokenType == TokenType.ListItemDelimiter;
-			var _IsListItemContinuation = _TokenType == TokenType.IdentifierDelimiter || _TokenType == TokenType.BracketOpener;
-			var _IsList          = _IsListItem || _IsListItemContinuation || _IsListItemDelim;
-			//var _IsListItemDelimiter
-			//_
+			var _IsAtomDelim     = _TokenType == TokenType.AtomDelimiter;
+			///var _IsListItemContinuation = _TokenType == TokenType.IdentifierDelimiter;// || _TokenType == TokenType.BracketOpener;
+			//var _IsListItemContinuation = _TokenType == TokenType.IdentifierDelimiter || _IsBlockOpener;
+			var _IsList          = _IsListItem || _IsListItemDelim || _IsAtomDelim;
+			///var _IsWhitespace    = (iCtx.State as GenericCodeLexerState).IsWhitespace;
 			
 			var _IsExpressionItem  = _IsList;/// || _IsWord;
 			var _IsExpressionDelimiter = _TokenType == TokenType.ExpressionDelimiter;
 
-			//var _IsExpression = _StackTop == TokenType.Expression;
-			//var _IsList      = _StackTop == TokenType.List;
-			//var _IsBlock      = _StackTop == TokenType.Block;
-			//var _IsString     = _StackTop == TokenType.String;
-
-			if(_TokenType == TokenType.IdentifierDelimiter)
-			{
+			//if(_IsWhitespace)
+			//{
 			
-			}
+			//}
 			if(_IsExpressionDelimiter)
 			{
-			
-			}
-			//if(_Token.Type == TokenType.ExpressionDelimiter)
-			//{
-			//    if(ioStack.Count > 0 && ioStack.Peek() == TokenType.ExpressionDelimiter)
-			//    {
 				
-			//    }
-			//}
+			}
+			
+
 			while(true)
 			{
-				
 				/**
 					Think of the following 'continue' and 'break' statements as they are used to control the 'while' loop only,
 					but not the 'switch' (see the 'break' statement after the 'switch' in the end of 'while' block)
 					So, breaking this loop also means 'return': no more additional tokens to add and no more changes to syntax stack to apply
 				*/
- 				var _IsStackEmpty =  ioStack.Count == 0;
-				var _StackTop     = _IsStackEmpty ? TokenType.Undefined : ioStack.Peek();
+				var cStackIsEmpty = irStack.Count == 0;
+				var cStackTop     = cStackIsEmpty ? TokenType.Undefined : irStack.Peek();
 			
-				//if(_IsWord){}
-				if(_IsBlockCloser){}
-
-
-				switch(_StackTop)
+				if(_IsBlockCloser)
+				{
+					
+				}
+				switch(cStackTop)
 				{
 					case TokenType.Undefined  :
 					{
 						if(_IsExpressionItem)
 						{
-							ioStack.Push(TokenType.Expression);
-							ioTokens.Add(new TokenInfo(TokenType.ExpressionOpener));
+							irStack.Push(TokenType.Expression);
+							irTokens.Add(new TokenInfo(TokenType.ExpressionOpener));
 
 							continue;
 						}
-						else break;
+						else
+						{
+							break;
+						}
 					}
 					case TokenType.Expression :
 					{
-						if(_IsExpressionItem)
+						if(_IsList)
 						{
-							if(_IsList)
+							if(_IsListItem)
 							{
-								if(_IsListItemContinuation || _IsListItemDelim)
-								{
-									ioTokens.Add(new TokenInfo(TokenType.ListError));
-									
-									break;
-								}
-								else
-								{
-									ioStack.Push(TokenType.List);
-									///ioStack.Push(TokenType.ExpectListItem);
-
-									ioTokens.Add(new TokenInfo(TokenType.ListOpener));
-
-									ioStack.Push(TokenType.ExpectListItem);
-									//ioStack.Push(TokenType.ListItem);
-									//ioTokens.Add(new TokenInfo(TokenType.ListItemOpener));
-
-									continue;
-								}
-							}
-							//else if(_IsWord)
-							//{
-							//    break;
-							//}
-							else throw new Exception("WTFE");
-							
-						}
-						///if        (_IsWord)      {/** ??? */}
-						
-						else/// if   (_IsExpressionDelimiter)
-						{
-							ioStack.Pop();
-							ioTokens.Add(new TokenInfo(TokenType.ExpressionCloser));
-						//}
-						//else
-						//{
-							//ioStack.Pop();
-							//ioTokens.Add(new TokenInfo(TokenType.ExpressionCloser));
-							if(_IsBlockCloser)
-							{
+								irStack.Push(TokenType.List);
+								irTokens.Add(new TokenInfo(TokenType.ListOpener));
 								continue;
 							}
-							else break;
-						}
-						///else             {ioStack.Pop(); goto End;}
-
-						continue;
-					}
-					case TokenType.List      :
-					{
-						ioStack.Pop();
-						ioTokens.Add(new TokenInfo(TokenType.ListCloser));
-
-						continue;
-
-
-						//if(_IsListItem)
-						//{
-						//    ///ioTokens.Add(new TokenInfo(TokenType.ListOpener));
-						//    ioStack.Push(TokenType.ExpectListItem);
-							
-						//    //continue;
-						//}
-
-
-						//else if(_IsListItemDelim)
-						//{
-						//    throw new Exception("???");
-						//    //ioTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-						//    //ioStack.Push(TokenType.ExpectListItem);
-						//}
-						//else
-						//{
-						//    ioStack.Pop();
-						//    ioTokens.Add(new TokenInfo(TokenType.ListCloser));
-						//}
-
-						/////goto End;
-
-						//continue;
-					}
-					case TokenType.ExpectListItem      :
-					{
-						ioStack.Pop();
-
-						if   (_IsListItem)
-						{
-							ioStack.Push(TokenType.ListItem);
-							ioTokens.Add(new TokenInfo(TokenType.ListItemOpener));
-
-							continue;
-							//ioTokens.Add(new TokenInfo(TokenType.ListItemOpener));
-							
-
-							
-							///break;
-						}
-						else if(_IsListItemDelim)
-						{
-							///ioStack.Pop();
-
-
-							ioTokens.Add(new TokenInfo(TokenType.ListError));
-
-							//throw new Exception("???");
-							///break;
-						}
-						else if(_IsExpressionDelimiter)
-						{
-							//throw new Exception("???");
-							///ioStack.Pop();
-
-
-							ioTokens.Add(new TokenInfo(TokenType.ListError));
-							///break;
-						}
-						else if(_IsBlockCloser)
-						{
-							ioTokens.Add(new TokenInfo(TokenType.ListError));
-							//throw new Exception();
-						}
-						
-						continue;
-					}
-					//case TokenType.ExpectNextListItem:
-					//{
-					//    break;
-					//}
-
-					case TokenType.ListItem            :
-					{
-						if(_IsBlock)
-						{
-							if(_IsBlockOpener)
+							else if(_IsAtomDelim || _IsListItemDelim)
 							{
-								///ioStack.Pop();
-								ioStack.Push(TokenType.Block);
+								irTokens.Add(new TokenInfo(TokenType.ListError));
 								break;
 							}
 							else
 							{
-								//ioTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-								//ioStack.Pop();
-
-								ioStack.Push(TokenType.ExpectListItemContinuation);
-								continue;
-								///ioTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-								//throw new Exception("WTFE");
+								
 							}
-							//else if(_IsBlockCloser)
-							//{
-							//    throw new Exception();
+						}
+						else if(_IsExpressionDelimiter || _IsBlockCloser)
+						{
+							irStack.Pop();
+							irTokens.Add(new TokenInfo(TokenType.ExpressionCloser));
 
-							//    ioStack.Pop();
-							//    continue;
-							//}
-							//else
-							//{
-							//    throw new Exception();
-							//}
+							if(_IsExpressionDelimiter) break;
 						}
-						else
-						{
-							//ioStack.Pop();
-							ioStack.Push(TokenType.ExpectListItemContinuation);
-							///break;
-						}
+
+
+						//if(_IsListItem)
+						//{
+						//   irStack.Push(TokenType.List);
+						//   irTokens.Add(new TokenInfo(TokenType.ListOpener));
+						//   continue;
+						//}
+						//else if(_IsExpressionDelimiter || _IsBlockCloser)
+						//{
+						//   irStack.Pop();
+						//   irTokens.Add(new TokenInfo(TokenType.ExpressionCloser));
+
+						//   if(_IsExpressionDelimiter) break;
+						//}
+						//else if(_IsAtomDelim || _IsListItemDelim)
+						//{
+						//   irTokens.Add(new TokenInfo(TokenType.ListError));
+						//   break;
+						//}
+						///else             {irStack.Pop(); goto End;}
+
+						continue;
+					}
+					//case TokenType.ExpectList      :
+					//{
+					//   //if(_IsListItem)
+					//   //{
+					//   //   irStack.Pop();
+					//   //   irStack.Push(TokenType.List);
+					//   //   continue;
+					//   //}
+					//   //irStack.Pop();
+
+					//   //if   (_IsListItem)
+					//   //{
+					//   //   irStack.Push(TokenType.ListItem);
+					//   //   irTokens.Add(new TokenInfo(TokenType.ListItemOpener));
+
+					//   //   continue;
+					//   //}
+					//   //else if(_IsListItemDelim)
+					//   //{
+					//   //   irTokens.Add(new TokenInfo(TokenType.ListError));
+					//   //}
+					//   //else if(_IsExpressionDelimiter)
+					//   //{
+					//   //   irTokens.Add(new TokenInfo(TokenType.ListError));
+					//   //   ///break;
+					//   //}
+					//   //else if(_IsBlockCloser)
+					//   //{
+					//   //   irTokens.Add(new TokenInfo(TokenType.ListError));
+					//   //   //throw new Exception();
+					//   //}
+
+
+
+					//   ///if(_IsWhitespace)
+					//   //{
+					//   //   break;
+					//   //}
 						
-						if(_TokenType == TokenType.String && !_Token.IsTerminated)
+					//   break;
+					//}
+					case TokenType.List      :
+					{
+						if(_IsListItem)
 						{
-							ioStack.Push(TokenType.String);
+							irStack.Push(TokenType.ListItem);
+							irTokens.Add(new TokenInfo(TokenType.ListItemOpener));
+							irStack.Push(TokenType.ExpectNextAtom);
 						}
+						else if(_IsListItemDelim)
+						{
+							irStack.Push(TokenType.ExpectListItem);
+							break;
+						}
+						else if(!_IsList)
+						{
+							irStack.Pop();
+							irTokens.Add(new TokenInfo(TokenType.ListCloser));
+						}
+
 						//else
 						//{
-						//    ioStack.Pop();
-						//    ioStack.Push(TokenType.ExpectListItemContinuation);
+						//   irStack.Pop();
+						//   irTokens.Add(new TokenInfo(TokenType.ListCloser));
 						//}
 
-						break;
+					   continue;
+					}
+					case TokenType.ExpectListItem      :
+					{
+						irStack.Pop();
+
+						if(_IsListItem)
+						{
+							irStack.Push(TokenType.ListItem);
+							irTokens.Add(new TokenInfo(TokenType.ListItemOpener));
+
+							irStack.Push(TokenType.ExpectNextAtom);
+
+							continue;
+						}
+						else if(_IsListItemDelim)
+						{
+							irTokens.Add(new TokenInfo(TokenType.ListError));
+						}
+						else if(_IsExpressionDelimiter)
+						{
+							irTokens.Add(new TokenInfo(TokenType.ExpressionError));
+							///break;
+						}
+						else if(_IsBlockCloser)
+						{
+							irTokens.Add(new TokenInfo(TokenType.ExpressionError));
+							//throw new Exception();
+						}
+						
+					   continue;
 					}
 					
-					case TokenType.ExpectListItemContinuation      :
-					{
-						ioStack.Pop();
+					///case TokenType.ListItem            :
+					//{
+					//   if(_IsBlockOpener)
+					//   {
+					//      ///irStack.Pop();
+					//      irStack.Push(TokenType.Block);
+					//      break;
+					//   }
+					//   else if(_IsBlockCloser)
+					//   {
+					//      irStack.Pop();
+					//      irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
 
-						//if(ioStack.Peek() == TokenType.ExpressionDelimiter)
-						//{
+					//      //irStack.Push(TokenType.ExpectNextAtom);
+					//      continue;
+					//   }
+					//   else
+					//   {
+					//      ///if(_IsWhitespace || _IsListItemDelim || _IsExpressionDelimiter)
+					//      if(_IsListItemDelim || _IsExpressionDelimiter)
+					//      {
+					//         irStack.Pop();
+					//         irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
+					//         continue;
+					//      }
+					//      //   _IsExpressionDelimiter)
+					//      //{
+								
+					//      //   irStack.Pop();
+					//      //   irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
+
+					//      //   continue;
+					//      //}
+					//      else
+					//      {
+					//         if(_TokenType == TokenType.String && !_Token.IsTerminated)
+					//         {
+					//            irStack.Push(TokenType.String);
+					//         }
+					//         break;
+					//      }
+					//   }
 						
-						//}
+						
+					//   //else
+					//   //{
+					//   //    irStack.Pop();
+					//   //    irStack.Push(TokenType.ExpectListItemContinuation);
+					//   //}
 
-						if(_IsListItemDelim)
+					//   break;
+					//}
+					case TokenType.ExpectNextAtom      :
+					{
+						///irStack.Pop();
+
+						if(_IsAtomDelim)
 						{
-							ioStack.Pop();
-							ioTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-
-							ioStack.Push(TokenType.ExpectListItem);
+							irStack.Push(TokenType.AtomDelimiter);
+							///continue;
 							break;
 						}
-						else if(_IsListItemContinuation)
+						if(_IsListItemDelim)
 						{
-							///ioStack.Pop();
+							irStack.Pop();
+							irStack.Pop();
+							irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
 
-							if(_TokenType == TokenType.IdentifierDelimiter)
-							{
-								//ioStack.Push(TokenType.ExpectListItem);
-							}
-							else if(_TokenType == TokenType.BracketOpener)
-							{
-								///ioStack.Pop();
-								ioStack.Push(TokenType.Block);
-							}
-							
-
+							irStack.Push(TokenType.ExpectListItem);
 							break;
 						}
 						else
 						{
-							ioStack.Pop();
-							ioTokens.Add(new TokenInfo(TokenType.ListItemCloser));
+							if(_IsExpressionDelimiter)
+							{
+								
+							}
+
+							if(_IsListItem)
+							{
+								if(_IsBlockOpener)
+								{
+									irStack.Push(TokenType.Block);
+									///continue;
+								}
+								else if(_TokenType == TokenType.String && !_Token.IsTerminated)
+								{
+									irStack.Push(TokenType.String);
+								}
+
+								break;
+							}
+							else
+							{
+								if(_IsAtomDelim)
+								{
+									//irStack.Push(TokenType.ExpectListItem);
+								}
+								else if(_IsBlockOpener)
+								{
+									irStack.Push(TokenType.Block);
+									break;
+								}
+								else if(_IsBlockCloser || _IsExpressionDelimiter)
+								{
+									///~~ ??;
+									irStack.Pop();
+									irStack.Pop();
+									irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
+									
+
+								
+									continue;
+								}
+							}
 						}
+
+						//else if(_IsListItemContinuation)
+						//{
+						//   ///irStack.Pop();
+
+						//   if(_TokenType == TokenType.IdentifierDelimiter)
+						//   {
+						//      //irStack.Push(TokenType.ExpectListItem);
+						//   }
+						//   else if(_IsBlockOpener)
+						//   {
+						//      ///irStack.Pop();
+						//      irStack.Push(TokenType.Block);
+						//   }
+							
+						//   break;
+						//}
+
+						//else
+						//{
+						//   if(_IsBlockCloser)
+						//   {
+						//      ///~~ ??;
+						//      irStack.Pop();
+						//      irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
+						//   }
+						//   else 
+						//   {
+						//      ///~~ ??;
+						//      irStack.Push(TokenType.Block);
+						//      break;
+						//   }
+						//}
 						
+						continue;
+					}
+					case TokenType.AtomDelimiter      :
+					{
+						if(_IsListItem)
+						{
+							irStack.Pop();
+						}
+						else
+						{
+							if(_IsListItemDelim || _IsExpressionDelimiter)
+							{
+								irTokens.Add(new TokenInfo(TokenType.ListItemError));
+							}
+							break;
+						}
+						///ir
+						continue;
+					}
+					case TokenType.Whitespace :
+					{
+						irStack.Pop();
+
+						cStackIsEmpty = irStack.Count == 0;
+						cStackTop     = cStackIsEmpty ? TokenType.Undefined : irStack.Peek();
+
+
+						//if(_IsListItem && )
+						//{
+						//   irStack.Pop();
+						//   irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
+
+						//   if(!_IsListItemDelim)
+						//   {
+						//      irStack.Pop();
+						//      irTokens.Add(new TokenInfo(TokenType.ListCloser));
+
+						//      //continue;
+						//   }
+
+
+						//}
+						
+						if(cStackTop == TokenType.ExpectNextAtom)
+						{
+							if(_IsAtomDelim)
+							{
+								irStack.Push(TokenType.AtomDelimiter);
+								break;
+							}
+
+							irStack.Pop();
+
+							irStack.Pop();
+							irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
+
+							if(!_IsListItemDelim)
+							{
+								irStack.Pop();
+								irTokens.Add(new TokenInfo(TokenType.ListCloser));
+
+								//continue;
+							}
+
+							//else
+							//{
+								
+							//}
+							
+							//irStack.Pop();
+							//irTokens.Add(new TokenInfo(TokenType.ListCloser));
+							
+
+							///irStack.Push(TokenType.ExpectListItemContinuation);
+
+							continue;
+						}
+						//else if(cStackTop == TokenType.Undefined)
+						//{
+							
+						//}
+						//else
+						//{
+
+						//}
+						//if((_IsListItem && (!cStackIsEmpty && cStackTop != TokenType.ExpectListItemContinuation) && !_IsListItemContinuation))
+						//{
+						//   irStack.Pop();
+						//   irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
+
+						//   irStack.Pop();
+						//   irTokens.Add(new TokenInfo(TokenType.ListCloser));
+
+						//   continue;
+						//}
+						//else
+						//{
+							
+						//}
+
+						//if(cStackTop == TokenType.ListItem)
+						//{
+							
+						//}
+
 						continue;
 					}
 					case TokenType.Block      :
@@ -1100,9 +1209,9 @@ namespace AE.Data
 						}
 						else
 						{
-							ioStack.Pop();
+							irStack.Pop();
 
-							ioStack.Push(TokenType.ExpectListItemContinuation);
+							///irStack.Push(TokenType.ExpectNextAtom);
 
 							break;
 						}
@@ -1113,7 +1222,7 @@ namespace AE.Data
 					{
 						if(_Token.IsTerminated)
 						{
-							ioStack.Pop();
+							irStack.Pop();
 						}
 
 						break;
@@ -1125,18 +1234,11 @@ namespace AE.Data
 			}	
 		}
 
-		public void          ProcessPairs      (TokenInfoList ioTokens)
+		public void          ProcessPairs      (TokenInfoList irTokens)
 		{
 			var _SyntaxTree   = new Stack<TokenInfo>();
-			//var _TokenTable = new Dictionary<string,string>();
-			//{
-			//    _TokenTable.Add("]", "[");
-			//    _TokenTable.Add(")", "(");
-			//    _TokenTable.Add("}", "{");
-			//};
 
-			///foreach(var cToken in ioTokens)
-			foreach(var cToken in ioTokens)
+			foreach(var cToken in irTokens)
 			{
 				//if(cToken.Fragment == 810)
 				//{
@@ -1182,7 +1284,7 @@ namespace AE.Data
 			if(_SyntaxTree.Count != 0)
 			{
 				/**
-					2017.08.02 - FIXED?
+					FIXED?
 					BUG: trouble with the first line on modification, when additional
 					(pseudo-)tokens are not added around the block-closer brace at the end of program block.
 					

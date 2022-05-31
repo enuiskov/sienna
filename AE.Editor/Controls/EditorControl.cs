@@ -25,7 +25,9 @@ namespace AE.Editor
 		public WF.VScrollBar VScrollBar;
 		public WF.HScrollBar HScrollBar;
 
+		
 		public bool DoShowHexNumbers = false;
+		
 
 		public EditorControl()
 		{
@@ -87,6 +89,7 @@ namespace AE.Editor
 				this.CanvasControl.Canvas.UpdatePalettes();
 				this.CanvasControl.Canvas.Frame.Children[0].Focus();
 			}
+
 			
 			this.Controls.Add(this.CanvasControl);
 			//this.Controls.Add(this.VScrollBar);

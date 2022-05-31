@@ -59,6 +59,7 @@ with these additions:
 |`[F11]`                    |  Step into                                       |
 |`[Shift]+[F11]`            |  Step out                                        |
 |`[F12]`                    |  Toggle hexadecimal numbers                      |
+|`[Alt]+[F12]`              |  Toggle syntax tokens                            |
 |`[ScrollLock]`             |  Toggle execution                                |
 |`[CapsLock]`               |  Toggle skipping breakpoints                     |
 |`[Ctrl]+[Shift]+[C]`       |  Comment selection                               |
