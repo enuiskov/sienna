@@ -77,8 +77,7 @@ is hit.
 Note that the supported programming language is stack-oriented. The key feature is
 the order of execution of various syntax nodes: expressions are executed in direct order,
 lists - **in reverse**, and finally list-items are executed in direct order again.
-"Atoms" are only supported by the syntax parser, but they are expected to be executed
-in direct order as well.
+Atoms are only supported by the lexer and syntax parser.
 
 ### Miscellaneous controls (GL)
 
