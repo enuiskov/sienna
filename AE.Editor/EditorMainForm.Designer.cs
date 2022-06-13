@@ -300,7 +300,8 @@ namespace AE.Editor
 				{
 					if(iEvent.Alt)
 					{
-						this.EditorControl.CodeEditor.DoShowSyntax =! this.EditorControl.CodeEditor.DoShowSyntax;
+						this.EditorControl.CodeEditor.SyntaxTokensMode = (this.EditorControl.CodeEditor.SyntaxTokensMode + 1) % 3;
+						this.EditorControl.CodeEditor.CurrentDocument.ResetLines();
 					}
 					else
 					{

@@ -278,9 +278,9 @@ namespace AE.Visualization
 			}
 			else switch(iEvent.KeyCode)
 			{
-				case Keys.Enter    : this.CurrentDocument.LineBreak(true, true);             break;
+				case Keys.Enter    : this.CurrentDocument.LineBreak(true, true);       break;
 				case Keys.Back     : this.CurrentDocument.Backspace();                 break;
-				case Keys.Delete   : this.CurrentDocument.DeleteCharacter();                                                  break;
+				case Keys.Delete   : this.CurrentDocument.DeleteCharacter();           break;
 
 				case Keys.Left     : this.CurrentDocument.MoveCarriage(-1, 0, iEvent.Shift);                                                break;
 				case Keys.Right    : this.CurrentDocument.MoveCarriage(+1, 0, iEvent.Shift);                                                break;
@@ -398,18 +398,6 @@ namespace AE.Visualization
 				    //Math.Max((int)Math.Ceiling((iEvent.X - ((double)this.Settings.CharWidth  / 2)) / this.Width  * this.BufferSize.Width) - this.CurrentDocument.LineNumberOffset, 0),
 				    //Math.Max((int)Math.Ceiling((iEvent.Y - ((double)this.Settings.LineHeight / 2)) / this.Height * this.BufferSize.Height), 0)
 				);
-				
-				///new TextBufferOffset
-				//(
-				//    MathEx.Clamp((int)Math.Ceiling((iEvent.X - ((double)this.Settings.CharWidth  / 2)) / this.Width  * this.BufferSize.Width), 0, this.BufferSize.Width) - this.CurrentDocument.LineNumberOffset,
-				//    MathEx.Clamp((int)Math.Ceiling((iEvent.Y - ((double)this.Settings.LineHeight / 2)) / this.Height * this.BufferSize.Height), 0, this.BufferSize.Height - 1)
-
-				//    //Math.Max((int)Math.Ceiling((iEvent.X - ((double)this.Settings.CharWidth  / 2)) / this.Width  * this.BufferSize.Width) - this.CurrentDocument.LineNumberOffset, 0),
-				//    //Math.Max((int)Math.Ceiling((iEvent.Y - ((double)this.Settings.LineHeight / 2)) / this.Height * this.BufferSize.Height), 0)
-				//);
-
-				//var _CrsOnBufWithDocScrollX = _ScrollOffs.X + _CrsOnBufOffsX;
-				//var _CrsOnBufWithDocScrollY = _ScrollOffs.Y + _CrsOnBufOffsY;
 
 				var _CrsOnBufWithDocScroll = new PointF(_ScrollOffs.X + _CrsOnBufOffs.X, _ScrollOffs.Y + _CrsOnBufOffs.Y);
 
@@ -424,6 +412,7 @@ namespace AE.Visualization
 				//_CrsOnDocOffs.Y = Math.Min(_CrsOnDocOffs.Y, this.CurrentDocument.Lines.Count - 1);
 				///_CrsOnDocOffs.Y = Math.Min(_CrsOnDocOffs.Y, _ScrollOffs.Y + this.BufferSize.Height - 1);
 				
+				_CrsOnDocOffs.Y = Math.Min(_CrsOnDocOffs.Y, this.CurrentDocument.Lines.Count - 1);
 				
 
 				this.CurrentDocument.Cursor.Position = new TextBufferOffset((int)_CrsOnDocOffs.X, (int)_CrsOnDocOffs.Y);

@@ -59,7 +59,7 @@ namespace AE.Data
 					if(AEDLLexer.IsWhitespace(cChar))
 					{
 						var _WsToken = this.ParseWhitespaces(iCtx);
-						///if(_WsToken != null)
+						//if(_WsToken != null)
 						oTokens.Add(_WsToken);///~~ fix 22;
 
 						
@@ -167,8 +167,7 @@ namespace AE.Data
 				case ' '  : _TokenType = TokenType.Space;   break;
 				case '\t' : _TokenType = TokenType.Tab;     break;
 				
-				//case "\r" : _TokenType = "RETURN";  break;
-				case '\r' :  return null;
+				case '\r' : _TokenType = TokenType.Space;   break;
 				case '\n' : _TokenType = TokenType.NewLine; break;
 
 				default    : throw new Exception("WTF");
@@ -203,75 +202,11 @@ namespace AE.Data
 
 			iCtx.Offset = _EndOffs;// + 1;
 
-			///return new TokenInfo(TokenType.Number, iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs), _BegOffs, _EndOffs);
 			string _ValueAsString = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs).ToLower();
 
-			///object _Value = _ValueAsString;
-			///TokenType _NumberType;
-			///{
-			//    var _IsHexInt = _ValueAsString.Contains("x");
-			//    var _IsFloat = !_IsHexInt && (_ValueAsString.Contains(".") || _ValueAsString.Contains("e"));
-
-			//    if(_IsFloat)
-			//    {
-			//        if(_ValueAsString.EndsWith("f"))
-			//        {
-			//            Single _ValueAsFloat32;
-						
-			//            if(Single.TryParse(_ValueAsString.Substring(0, _ValueAsString.Length - 1), out _ValueAsFloat32))
-			//            {
-			//                _Value      = _ValueAsFloat32;
-			//                _NumberType = TokenType.Float32;
-			//            }
-			//            else
-			//            {
-			//                _Value      = _ValueAsString;
-			//                _NumberType = TokenType.InvalidNumber;
-			//            }
-			//        }
-			//        else
-			//        {
-						
-
-			//            Double _ValueAsFloat64;
-						
-			//            if(Double.TryParse(_ValueAsString, out _ValueAsFloat64))
-			//            {
-			//                _Value      = _ValueAsFloat64;
-			//                _NumberType = TokenType.Float64;
-			//            }
-			//            else
-			//            {
-			//                _Value      = _ValueAsString;
-			//                _NumberType = TokenType.InvalidNumber;
-			//            }
-			//        }
-			//    }
-			//    else
-			//    {
-			//        ///var _IsHex = _ValueAsString.Contains("x") || _ValueAsString.Contains("X");
-					
-			//        //_NumberType = TokenType.Int32;
-			//        //_Value = Int32.TryParse(_ValueAsString, out _ValueAsInt32);
-
-			//        Int32 _ValueAsInt32;
-
-			//        if(Int32.TryParse(_ValueAsString, out _ValueAsInt32))
-			//        {
-			//            _Value      = _ValueAsInt32;
-			//            _NumberType = TokenType.Int32;
-			//        }
-			//        else
-			//        {
-			//            _Value      = _ValueAsString;
-			//            _NumberType = TokenType.InvalidNumber;
-			//        }
-			//    }
-			///}
-			///return new TokenInfo(_NumberType, _BegOffs, _EndOffs){Value = _Value};
 			return new TokenInfo(TokenType.Number, _BegOffs, _EndOffs){Value = _ValueAsString};
 		}
-		//public TokenInfo     ParseNumber       (TextLexerContext iCtx)
+		///public TokenInfo     ParseNumber       (TextLexerContext iCtx)
 		//{
 		//    var _BegOffs = iCtx.Offset;
 		//    var _EndOffs = iCtx.Offset + 1;
@@ -362,8 +297,6 @@ namespace AE.Data
 			var _BegOffs = iCtx.Offset;
 			var _EndOffs = iCtx.Offset + 1;
 			
-
-
 			while(_EndOffs < iCtx.Buffer.Length)
 			{
 				var cChar = iCtx.Buffer[_EndOffs];
@@ -392,29 +325,25 @@ namespace AE.Data
 			var _BegOffs = iCtx.Offset;
 			var _EndOffs = iCtx.Offset + 1;
 
-			while(_EndOffs < iCtx.Buffer.Length && AEDLLexer.IsIdentChar(iCtx.Buffer[_EndOffs])) _EndOffs++;
+			while(_EndOffs < iCtx.Buffer.Length && AEDLLexer.IsIdentChar(iCtx.Buffer[_EndOffs])) _EndOffs ++;
 			
 			var _Str = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs);
 			{
 				var _1 = _Str.IndexOf("//");
 				var _2 = _Str.IndexOf("/*");
 
-				if      (_1 != -1) _EndOffs = _1;
-				else if (_2 != -1) _EndOffs = _2;
+				if      (_1 != -1) _EndOffs = _BegOffs + _1;
+				else if (_2 != -1) _EndOffs = _BegOffs + _2;
 
 				if(_1 != _2)
 				{
 					_Str = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs);
+					
 				}
 			}
 
 			iCtx.Offset = _EndOffs;
 			
-			//debugger;
-
-			///var _Str = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs);
-
-
 			var _Type  = TokenType.Undefined;
 			{
 				var _IsMultiChar    = _Str.Length > 1;
@@ -427,40 +356,24 @@ namespace AE.Data
 
 				if(_IsLinkedIdent)
 				{
-					///_Type = TokenType.Identifier;
 					_Type = TokenType.MemberIdent;
 				}
 				else
 				{
-					if(_FstChar == '^')
-					{
-					
-					}
 					var _IsFstLowC   = _FstChar >= 'a' && _FstChar <= 'z';
-					///var _IsFstPrefix = _FstChar == '_' || _FstChar == '@'|| _FstChar == '^';
 					
 					var _IsSndUppC      = _IsMultiChar && (_SndChar >= 'A' && _SndChar <= 'Z');
 					var _IsSndDigit     = _IsMultiChar && (_SndChar >= '0' && _SndChar <= '9');
-
 					var _IsFollowingIdent = _IsSndUppC || _IsSndDigit;
-
-					//if(_FstChar == 'i' && _SndChar == 'o')
-					//{
-					
-					//}
-					var _IsFstLetterPfx = _FstChar == '_' || _FstChar == ':' || _FstChar == '^' || (_FstChar >= 'a' && _FstChar <= 'z');
+					var _IsFstLetterPfx   = _FstChar == '_' || _FstChar == ':' || _FstChar == '^' || (_FstChar >= 'a' && _FstChar <= 'z');
 
 
 					if (_IsFstLetterPfx && _IsFollowingIdent) switch(_FstChar)
 					{
-						//case "_" :                       _Type = "LOCV"; break;
-						//case "c" : case "p" : case "n" : _Type = "CYCV"; break;
-						
 						case '@' : _Type = TokenType.Instruction;    break;
 						case ':' : _Type = TokenType.Label;          break;
 						case '^' : _Type = TokenType.Pointer;        break;
 						case 'g' : _Type = TokenType.GlobalIdent;    break;
-						///case 'f' :                       _Type = TokenType.FunctionIdent; break;
 						case 'r' : _Type = TokenType.ReferenceIdent; break;
 						case 'i' : _Type = TokenType.InputIdent;     break;
 						case 'o' : _Type = TokenType.OutputIdent;    break;
@@ -469,124 +382,11 @@ namespace AE.Data
 					}
 					else
 					{
-						//if      (_Str == "let" || _Str == "be")   _Type = TokenType.LetBe;
-						//else if (_Str == "own" || _Str == "self") _Type = TokenType.OwnSelf;
-						//else
-						{
-							if       (BwdOperandRegex.IsMatch(_Str)) _Type = TokenType.BwdOpd;
-							//else if  (/^\$[\w\d\.]*>+\|?$/.test(_Str)) _Type = "NEXOPD";
-							else if  (FwdOperandRegex.IsMatch(_Str)) _Type = TokenType.FwdOpd;
-
-							//if       (/^\|?<+\$[\w\d\.]*$/.test(_Str)) _Type = "PREOPD";
-							////else if  (/^\$[\w\d\.]*>+\|?$/.test(_Str)) _Type = "NEXOPD";
-							//else if  (/^>+\|?\$[\w\d\.]*$/.test(_Str)) _Type = "NEXOPD";
-
-							//if       (/^\|?<+\$[\w\d\.]*$/.test(_Str)) _Type = "PREOPD";
-							//else if  (/^\$[\w\d\.]*>+\|?$/.test(_Str)) _Type = "NEXOPD";
-
-
-							else if  (TypeRegex.IsMatch(_Str))        _Type = TokenType.Type;
-
-
-							///else if  (_FstChar == '@')                _Type = TokenType.Instruction;
-
-							else _Type = TokenType.Word;
-						}	
+						if  (TypeRegex.IsMatch(_Str)) _Type = TokenType.Type;
+						else                          _Type = TokenType.Word;
 					}
 				}
-
-
-
-				//if(_Str.StartsWith("^")){}
-
-				//var _StrLowC = _Str.ToLower();
-				//var _StrUppC = _Str.ToUpper();
-				//var _HasLetters = _StrLowC != _StrUppC;
-
-				//var _IsLowCase  = _HasLetters && _Str == _StrLowC;
-				//var _IsUppCase  = _HasLetters && _Str == _StrUppC;
-				//var _IsVarCase  = !_IsLowCase && !_IsUppCase;
-				/////var _IsConCase  =  _IsLowCase ^   _IsUppCase;
-				
-
-
-				
-				
-				/////var _IsFstLowC      = (_FstChar == '_' || (_FstChar >= 'a' && _FstChar <= 'z'));
-				//var _IsFstLowC   = _FstChar >= 'a' && _FstChar <= 'z';
-				//var _IsFstPrefix = _FstChar == '_' || _FstChar == '@'|| _FstChar == '^';
-
-				//var _IsSndUppC      = _IsMultiChar && (_SndChar >= 'A' && _SndChar <= 'Z');
-				//var _IsSndDigit     = _IsMultiChar && (_SndChar >= '0' && _SndChar <= '9');
-				
-				
-				//var _IsIdentWithPfx = _IsMultiChar && (_IsFstLowC || _IsFstPrefix) && (_IsVarCase || _IsUppCase || _IsSndDigit);
-				//var _IsKnownPfx     = _IsIdentWithPfx; ///~~ ???;
-				//var _IsItOnly       = !_IsMultiChar && _FstChar == '_';
-				//var _IsPtrOnly      = !_IsMultiChar && _FstChar == '^';
-
-				///**
-				//    Free - context variables, instructions, global identifiers
-				//    Linked - members, this/self/base/retv?;
-				//*/
-				//var _IsFreeSure     = _IsIdentWithPfx || _IsItOnly;
-				//var _IsLinkedSure   = !_IsVarSure && (_FstChar >= 'A' && _FstChar <= 'Z');
-				////var _IsVarSure      = _IsIdentWithPfx || _IsItOnly;
-				////var _IsMemSure      = !_IsVarSure && (_FstChar >= 'A' && _FstChar <= 'Z');
-
-				//if(!_IsVarSure && !_IsMemSure){throw new Exception("WTFE");}
-				////var _IsVarOrArg = _IsMultiChar && _IsFstLowC && (_IsVarCase || _IsSndDigit);
-
-
-				//if   (_IsMemSure) _Type = TokenType.Identifier;
-				//else
-				//{
-				//    //if      (false) false;
-				//    //else if (_IsShrtVar) _Type = "LOCV";
-				//    if (_IsFreeSure) switch(_FstChar)
-				//    {
-				//        //case "_" :                       _Type = "LOCV"; break;
-				//        //case "c" : case "p" : case "n" : _Type = "CYCV"; break;
-						
-				//        case '@' :                       _Type = TokenType.Instruction;   break;
-				//        case '^' :                       _Type = TokenType.Pointer;       break;
-				//        case 'g' :                       _Type = TokenType.GlobalIdent;   break;
-				//        ///case 'f' :                       _Type = TokenType.FunctionIdent; break;
-				//        case 'i' :                       _Type = TokenType.InputIdent;    break;
-				//        case 'o' :                       _Type = TokenType.OutputIdent;   break;
-
-				//        default  :                       _Type = TokenType.LocalIdent;    break;
-				//    }
-				//    else
-				//    {
-				//        //if      (_Str == "let" || _Str == "be")   _Type = TokenType.LetBe;
-				//        //else if (_Str == "own" || _Str == "self") _Type = TokenType.OwnSelf;
-				//        //else
-				//        {
-				//            if       (BwdOperandRegex.IsMatch(_Str)) _Type = TokenType.BwdOpd;
-				//            //else if  (/^\$[\w\d\.]*>+\|?$/.test(_Str)) _Type = "NEXOPD";
-				//            else if  (FwdOperandRegex.IsMatch(_Str)) _Type = TokenType.FwdOpd;
-
-				//            //if       (/^\|?<+\$[\w\d\.]*$/.test(_Str)) _Type = "PREOPD";
-				//            ////else if  (/^\$[\w\d\.]*>+\|?$/.test(_Str)) _Type = "NEXOPD";
-				//            //else if  (/^>+\|?\$[\w\d\.]*$/.test(_Str)) _Type = "NEXOPD";
-
-				//            //if       (/^\|?<+\$[\w\d\.]*$/.test(_Str)) _Type = "PREOPD";
-				//            //else if  (/^\$[\w\d\.]*>+\|?$/.test(_Str)) _Type = "NEXOPD";
-
-
-				//            else if  (TypeRegex.IsMatch(_Str))        _Type = TokenType.Type;
-
-
-				//            ///else if  (_FstChar == '@')                _Type = TokenType.Instruction;
-
-				//            else _Type = TokenType.Word;
-				//        }	
-				//    }
-				//}
 			}
-
-
 			///return new TokenInfo(_Type, _Str, _BegOffs, _EndOffs);
 			return new TokenInfo(_Type, _BegOffs, _EndOffs){Value = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs)};
 		}
@@ -624,7 +424,7 @@ namespace AE.Data
 				}
 			}
 
-			iCtx.Offset = !cIsTerminated ? _BufferLen : _EndOffs;
+			iCtx.Offset = cIsTerminated ? _EndOffs : _BufferLen;
 
 			//return new TokenInfo(TokenType.String, _BegOffs, _IsStringOpen ? _BegOffs - 1 : _EndOffs){Value = iCtx.Buffer.Substring(_BegOffs + 1, _EndOffs - _BegOffs - (_IsStringOpen ? 1 : 2))};
 			///return new TokenInfo(TokenType.String, _BegOffs, cIsTerminated ? _EndOffs : _BegOffs - 1){Value = iCtx.Buffer.Substring(_BegOffs + 1, Math.Max(0, _EndOffs - _BegOffs - 2))};
@@ -719,7 +519,12 @@ namespace AE.Data
 			var _IsSingleToken = iNewTokens.Count == 1; if(!_IsSingleToken){}
 			var _TokenType     = _Token.Type;
 			
-			
+			//if(irStack.Count == 0)
+			//{
+			//   ///~~ need opener token before any whitespace and comment tokens;
+			//   irStack.Push(TokenType.File);
+			//   irTokens.Add(new TokenInfo(TokenType.FileOpener));
+			//}
 			if(_Token.IsWhitespace || _Token.IsGarbage)
 			{
 				if(irStack.Count == 0 || irStack.Peek() != TokenType.Whitespace)
@@ -738,26 +543,12 @@ namespace AE.Data
 			
 			var _IsBlock         = _IsBlockOpener || _IsBlockCloser;
 			var _IsIdentifier    = (_TokenType >= TokenType.Identifier && _TokenType < TokenType.IdentifiersEnd);
-			var _IsListItem      = _IsLiteral || _IsIdentifier || _IsBlockOpener;/// /**/ || _IsWord; /**/
-			var _IsListItemDelim = _TokenType == TokenType.ListItemDelimiter;
 			var _IsAtomDelim     = _TokenType == TokenType.AtomDelimiter;
-			///var _IsListItemContinuation = _TokenType == TokenType.IdentifierDelimiter;// || _TokenType == TokenType.BracketOpener;
-			//var _IsListItemContinuation = _TokenType == TokenType.IdentifierDelimiter || _IsBlockOpener;
+			var _IsListItem      = _IsLiteral || _IsIdentifier || _IsBlockOpener || _IsAtomDelim;/// /**/ || _IsWord; /**/
+			var _IsListItemDelim = _TokenType == TokenType.ListItemDelimiter;
 			var _IsList          = _IsListItem || _IsListItemDelim || _IsAtomDelim;
-			///var _IsWhitespace    = (iCtx.State as GenericCodeLexerState).IsWhitespace;
-			
-			var _IsExpressionItem  = _IsList;/// || _IsWord;
+			var _IsExpressionItem      = _IsList;
 			var _IsExpressionDelimiter = _TokenType == TokenType.ExpressionDelimiter;
-
-			//if(_IsWhitespace)
-			//{
-			
-			//}
-			if(_IsExpressionDelimiter)
-			{
-				
-			}
-			
 
 			while(true)
 			{
@@ -777,11 +568,22 @@ namespace AE.Data
 				{
 					case TokenType.Undefined  :
 					{
+						irStack.Push(TokenType.ExpectExpression);
+						continue;
+					}
+					//case TokenType.File : 
+					//{
+					//   goto case TokenType.Undefined;
+					//}
+					case TokenType.ExpectExpression :
+					{
+						irStack.Pop();
+
 						if(_IsExpressionItem)
 						{
-							irStack.Push(TokenType.Expression);
 							irTokens.Add(new TokenInfo(TokenType.ExpressionOpener));
-
+							irStack.Push(TokenType.Expression);
+						
 							continue;
 						}
 						else
@@ -793,212 +595,95 @@ namespace AE.Data
 					{
 						if(_IsList)
 						{
-							if(_IsListItem)
-							{
-								irStack.Push(TokenType.List);
-								irTokens.Add(new TokenInfo(TokenType.ListOpener));
-								continue;
-							}
-							else if(_IsAtomDelim || _IsListItemDelim)
-							{
-								irTokens.Add(new TokenInfo(TokenType.ListError));
-								break;
-							}
-							else
-							{
-								
-							}
+							irStack.Push(TokenType.ExpectList);
 						}
-						else if(_IsExpressionDelimiter || _IsBlockCloser)
+						else/// if(_IsExpressionDelimiter || _IsBlockCloser)
 						{
 							irStack.Pop();
 							irTokens.Add(new TokenInfo(TokenType.ExpressionCloser));
 
 							if(_IsExpressionDelimiter) break;
 						}
-
-
-						//if(_IsListItem)
-						//{
-						//   irStack.Push(TokenType.List);
-						//   irTokens.Add(new TokenInfo(TokenType.ListOpener));
-						//   continue;
-						//}
-						//else if(_IsExpressionDelimiter || _IsBlockCloser)
-						//{
-						//   irStack.Pop();
-						//   irTokens.Add(new TokenInfo(TokenType.ExpressionCloser));
-
-						//   if(_IsExpressionDelimiter) break;
-						//}
-						//else if(_IsAtomDelim || _IsListItemDelim)
-						//{
-						//   irTokens.Add(new TokenInfo(TokenType.ListError));
-						//   break;
-						//}
-						///else             {irStack.Pop(); goto End;}
-
 						continue;
 					}
-					//case TokenType.ExpectList      :
-					//{
-					//   //if(_IsListItem)
-					//   //{
-					//   //   irStack.Pop();
-					//   //   irStack.Push(TokenType.List);
-					//   //   continue;
-					//   //}
-					//   //irStack.Pop();
+					case TokenType.ExpectList      :
+					{
+						irStack.Pop();
 
-					//   //if   (_IsListItem)
-					//   //{
-					//   //   irStack.Push(TokenType.ListItem);
-					//   //   irTokens.Add(new TokenInfo(TokenType.ListItemOpener));
+						if(_IsList)
+						{
+							irTokens.Add(new TokenInfo(TokenType.ListOpener));
+							irStack.Push(TokenType.List);
 
-					//   //   continue;
-					//   //}
-					//   //else if(_IsListItemDelim)
-					//   //{
-					//   //   irTokens.Add(new TokenInfo(TokenType.ListError));
-					//   //}
-					//   //else if(_IsExpressionDelimiter)
-					//   //{
-					//   //   irTokens.Add(new TokenInfo(TokenType.ListError));
-					//   //   ///break;
-					//   //}
-					//   //else if(_IsBlockCloser)
-					//   //{
-					//   //   irTokens.Add(new TokenInfo(TokenType.ListError));
-					//   //   //throw new Exception();
-					//   //}
-
-
-
-					//   ///if(_IsWhitespace)
-					//   //{
-					//   //   break;
-					//   //}
-						
-					//   break;
-					//}
+							irStack.Push(TokenType.ExpectListItem);
+						}
+						continue;
+					}
 					case TokenType.List      :
 					{
-						if(_IsListItem)
+						if(_IsList)
 						{
-							irStack.Push(TokenType.ListItem);
-							irTokens.Add(new TokenInfo(TokenType.ListItemOpener));
-							irStack.Push(TokenType.ExpectNextAtom);
+							if(_IsListItem)
+							{
+								irTokens.Add(new TokenInfo(TokenType.ListItemOpener));
+								irStack.Push(TokenType.ListItem);
+
+								irStack.Push(TokenType.ExpectNextAtom);
+							}
+							else if(_IsListItemDelim)
+							{
+								irStack.Push(TokenType.ExpectListItem);
+								break;
+							}
+							else if(_IsAtomDelim)
+							{
+								irTokens.Add(new TokenInfo(TokenType.ListItemError));
+								break;
+							}
 						}
-						else if(_IsListItemDelim)
-						{
-							irStack.Push(TokenType.ExpectListItem);
-							break;
-						}
-						else if(!_IsList)
+						else
 						{
 							irStack.Pop();
 							irTokens.Add(new TokenInfo(TokenType.ListCloser));
 						}
-
-						//else
-						//{
-						//   irStack.Pop();
-						//   irTokens.Add(new TokenInfo(TokenType.ListCloser));
-						//}
-
-					   continue;
+						continue;
 					}
 					case TokenType.ExpectListItem      :
 					{
 						irStack.Pop();
 
-						if(_IsListItem)
+						if(_IsList)
 						{
-							irStack.Push(TokenType.ListItem);
-							irTokens.Add(new TokenInfo(TokenType.ListItemOpener));
+							if(_IsListItem || _IsAtomDelim)
+							{
+								irStack.Push(TokenType.ListItem);
+								irTokens.Add(new TokenInfo(TokenType.ListItemOpener));
 
-							irStack.Push(TokenType.ExpectNextAtom);
+								if(_IsAtomDelim)
+								{
+									irTokens.Add(new TokenInfo(TokenType.ListItemError));
+								}
 
-							continue;
+								irStack.Push(TokenType.ExpectNextAtom);
+
+								continue;
+							}
+							else if(_IsListItemDelim)
+							{
+								irTokens.Add(new TokenInfo(TokenType.ListError));
+							}
 						}
-						else if(_IsListItemDelim)
+						else
 						{
 							irTokens.Add(new TokenInfo(TokenType.ListError));
 						}
-						else if(_IsExpressionDelimiter)
-						{
-							irTokens.Add(new TokenInfo(TokenType.ExpressionError));
-							///break;
-						}
-						else if(_IsBlockCloser)
-						{
-							irTokens.Add(new TokenInfo(TokenType.ExpressionError));
-							//throw new Exception();
-						}
-						
-					   continue;
+						continue;
 					}
-					
-					///case TokenType.ListItem            :
-					//{
-					//   if(_IsBlockOpener)
-					//   {
-					//      ///irStack.Pop();
-					//      irStack.Push(TokenType.Block);
-					//      break;
-					//   }
-					//   else if(_IsBlockCloser)
-					//   {
-					//      irStack.Pop();
-					//      irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-
-					//      //irStack.Push(TokenType.ExpectNextAtom);
-					//      continue;
-					//   }
-					//   else
-					//   {
-					//      ///if(_IsWhitespace || _IsListItemDelim || _IsExpressionDelimiter)
-					//      if(_IsListItemDelim || _IsExpressionDelimiter)
-					//      {
-					//         irStack.Pop();
-					//         irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-					//         continue;
-					//      }
-					//      //   _IsExpressionDelimiter)
-					//      //{
-								
-					//      //   irStack.Pop();
-					//      //   irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-
-					//      //   continue;
-					//      //}
-					//      else
-					//      {
-					//         if(_TokenType == TokenType.String && !_Token.IsTerminated)
-					//         {
-					//            irStack.Push(TokenType.String);
-					//         }
-					//         break;
-					//      }
-					//   }
-						
-						
-					//   //else
-					//   //{
-					//   //    irStack.Pop();
-					//   //    irStack.Push(TokenType.ExpectListItemContinuation);
-					//   //}
-
-					//   break;
-					//}
 					case TokenType.ExpectNextAtom      :
 					{
-						///irStack.Pop();
-
 						if(_IsAtomDelim)
 						{
 							irStack.Push(TokenType.AtomDelimiter);
-							///continue;
 							break;
 						}
 						if(_IsListItemDelim)
@@ -1012,17 +697,16 @@ namespace AE.Data
 						}
 						else
 						{
-							if(_IsExpressionDelimiter)
-							{
-								
-							}
-
 							if(_IsListItem)
 							{
 								if(_IsBlockOpener)
 								{
-									irStack.Push(TokenType.Block);
-									///continue;
+									switch(_TokenType)
+									{
+										case TokenType.ParenthesisOpener : irStack.Push(TokenType.Parenthesis); break;
+										case TokenType.BracketOpener     : irStack.Push(TokenType.Bracket);     break;
+										case TokenType.BraceOpener       : irStack.Push(TokenType.Brace);       break;
+									}
 								}
 								else if(_TokenType == TokenType.String && !_Token.IsTerminated)
 								{
@@ -1033,62 +717,21 @@ namespace AE.Data
 							}
 							else
 							{
-								if(_IsAtomDelim)
-								{
-									//irStack.Push(TokenType.ExpectListItem);
-								}
-								else if(_IsBlockOpener)
+								if(_IsBlockOpener)
 								{
 									irStack.Push(TokenType.Block);
 									break;
 								}
 								else if(_IsBlockCloser || _IsExpressionDelimiter)
 								{
-									///~~ ??;
 									irStack.Pop();
 									irStack.Pop();
 									irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-									
 
-								
 									continue;
 								}
 							}
 						}
-
-						//else if(_IsListItemContinuation)
-						//{
-						//   ///irStack.Pop();
-
-						//   if(_TokenType == TokenType.IdentifierDelimiter)
-						//   {
-						//      //irStack.Push(TokenType.ExpectListItem);
-						//   }
-						//   else if(_IsBlockOpener)
-						//   {
-						//      ///irStack.Pop();
-						//      irStack.Push(TokenType.Block);
-						//   }
-							
-						//   break;
-						//}
-
-						//else
-						//{
-						//   if(_IsBlockCloser)
-						//   {
-						//      ///~~ ??;
-						//      irStack.Pop();
-						//      irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-						//   }
-						//   else 
-						//   {
-						//      ///~~ ??;
-						//      irStack.Push(TokenType.Block);
-						//      break;
-						//   }
-						//}
-						
 						continue;
 					}
 					case TokenType.AtomDelimiter      :
@@ -1096,16 +739,20 @@ namespace AE.Data
 						if(_IsListItem)
 						{
 							irStack.Pop();
-						}
-						else
-						{
-							if(_IsListItemDelim || _IsExpressionDelimiter)
+
+							if(_IsAtomDelim)
 							{
 								irTokens.Add(new TokenInfo(TokenType.ListItemError));
 							}
-							break;
 						}
-						///ir
+						else
+						{
+							if(_IsListItemDelim || _IsExpressionDelimiter || _IsBlockCloser)
+							{
+								irStack.Pop();
+								irTokens.Add(new TokenInfo(TokenType.ListItemError));
+							}
+						}
 						continue;
 					}
 					case TokenType.Whitespace :
@@ -1115,23 +762,6 @@ namespace AE.Data
 						cStackIsEmpty = irStack.Count == 0;
 						cStackTop     = cStackIsEmpty ? TokenType.Undefined : irStack.Peek();
 
-
-						//if(_IsListItem && )
-						//{
-						//   irStack.Pop();
-						//   irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-
-						//   if(!_IsListItemDelim)
-						//   {
-						//      irStack.Pop();
-						//      irTokens.Add(new TokenInfo(TokenType.ListCloser));
-
-						//      //continue;
-						//   }
-
-
-						//}
-						
 						if(cStackTop == TokenType.ExpectNextAtom)
 						{
 							if(_IsAtomDelim)
@@ -1149,54 +779,16 @@ namespace AE.Data
 							{
 								irStack.Pop();
 								irTokens.Add(new TokenInfo(TokenType.ListCloser));
-
-								//continue;
 							}
-
-							//else
-							//{
-								
-							//}
-							
-							//irStack.Pop();
-							//irTokens.Add(new TokenInfo(TokenType.ListCloser));
-							
-
-							///irStack.Push(TokenType.ExpectListItemContinuation);
 
 							continue;
 						}
-						//else if(cStackTop == TokenType.Undefined)
-						//{
-							
-						//}
-						//else
-						//{
-
-						//}
-						//if((_IsListItem && (!cStackIsEmpty && cStackTop != TokenType.ExpectListItemContinuation) && !_IsListItemContinuation))
-						//{
-						//   irStack.Pop();
-						//   irTokens.Add(new TokenInfo(TokenType.ListItemCloser));
-
-						//   irStack.Pop();
-						//   irTokens.Add(new TokenInfo(TokenType.ListCloser));
-
-						//   continue;
-						//}
-						//else
-						//{
-							
-						//}
-
-						//if(cStackTop == TokenType.ListItem)
-						//{
-							
-						//}
-
 						continue;
 					}
-					case TokenType.Block      :
+					case TokenType.Parenthesis : {if(_IsBlockCloser && _TokenType != TokenType.ParenthesisCloser) {irTokens.Add(new TokenInfo(TokenType.BlockError));} goto case TokenType.Block;}
+					case TokenType.Bracket     : {if(_IsBlockCloser && _TokenType != TokenType.BracketCloser)     {irTokens.Add(new TokenInfo(TokenType.BlockError));} goto case TokenType.Block;}
+					case TokenType.Brace       : {if(_IsBlockCloser && _TokenType != TokenType.BraceCloser)       {irTokens.Add(new TokenInfo(TokenType.BlockError));} goto case TokenType.Block;}
+					case TokenType.Block       :
 					{
 						if(_IsExpressionItem)
 						{
@@ -1204,14 +796,11 @@ namespace AE.Data
 						}
 						else if(_IsExpressionDelimiter)
 						{
-							//continue;
 							break;
 						}
 						else
 						{
 							irStack.Pop();
-
-							///irStack.Push(TokenType.ExpectNextAtom);
 
 							break;
 						}
@@ -1231,7 +820,7 @@ namespace AE.Data
 					default : throw new Exception("WTFE");
 				}
 				break; ///~~!!!;
-			}	
+			}
 		}
 
 		public void          ProcessPairs      (TokenInfoList irTokens)
@@ -1244,7 +833,7 @@ namespace AE.Data
 				//{
 				
 				//}
-				//var cToken = this.Toke
+				//var cToken = this.Tokeё
 				var _SyntaxTop = _SyntaxTree.Count != 0 ? _SyntaxTree.Peek() : null;
 
 				if(cToken.IsGarbage || !cToken.IsPaired) continue;
@@ -1266,7 +855,7 @@ namespace AE.Data
 							(_SyntaxTop.Type == TokenType.BraceOpener       && cToken.Type != TokenType.BraceCloser)       ||
 
 							(_SyntaxTop.Type == TokenType.ExpressionOpener  && cToken.Type != TokenType.ExpressionCloser)  ||
-							(_SyntaxTop.Type == TokenType.ListOpener        && cToken.Type != TokenType.ListCloser)       ||
+							(_SyntaxTop.Type == TokenType.ListOpener        && cToken.Type != TokenType.ListCloser)        ||
 							(_SyntaxTop.Type == TokenType.ListItemOpener    && cToken.Type != TokenType.ListItemCloser)
 						)
 						throw new Exception("WTFE: Syntax error");
@@ -1283,17 +872,6 @@ namespace AE.Data
 			}
 			if(_SyntaxTree.Count != 0)
 			{
-				/**
-					FIXED?
-					BUG: trouble with the first line on modification, when additional
-					(pseudo-)tokens are not added around the block-closer brace at the end of program block.
-					
-					To get here: modify in editor the line just after the 'program' opener brace
-					(catched at line #1) and try to start execution, when AST will need to be re-parsed.
-
-					see UpdateLineLexerStates(int iToLine)
-					there is specified line index as >1 or >0 (fix)
-				*/
 				throw new Exception("Syntax tree incosistent");
 			}
 		}
@@ -1302,9 +880,6 @@ namespace AE.Data
 			iOpenerToken.Pair = iCloserToken;
 			iCloserToken.Pair = iOpenerToken;
 		}
-
-		public static Regex BwdOperandRegex = new Regex(@"^\|?<+\d\$[\w\d\.]*$"); // /^\|?<+\d\$[\w\d\.]*$/
-		public static Regex FwdOperandRegex = new Regex(@"^>+\|?\d\$[\w\d\.]*$"); // /^>+\|?\d\$[\w\d\.]*$/
 		public static Regex TypeRegex       = new Regex(@"^\$.+$");               // /^\$.+$/
 		
 		public static bool IsNewline      (char iCh) {return iCh == '\r' || iCh == '\n';}

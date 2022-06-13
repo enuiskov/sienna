@@ -110,9 +110,10 @@ namespace AE.Data.DescriptionLanguage
 
 			switch(iNode.Type)
 			{
+				case SyntaxNodeType.Root          :
 				case SyntaxNodeType.Expression    : this.ProcessExpression (iNode); break;
-				case SyntaxNodeType.List          : this.ProcessList      (iNode); break;
-				case SyntaxNodeType.ListItem      : this.ProcessListItem  (iNode); break;
+				case SyntaxNodeType.List          : this.ProcessList       (iNode); break;
+				case SyntaxNodeType.ListItem      : this.ProcessListItem   (iNode); break;
 
 				default                           : this.ProcessAtom       (iNode); break;
 			}
@@ -122,7 +123,7 @@ namespace AE.Data.DescriptionLanguage
 			if(iNode.Children.Count == 0) throw new Exception("WTFE: syntax error: empty expression due to the incorrect use of delimiter '.' (possibly)");
 			
 			var _IsLookLikeDefinition = iNode.Children.Count == 2 && iNode[0][0][0].Token.Type == TokenType.String;
-			var _IsHandlerDefinition  = _IsLookLikeDefinition     && iNode[1][0][0].Type == SyntaxNodeType.FunctionBlock;
+			var _IsHandlerDefinition  = _IsLookLikeDefinition     && iNode[1][0][0].Type == SyntaxNodeType.BraceBlock;
 
 
 
@@ -222,9 +223,9 @@ namespace AE.Data.DescriptionLanguage
 			var _HObjCount    = 0;
 			
 
-			var _GroupBlockCount = 0;
-			var _ArgBlockCount   = 0;
-			var _FuncBlockCount  = 0;
+			var _ParenBlockCount = 0;
+			var _BrcktBlockCount = 0;
+			var _BraceBlockCount = 0;
 			
 
 
@@ -238,43 +239,45 @@ namespace AE.Data.DescriptionLanguage
 				}
 				else
 				{
-					if(cItem.Children.Count != 1) throw new Exception("WTFE");
+					//if(cItem.Children.Count == 0) throw new Exception("WTFE");
 
-					var cAtom = cItem[0]; switch(cAtom.Type)
+					for(var cAi = 0; cAi < cItem.Children.Count; cAi ++)
 					{
-						case SyntaxNodeType.String                : _StringCount  ++; break;
-						case SyntaxNodeType.Number                : _NumberCount  ++; break;
-						case SyntaxNodeType.NumInt32              : _NumberCount  ++; break;
-						case SyntaxNodeType.NumFloat32            : _NumberCount  ++; break;
-						case SyntaxNodeType.NumFloat64            : _NumberCount  ++; break;
-						case SyntaxNodeType.NumInvalid            : _NumberCount  ++; break;
+						var cAtom = cItem[cAi]; switch(cAtom.Type)
+						{
+							case SyntaxNodeType.String                : _StringCount  ++; break;
+							case SyntaxNodeType.Number                : _NumberCount  ++; break;
+							case SyntaxNodeType.NumInt32              : _NumberCount  ++; break;
+							case SyntaxNodeType.NumFloat32            : _NumberCount  ++; break;
+							case SyntaxNodeType.NumFloat64            : _NumberCount  ++; break;
+							case SyntaxNodeType.NumInvalid            : _NumberCount  ++; break;
 
 
-						case SyntaxNodeType.Identifier            : _NameCount    ++; break;
-						case SyntaxNodeType.ReferenceIdentifier   : _ArgRefCount   ++; break;
-						case SyntaxNodeType.InputIdentifier       : _InputCount   ++; break;
-						case SyntaxNodeType.OutputIdentifier      : _OutputCount  ++; break;
-						case SyntaxNodeType.LocalIdentifier       : _LocalsCount  ++; break;
-						case SyntaxNodeType.GlobalIdentifier      : _GlobalsCount ++; break;
-						case SyntaxNodeType.MemberIdentifier      : _MembersCount ++; break;
-						//case SyntaxNodeType.FunctionIdentifier : _FuncCount    ++; break;
+							case SyntaxNodeType.Identifier            : _NameCount    ++; break;
+							case SyntaxNodeType.ReferenceIdentifier   : _ArgRefCount   ++; break;
+							case SyntaxNodeType.InputIdentifier       : _InputCount   ++; break;
+							case SyntaxNodeType.OutputIdentifier      : _OutputCount  ++; break;
+							case SyntaxNodeType.LocalIdentifier       : _LocalsCount  ++; break;
+							case SyntaxNodeType.GlobalIdentifier      : _GlobalsCount ++; break;
+							case SyntaxNodeType.MemberIdentifier      : _MembersCount ++; break;
+							//case SyntaxNodeType.FunctionIdentifier : _FuncCount    ++; break;
 
-						case SyntaxNodeType.Instruction           : _InstrCount   ++; break;
-						case SyntaxNodeType.Label                 : _LabelCount   ++; break;
-						case SyntaxNodeType.Pointer               : _PointerCount ++; break;
-						case SyntaxNodeType.PackedTuple           : _TupleCount   ++; break;
+							case SyntaxNodeType.Instruction           : _InstrCount   ++; break;
+							case SyntaxNodeType.Label                 : _LabelCount   ++; break;
+							case SyntaxNodeType.Pointer               : _PointerCount ++; break;
+							case SyntaxNodeType.PackedTuple           : _TupleCount   ++; break;
 
-						case SyntaxNodeType.HostObject            : _HObjCount    ++; break;
-						case SyntaxNodeType.Type                  : _TypeCount    ++; break;
-						case SyntaxNodeType.Word                  : _WordCount    ++; break;
+							case SyntaxNodeType.HostObject            : _HObjCount    ++; break;
+							case SyntaxNodeType.Type                  : _TypeCount    ++; break;
+							case SyntaxNodeType.Word                  : _WordCount    ++; break;
 
-						case SyntaxNodeType.GroupingBlock         : _GroupBlockCount ++; break;
-						case SyntaxNodeType.ArgumentBlock         : _ArgBlockCount ++; break;
-						
-						case SyntaxNodeType.FunctionBlock         : _FuncBlockCount  ++; break;
+							case SyntaxNodeType.ParenthesisBlock      : _ParenBlockCount ++; break;
+							case SyntaxNodeType.BracketBlock          : _BrcktBlockCount ++; break;
+							case SyntaxNodeType.BraceBlock            : _BraceBlockCount ++; break;
 
 
-						default : throw new Exception("WTFE");
+							default : throw new Exception("WTFE");
+						}
 					}
 				}
 			}
@@ -443,9 +446,9 @@ namespace AE.Data.DescriptionLanguage
 				
 
 
-				case SyntaxNodeType.ArgumentBlock      : goto case SyntaxNodeType.GroupingBlock;
-				case SyntaxNodeType.FunctionBlock      : goto case SyntaxNodeType.GroupingBlock;
-				case SyntaxNodeType.GroupingBlock      : iNode.Role = SemanticRole.AtomBlock; break;
+				case SyntaxNodeType.BracketBlock       : goto case SyntaxNodeType.ParenthesisBlock;
+				case SyntaxNodeType.BraceBlock         : goto case SyntaxNodeType.ParenthesisBlock;
+				case SyntaxNodeType.ParenthesisBlock   : iNode.Role = SemanticRole.AtomBlock; break;
 
 				///default : iNode.Role = SemanticRole.AtomUnknown;
 				default : throw new Exception("WTFE: unknown atom");

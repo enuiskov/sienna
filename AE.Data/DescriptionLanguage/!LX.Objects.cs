@@ -4,20 +4,8 @@ using System.Text;
 
 namespace AE.Data
 {
-	
-	//public class LexerState
-	//{
-	//    public virtual LexerState Clone()
-	//    {
-	//        return new LexerState();
-	//    }
-	//}
 	public class TextLexerState// : LexerState
 	{
-		//public override LexerState Clone()
-		//{
-		//    return new TextLexerState();
-		//}
 		public virtual TextLexerState Clone()
 		{
 			return new TextLexerState();
@@ -27,128 +15,10 @@ namespace AE.Data
 
 	public class GenericCodeFormat : TextFormat
 	{
-		
-
 		public GenericCodeFormat()
 		{
 			//this.DefaultLexerState = new GenericCodeLexerState();
 		}
-
-		///delegate void PushToken(TokenInfo iToken);
-		///public override TokenInfoList ParseString(string iString, TextLexerState iLexerState, out TextLexerState oLexerState)
-		//{
-		//    var _iLexerState = iLexerState         as GenericCodeLexerState;
-		//    var _oLexerState = iLexerState.Clone() as GenericCodeLexerState;
-
-		//    if(_oLexerState.IsCommentOpen || _oLexerState.IsGarbageOpen) throw new Exception("WTFE");
-
-		//    TokenInfoList oTokens = new TokenInfoList();
-
-		//    if(_iLexerState.IsStringOpen){}
-
-		//    TokenInfo cToken = new TokenInfo{Type = (_iLexerState.IsStringOpen ? TokenType.String : (_iLexerState.IsCommentOpen ?  TokenType.Comment : _iLexerState.IsGarbageOpen ?  TokenType.Garbage :  TokenType.Default))};
-
-		//    PushToken fPushToken = iToken => {if(oTokens == null) oTokens = new TokenInfoList(); if(!(cToken.Length == 0 && cToken.Type == TokenType.Default)) oTokens.Add(cToken); cToken = iToken;};
-
-
-		//    //if(iString.StartsWith("1b;2;3.1415;"))
-		//    //{
-		//    //}
-
-		//    char cChar,pChar = new Char(); for(var cCi = 0; cCi < iString.Length; cCi++)
-		//    {
-		//        cChar = iString[cCi];
-
-		//        switch(cChar)
-		//        {
-		//            case '"' :
-		//            {
-		//                if(_oLexerState.IsGarbageOpen || _oLexerState.IsCommentOpen) break;
-
-		//                if(_oLexerState.IsStringOpen)
-		//                {
-		//                    if(pChar != '\\')
-		//                    {
-		//                        ///cToken.Length = cCi - cToken.Offset + 1;
-		//                        //cToken.Length --;
-								
-		//                        fPushToken(new TokenInfo{Type = TokenType.Default, Offset = cCi + 1, Length = -1});
-
-		//                        _oLexerState.IsStringOpen = false;
-		//                    }
-		//                }
-		//                else
-		//                {
-		//                    fPushToken(new TokenInfo{Type =  TokenType.String, Offset = cCi, Length = 1});
-
-		//                    _oLexerState.IsStringOpen = true;
-		//                }
-		//                break;
-		//            }
-		//            case '/' :
-		//            {
-		//                if(!_oLexerState.IsStringOpen && pChar == '/')
-		//                {
-		//                    if(_oLexerState.IsCommentOpen) break;
-
-		//                    cToken.Length -= 1;
-
-		//                    fPushToken(new TokenInfo{Type = TokenType.Garbage, Offset = cCi - 1, Length = 0});
-		//                    _oLexerState.IsGarbageOpen = true;
-		//                }
-		//                else
-		//                {
-							
-		//                }
-		//                break;
-		//            }
-		//            case '~':
-		//            {
-		//                if(pChar == '~' && cToken.Type == TokenType.Garbage && cToken.Length == 2)
-		//                {
-		//                    //if(cCi < 2 || !(iString[cCi - 2] == '/' && iString[cCi - 3] == '/'))
-		//                    //if(cToken.Length > 3) break;
-							
-		//                    //if(
-		//                    ///if(_oLexerState.IsGarbageOpen) break;
-
-		//                    cToken.Type =  TokenType.Comment;
-
-		//                    _oLexerState.IsGarbageOpen = false;
-		//                    _oLexerState.IsCommentOpen = true;
-		//                }
-		//                break;
-		//            }
-		//            //default : 
-		//            //{
-		//            //    break;
-		//            //}
-		//        }
-				
-		//        cToken.Length ++;
-		//        pChar = cChar;
-		//    }
-
-		//    //if(cToken != null)
-		//    //{
-
-
-		//        ///if(_iLexerState.IsStringOpen){}
-				
-		//    //if(oTokens == null) oTokens = new TokenInfoList();
-
-			
-		//    fPushToken(null);
-		//        //oTokens.Add();
-		//    //}
-
-		//    _oLexerState.IsGarbageOpen = false;
-		//    _oLexerState.IsCommentOpen = false;
-
-		//    oLexerState = _oLexerState;
-		//    return oTokens;
-		//}
-		
 	}
 	public class GenericCodeLexerState : TextLexerState
 	{
@@ -171,48 +41,6 @@ namespace AE.Data
 	public class TextFormat
 	{
 		public string   Name = "PlainText";
-		//public string[] CharPatterns = new string[]
-		//{
-		//    null,  null,  null,  null,  null,  null,  null,  null,  null,  "»  ",
-		//    null,  null,  null,  null,  null,  null,  null,  null,  null,  null,
-		//    null,  null,  null,  null,  null,  null,  null,  null,  null,  null,
-		//    null,  null,  "·",   null,  null,  null,  null,  null,  null,  null,
-		//    null,  null,  null,  null,  null,  null,  null,  null,  null,  null,
-		//};
-		///public TextLexerState DefaultLexerState;
-
-		//public CellStyle[] CellStyles = new CellStyle[]
-		//{
-		//    /** Default */ CellStyle.Default,
-		//    /**  */
-		//    /** Whitespace */ new CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
-		//    /** Garbage */    new CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
-		//    /** Comment */    new CellStyle(new CHSAColor(0.5f, 10), CHSAColor.Transparent),
-		//    /** String */     new CellStyle(new CHSAColor(0.7f, 0), CHSAColor.Transparent),
-		//    /** Number */     new CellStyle(new CHSAColor(0.6f, 0), CHSAColor.Transparent, FontStyle.Bold),
-			
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//    /**  */
-		//};
-
-		//public CellStyle DefaultCellStyle    = CellStyle.Default;
-		//public CellStyle WhitespaceCellStyle = new CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent);
-		//public CellStyle GarbageCellStyle    = new CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent);
-		//public CellStyle CommentCellStyle    = new CellStyle(new CHSAColor(0.5f, 10), CHSAColor.Transparent);
-		//public CellStyle StringCellStyle     = new CellStyle(new CHSAColor(0.7f, 0), CHSAColor.Transparent);
-		//public CellStyle NumberCellStyle     = new CellStyle(new CHSAColor(0.6f, 0), CHSAColor.Transparent, FontStyle.Bold);
-		
 
 		public TextFormat()
 		{
@@ -226,115 +54,18 @@ namespace AE.Data
 
 			//return null;
 		}
-		///public virtual CellList FormatString(string iString, TokenInfoList iTokens)
-		//{
-			
-
-		//    var oCells = new CellList(iString.Length);
-		//    {
-		//        for(var cStrCharI = 0; cStrCharI < iString.Length; cStrCharI++)
-		//        {
-		//            var cStrChar        = iString[cStrCharI];
-		//            var cStrCharV       = (int)cStrChar;
-		//            var cStyle          = this.CellStyles[(cStrCharV == 32 || cStrCharV == 9) ? 1 : 0];
-		//            var cCharNeedsSubst = cStrCharV < this.CharPatterns.Length && this.CharPatterns[cStrCharV] != null;
-					
-		//            if(cCharNeedsSubst)
-		//            {
-		//                var cSubstStr = this.CharPatterns[cStrCharV];
-
-		//                for(var cSubstCharI = 0; cSubstCharI < cSubstStr.Length; cSubstCharI++)
-		//                {
-		//                    oCells.Add(new TextBufferCell(cSubstStr[cSubstCharI], cStyle));
-		//                }
-		//            }
-		//            else
-		//            {
-		//                ///if(Char.IsDigit(cStrChar)) cStyle = _DigitStyle;
-		//                if(iTokens != null)
-		//                {
-		//                    var cToken = iTokens.GetToken(cStrCharI);
-
-
-		//                    if(cToken != null)
-		//                    {
-		//                        cStyle = this.CellStyles[(int)cToken.Type];
-		//                    }
-		//                    //if(cToken != null) switch(cToken.Type)
-		//                    //{
-		//                    //    case TokenType.Default : cStyle = this.DefaultCellStyle; break;
-		//                    //    case 1 : cStyle = this.GarbageCellStyle; break;
-		//                    //    case 2 : cStyle = this.CommentCellStyle; break;
-		//                    //    case 3 : cStyle = this.StringCellStyle;  break;
-		//                    //    //case 3 : cStyle = _StringStyle; break;
-		//                    //    default : throw new Exception("WTF");
-		//                    //}
-		//                    //cStyle = cToken != null && cToken.Type != 0 ? _DigitStyle : _DefaultStyle;
-		//                }
-
-		//                oCells.Add(new TextBufferCell(iString[cStrCharI], cStyle));
-		//            }
-		//        }
-		//    }
-		//    return oCells;
-		//}
-		//public virtual CellList FormatString(string iStr, LexerState iState)
-		//{
-		//    var _Style = CellStyle.Default;
-		//    var oCells = new CellList(iStr.Length);
-		//    {
-		//        for(var cCharI = 0; cCharI < iStr.Length; cCharI++)
-		//        {
-		//            var cChar = iStr[cCharI];
-
-		//            switch(cChar)
-		//            {
-		//                case ' ' :
-		//                {
-		//                    ///goto default;
-							
-		//                    oCells.Add(new TextBufferCell(this.SpacePattern, CellStyle.Whitespace));
-		//                    break;
-		//                }
-		//                case '\t' :
-		//                {
-		//                    var cTabCells = this.FormatString(this.TabPattern, false);
-		//                    {
-		//                        for(var cTabCellI = 0; cTabCellI < cTabCells.Count; cTabCellI++)
-		//                        {
-		//                            cTabCells[cTabCellI] = new TextBufferCell(cTabCells[cTabCellI].Value, CellStyle.Whitespace);
-		//                        }
-		//                    }
-		//                    oCells.AddRange(cTabCells);
-							
-		//                    break;
-		//                }
-
-		//                default: 
-		//                {
-		//                    oCells.Add(new TextBufferCell(cChar, _Style));
-		//                    break;
-		//                }
-		//            }
-					
-					
-
-					
-		//        }
-		//    }
-		//    return oCells;
-		//}
 	}
 	public enum TokenType : byte
 	{
 		Undefined,
-		Pseudotoken,
+		SyntaxToken,
 
-		ListItemError,
-		ListError,
-		ExpressionError,
+		FileError,
 		BlockError,
-
+		ExpressionError,
+		ListError,
+		ListItemError,
+		
 		Whitespace,
 		Space,
 		Tab,
@@ -342,12 +73,11 @@ namespace AE.Data
 		
 		Garbage,
 		Comment,
-		MultilineCommentOpener, ///~~ NI;
-		MultilineCommentCloser, ///~~ NI;
+		MultiLineCommentOpener, ///~~ NI;
+		MultiLineCommentCloser, ///~~ NI;
 		
 		String,
 		Character,
-		/** ... define all your literals here or modify literal token range in the lexer */
 		
 		//Int32,
 		//Float32,
@@ -360,9 +90,9 @@ namespace AE.Data
 
 
 		ExpressionDelimiter,      /// "1";"2";
-		ExpressionItemDelimiter,  /// "1" "2";
+		///ListDelimiter,            /// "1" "2";
 		ListItemDelimiter,        /// "1","2";
-		AtomDelimiter,      /// iItem.Name
+		AtomDelimiter,            /// iItem'Name
 		
 		
 		Identifier, ///~~ "var _IsIdentifier = ... "
@@ -382,89 +112,21 @@ namespace AE.Data
 			Type,
 		IdentifiersEnd,
 			//EndOF
-	
-		
-		BwdOpd,
-		FwdOpd,
 
 		Parenthesis, ParenthesisOpener, ParenthesisCloser,
 		Bracket,     BracketOpener,     BracketCloser,
 		Brace,       BraceOpener,       BraceCloser,
 
-		File,        FileOpener,        FileCloser,
+		Root,        RootOpener,        RootCloser,
 		Block,       BlockOpener,       BlockCloser,
 		Expression,  ExpressionOpener,  ExpressionCloser,
 		List,        ListOpener,        ListCloser,
 		ListItem,    ListItemOpener,    ListItemCloser,
 		
-		ExpectList,                 /// Expression opened
-		ExpectListItem,             /// List opened
-		///ExpectNextListItem,      /// List opened, delimiter found?
-		ExpectFirstAtom,            ///
-		ExpectNextAtom,             /// List item added
-
-
-		
-		/**
-			Token types:
-			--
-			0 - Default (Unknown),
-			1 - Whitespace
-			1 - Garbage,
-			2 - Comment,
-			3 - String,
-			4 - Number,
-			 - Character,
-
-
-			Space,
-			Tab,
-			NewLine,
-			Garbage,
-			Comment,
-
-
-			 - Type,
-			 - Packed tuple
-			 - ,
-			 - ,
-			 - ,
-			 - ,
-			 - ,
-			 - ,
-			 - Keyword/operator,
-			 - Identifier,
-
-			 - Local identifier,
-			 - Global identifier
-			 - Function identifier,
-			 - Host object identifier
-
-			 - Input identifier,
-			 - Output identifier,
-
-			 - Backward operand
-			 - Forward operand
-
-		- Colon,
-		- Semicolon,
-		- Comma,
-
-
-		- List tokens
-		- Expression tokens
-		- Block tokens
-
-		- Parenthesis
-		- Bracket
-		- Brace
-
-		- 
-		- 
-		- 
-			 - Bracket
-			 
-		*/
+		ExpectExpression,           
+		ExpectList,                 
+		ExpectListItem,             
+		ExpectNextAtom,             
 	}
 	public class TokenInfo
 	{

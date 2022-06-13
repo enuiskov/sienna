@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using AE.Data;
 using AE.Data.DescriptionLanguage;
 
 namespace AE.Editor
@@ -24,14 +25,17 @@ namespace AE.Editor
 
 		static void DLTest()
 		{
-			var _FileData = System.IO.File.ReadAllText(@"U:\Development\Aletta\Software\Debug\0.src");
+			var _Lines = System.IO.File.ReadAllLines(@"U:\Development\Aemria\Software\Debug\0.src");
+			var _Buffer = String.Join("\n", _Lines);
 
-			var _Lexer = new AE.Data.AEDLLexer();
-			var _State = new AE.Data.GenericCodeLexerState();
-			var _LexCtx = _Lexer.CreateContext(_FileData, 0, _State);
+			var _Lexer = new AEDLLexer();
 
-			_Lexer.ParseBuffer(_LexCtx);
+			var _LexCtx = _Lexer.CreateContext(_Buffer, 0, _Lexer.DefaultState);
+			var _Tokens = _Lexer.ParseBuffer(_LexCtx);
+			(_Lexer as AEDLLexer).ProcessPairs(_Tokens);
 
+			var _Parser = new AE.Data.DescriptionLanguage.ASTParser(_Tokens);
+			var _SyntaxTree = _Parser.ParseTokens(_Tokens);
 			;
 		}
 		[STAThread]

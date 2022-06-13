@@ -644,120 +644,7 @@ namespace AE.Visualization
 
 				///this.UpdateCursor(_CursorDelta);
 			}
-			///public virtual void ChangeIndent(TextSelection iSelection, int iIndentDelta)
-			//{
-				
-			//}
 			
-			///public virtual void CommentSelection(TextSelection iSelection)
-			//{
-				
-			//}
-			///public virtual void UncommentSelection(TextSelection iSelection)
-			//{
-				
-			//}
-
-			
-			///public bool DeleteSelected()
-			//{
-			//    if(!this.Selection.IsActive) return false;
-				
-			//    //var _SelOrig = this.Selection.Origin;
-			//    //var _SelOffs = this.Selection.Offset;
-
-			//    var _MinOffs     = this.Selection.MinOffset;
-			//    var _MaxOffs     = this.Selection.MaxOffset;
-			//    var _IsMultiline = this.Selection.LineCount > 1;
-			//    /**
-			//        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-			//        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-			//        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-			//        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-			//        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-					
-			//    */
-
-			//    for(var cRi = _MinOffs.Y; cRi <= _MaxOffs.Y; cRi++)
-			//    {
-			//        var cIsFirstLine = cRi == _MinOffs.Y;
-			//        var cIsLastLine  = cRi == _MaxOffs.Y;
-			//        var cIsMidLine   = !cIsFirstLine && !cIsLastLine;
-
-			//        if(_IsMultiline && cIsMidLine)
-			//        {
-			//            this.Lines[cRi] = null;
-			//        }
-			//        else/// if(_MinOffs.Y == _MaxOffs.Y)
-			//        {
-			//            for(var cCi = 0; cCi < this.Lines[cRi].Cells.Count; cCi++)
-			//            {
-			//                if(cIsFirstLine && cCi <  _MinOffs.X) continue;
-			//                if(cIsLastLine  && cCi >= _MaxOffs.X) continue;
-
-
-
-			//                //if(cIsFirstLine && !_IsMultiline)
-			//                //{
-								
-			//                //}
-			//                //if(_IsMultiline)
-			//                //{
-			//                //    if(cRi == _MinOffs.Y)
-			//                //    {
-			//                //        ///to the right
-			//                //    }
-			//                //    else if(cRi == _MaxOffs.Y)
-			//                //    {
-			//                //        ///to the left
-			//                //    }
-			//                //    else throw new Exception("WTFE");
-			//                //}
-			//                //else
-			//                //{
-			//                    //if(cCi >= _MinOffs.X && cCi <= _MaxOffs.X)
-			//                    {
-			//                        this.Lines[cRi].Cells[cCi] = TextBufferCell.Invalid;
-			//                    }
-			//                //}
-			//            }
-			//        }
-			//        //if(this.Lines.D
-			//    }
-			//    for(var cRi = 0; cRi < this.Lines.Count; cRi++)
-			//    {
-			//        if(this.Lines[cRi] == null)
-			//        {
-			//            this.Lines.RemoveAt(cRi--);
-			//        }
-			//        else for(var cCi = 0; cCi < this.Lines[cRi].Cells.Count; cCi++)
-			//        {
-			//            if(this.Lines[cRi].Cells[cCi].IsValid == false)
-			//            {
-			//                this.Lines[cRi].Cells.RemoveAt(cCi--);
-			//            }
-			//        }
-			//    }
-
-			//    if(_IsMultiline)
-			//    {
-			//        this.Lines[_MinOffs.Y].Cells.AddRange(this.Lines[_MinOffs.Y + 1].Cells);
-			//        this.Lines.RemoveAt(_MinOffs.Y + 1);
-			//    }
-
-			//    //this.Cursor.Position.X = _MinOffs.X;
-			//    //this.Cursor.Position.Y = _MinOffs.Y;
-			//    this.Cursor.Position = _MinOffs;
-
-			//    //this.Selection.
-			//    //this.Selection
-
-			//    this.Selection.Reset();
-			//    this.State = TextReadyState.ValueModified;
-			//    ///this.Lines.ForEach(cLine => cLine.IsUpdated = true);
-				
-			//    return true;
-			//}
 			public virtual bool MoveCarriage    (int iColOffs, int iLineOffs, bool iDoUpdateSelection)
 			{
 				//if(!iDoUpdateSelection) this.Selection.Reset();
@@ -964,25 +851,18 @@ namespace AE.Visualization
 			}
 
 
-			public void         UpdateColors()///(bool iDoInvertLightness)
+			public void         ResetLines()
 			{
-				
 				foreach(var cLine in this.Lines)
 				{
-					//for(var cCi = 0; cCi < cLine.Cells.Count; cCi++)
-					//{
-					//    var cCell = cLine.Cells[cCi];
-						
-					//    cCell.Style.UpdateBytes(true);
-						
-					//    cLine.Cells[cCi] = cCell;
-					//}
-
-					cLine.Cells     = null; ///Clear()??
-					//cLine.IsValidated = false;
+					cLine.Cells     = null;
 					cLine.ReadyState = TextReadyState.ValueModified;
 				}
 				this.ReadyState = TextReadyState.ValueModified;
+			}
+			public void         UpdateColors()///(bool iDoInvertLightness)
+			{
+				this.ResetLines();
 			}
 			public virtual void UpdateSyntax()
 			{
@@ -1018,7 +898,7 @@ namespace AE.Visualization
 				this.Lines.Clear();
 
 				//foreach(var cLine in iStr.Split(new String[]{"\r\n"}, StringSplitOptions.None))
-				var _Lines = iStr.Split(new String[]{"\r\n"}, StringSplitOptions.None);
+				var _Lines = iStr.Split(new String[]{"\n"}, StringSplitOptions.None);
 
 				for(var cLi = 0; cLi < _Lines.Length; cLi++)
 				{
@@ -1078,7 +958,7 @@ namespace AE.Visualization
 				///fuck: TextLine cLine,pLine = this.LexerPosition > 1 ? this.Lines[this.LexerPosition - 1] : null;
 				TextLine cLine,pLine = this.LexerPosition > 0 ? this.Lines[this.LexerPosition - 1] : null;
 				
-				var _ToLine = Math.Min(iToLine, this.Lines.Count - 1);
+				var _ToLine = Math.Min(iToLine, this.Lines.Count);// - 1);
 				///for(var cLi = Math.Max(this.MaxParsedLineIndex, 0); cLi < iToLine; cLi++)
 				for(var cLi = this.LexerPosition; cLi <= _ToLine; cLi++)
 				{
@@ -1136,7 +1016,9 @@ namespace AE.Visualization
 			public virtual void UpdateLinesAfterCursor(int iToLine)
 			{
 				this.UpdateLexerPosition();
-				this.UpdateLineReadyStates(TextReadyState.ValueModified, -1, this.LexerPosition, this.Lines.Count - 1);
+				this.UpdateLineReadyStates(TextReadyState.ValueModified, -1, this.LexerPosition, iToLine);
+				//this.UpdateLineReadyStates(TextReadyState.ValueModified, -1, this.LexerPosition, this.Lines.Count - 1);
+				
 			}
 			
 
@@ -1156,6 +1038,8 @@ namespace AE.Visualization
 			{
 				this.UpdateLineLexerStates(iToLine);
 
+				var _DoIncSyntaxTokens = (this.Editor as CodeEditorFrame).SyntaxTokensMode == 2;
+
 				for(var cLi = iFrLine; cLi <= iToLine; cLi++)
 				{
 					var cLine = this.Lines[cLi];
@@ -1166,7 +1050,8 @@ namespace AE.Visualization
 						//{
 						//    this.UpdateLineLexerStates(0, cLi);
 						//}
-						cLine.Cells = this.Settings.FormatString(cLine.Value, cLine.Tokens);
+						
+						cLine.Cells = this.Settings.FormatString(cLine.Value, cLine.Tokens, _DoIncSyntaxTokens);
 
 						cLine.ReadyState = TextReadyState.CellsCached;
 
@@ -1177,53 +1062,17 @@ namespace AE.Visualization
 				}
 				//foreachthis.Lines
 			}
-			//public virtual void SyncLinesToValue()
-			//{
-			//    var _Str = new StringBuilder();
-			//    {
-			//        for(var cRi = 0; cRi < this.Lines.Count; cRi++)
-			//        {
-			//            _Str.Append((cRi != 0 ? "\r\n" : "") + this.Lines[cRi].Value);
-			//        }
-			//    }
-			//    this.Value = _Str.ToString();
-			//}
 			public void UpdateLineReadyStates(TextReadyState iNewState, int iStateDelta, bool iDoUpdateOnlyVisibleLines)
 			{
 				if(iDoUpdateOnlyVisibleLines) this.UpdateLineReadyStates(iNewState, iStateDelta, this.Scroll.Offset.Y, this.Scroll.Offset.Y + this.Editor.BufferSize.Height);
 				else                          this.UpdateLineReadyStates(iNewState, iStateDelta, 0, this.Lines.Count);
 			}
-			//public void UpdateLinesStates(TextReadyState iNewState, int iFrLine, int iToLine)
-			//{
-			//    TextReadyState _PreviousCommonState = TextReadyState.Unknown; for(var cLi = iFrLine; cLi < iToLine; cLi++)
-			//    {
-			//        ///var cLineState = (cLi == this.Cursor.Position.Y) ? TextReadyState.ValueModified : TextReadyState.CellsCached;
-
-			//        var cLine = this.Lines[cLi];
-			//        {
-			//            if(cLine.State == TextReadyState.Unknown)  throw new Exception("WTFE");
-
-			//            //if(_PreviousCommonState == iNewState) throw new Exception("WTFE: no change?");
-			//            //if(_PreviousCommonState == TextReadyState.Unknown) _PreviousCommonState = cLine.State;
-			//            //if(iDoCheckConsistency && cLine.State != _PreviousCommonState) throw new Exception("WTFE");
-			//        }
-			//        cLine.State = iNewState;
-			//    }
-			//}
-
 			public void UpdateLineReadyStates(TextReadyState iNewState, int iStateDelta, int iFrLine, int iToLine)
 			{
-				TextReadyState _PreviousCommonState = TextReadyState.Unknown;
-				var _ToLine = Math.Min(iToLine, this.Lines.Count);
+				var _ToLine = Math.Min(iToLine, this.Lines.Count - 1);
 
-				for(var cLi = iFrLine; cLi < _ToLine; cLi++)
+				for(var cLi = iFrLine; cLi <= _ToLine; cLi++)
 				{
-					///var cLineState = (cLi == this.Cursor.Position.Y) ? TextReadyState.ValueModified : TextReadyState.CellsCached;
-
-					//if(cLi == 3)
-					//{
-					
-					//}
 					var cLine = this.Lines[cLi];
 					
 					if(cLine.ReadyState == TextReadyState.Unknown)  throw new Exception("WTFE");
@@ -1239,12 +1088,6 @@ namespace AE.Visualization
 						    cLine.Cells.Clear();
 						}
 					}
-
-					
-					//if(_PreviousCommonState == iNewState) throw new Exception("WTFE: no change?");
-					//if(_PreviousCommonState == TextReadyState.Unknown) _PreviousCommonState = cLine.State;
-					//if(iDoCheckConsistency && cLine.State != _PreviousCommonState) throw new Exception("WTFE");
-				
 				}
 			}
 
@@ -1355,7 +1198,7 @@ namespace AE.Visualization
 				|
 				|
 				*/
-				var _Line         = this.Lines[(int)iBufOffset.Y];
+				var _Line             = this.Lines[Math.Min((int)iBufOffset.Y, this.Lines.Count - 1)];
 				var _CurrDocColOffset = 0f;
 				var _CurrBufColOffset = 0f;
 
@@ -1440,8 +1283,8 @@ namespace AE.Visualization
 
 					for(var cLi = 0; cLi < this.Lines.Count; cLi ++)
 					{
-						if(cLi < this.Lines.Count - 1) _FileData.AppendLine (this.Lines[cLi].Value);
-						else                           _FileData.Append     (this.Lines[cLi].Value);
+						if(cLi < this.Lines.Count - 1) _FileData.Append (this.Lines[cLi].Value + '\n');
+						else                           _FileData.Append (this.Lines[cLi].Value);
 					}
 				}
 				System.IO.File.WriteAllText(this.URI, _FileData.ToString());
@@ -1454,7 +1297,10 @@ namespace AE.Visualization
 			}
 			public void Load(string iURI)
 			{
-				var _FileData = System.IO.File.ReadAllText(iURI);
+				///var _FileData = System.IO.File.ReadAllText(iURI);
+				var _FileLines = System.IO.File.ReadAllLines(iURI);
+				var _FileData = String.Join("\n", _FileLines);
+				
 				this.URI = iURI;
 				this.ReadString(_FileData);
 
@@ -1505,15 +1351,6 @@ namespace AE.Visualization
 				this.ReadyState = TextReadyState.ValueModified;
 			}
 
-/**
-safas
-safas
-safas
-safas
-safas
-
-
-*/
 
 			
 			public override string ToString()

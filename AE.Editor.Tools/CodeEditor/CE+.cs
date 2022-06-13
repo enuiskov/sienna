@@ -14,7 +14,7 @@ namespace AE.Visualization
 {
 	public partial class CodeEditorFrame : TextEditorFrame
 	{
-		public bool DoShowSyntax = false;
+		public int SyntaxTokensMode = 1;
 
 		//public CodeEditorFrame()
 		//{
@@ -28,7 +28,7 @@ namespace AE.Visualization
 		{
 			base.DrawForeground(iGrx);
 
-			if(this.DoShowSyntax)
+			if(this.SyntaxTokensMode == 1)
 			{
 				this.DrawExtraTokens(iGrx);
 			}

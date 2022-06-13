@@ -880,11 +880,11 @@ namespace AE.Data.DescriptionLanguage
 					{
 						var cFstListItem = cArgNode[0];
 
-						if(cFstListItem.Type == SyntaxNodeType.GroupingBlock)
+						if(cFstListItem.Type == SyntaxNodeType.ParenthesisBlock)
 						{
 							this.AppendBlock(cFstListItem);
 						}
-						else if(cFstListItem.Type == SyntaxNodeType.FunctionBlock)
+						else if(cFstListItem.Type == SyntaxNodeType.BraceBlock)
 						{
 							/**
 								sub(dup,(get (sub get_SP,-2)));

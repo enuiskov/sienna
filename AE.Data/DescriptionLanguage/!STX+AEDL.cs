@@ -11,14 +11,14 @@ namespace AE.Data.DescriptionLanguage
 	{
 		Unknown,
 
+		Root,
 		Expression,
-		
 		List,
 		ListItem,
 		
-		GroupingBlock,
-		ArgumentBlock,
-		FunctionBlock,///CallableBlock(!), Subroutine, ProcedureBlock
+		ParenthesisBlock,
+		BracketBlock,
+		BraceBlock,
 		
 		Value,
 			Number,
@@ -101,63 +101,10 @@ namespace AE.Data.DescriptionLanguage
 			this.Children = new Collection(this);
 		}
 		
-		
-
-		//public override string ToString()
-		//{
-		//    var oStr = ""; switch(this.Type)
-		//    {
-		//        case SyntaxNodeType.String :
-		//        {
-		//            oStr += "\"" + this.Token.String + "\"";
-		//            break;
-		//        }
-
-		//        case SyntaxNodeType.Number :
-		//        case SyntaxNodeType.LocalIdentifier :
-		//        {
-		//            oStr += this.Token.String;
-		//            break;
-		//        }
-		//        case SyntaxNodeType.List :
-		//        {
-		//            ///oStr = this.Token.String;
-
-		//            for(var cMi = 0; cMi < this.Children.Count; cMi++)
-		//            {
-		//                oStr += (cMi == 0 ? "" : ",") + this.Children[cMi].ToString();
-		//            }
-		//            break;
-		//        }
-
-		//        default : oStr = this.Type.ToString(); break;
-		//    }
-		//    return oStr;
-		//}
 		public override string ToString()
 		{
-			//if(this.Token.Type == TokenType.Type)
-			//{
-			
-			//}
 			var oStr = ""; switch(this.Type)
 			{
-				
-				//case SyntaxNodeType.Number :
-				//{
-				//    oStr += this.Token.Value;
-				//    break;
-				//}
-				//case SyntaxNodeType.Number :
-				//{
-				//    oStr += this.Token.Value;
-				//    break;
-				//}
-
-
-				//case SyntaxNodeType.Number :
-
-				//case SyntaxNodeType.LocalIdentifier : goto case SyntaxNodeType
 				case SyntaxNodeType.ListItem :
 				{
 					///oStr = this.Token.String;
@@ -167,7 +114,7 @@ namespace AE.Data.DescriptionLanguage
 						var cMember = this.Children[cMi];
 
 						
-						oStr += (cMi == 0 || cMember.Type == SyntaxNodeType.ArgumentBlock ? "" : ".") + this.Children[cMi].ToString();
+						oStr += (cMi == 0 || cMember.Type == SyntaxNodeType.BracketBlock ? "" : ".") + this.Children[cMi].ToString();
 					}
 					break;
 				}
@@ -189,7 +136,7 @@ namespace AE.Data.DescriptionLanguage
 					}
 					break;
 				}
-				case SyntaxNodeType.ArgumentBlock :
+				case SyntaxNodeType.BracketBlock :
 				{
 					var _IsTheOnlyChild = this.Parent != null ? this.Parent.Children.Count == 1 : true;
 					
@@ -203,7 +150,7 @@ namespace AE.Data.DescriptionLanguage
 
 					break;
 				}
-				case SyntaxNodeType.GroupingBlock :
+				case SyntaxNodeType.ParenthesisBlock :
 				{
 					var _IsTheOnlyChild = this.Parent != null ? this.Parent.Children.Count == 1 : true;
 					
@@ -220,7 +167,7 @@ namespace AE.Data.DescriptionLanguage
 
 					break;
 				}
-				case SyntaxNodeType.FunctionBlock :
+				case SyntaxNodeType.BraceBlock :
 				{
 					var _IsTheOnlyChild = this.Parent != null ? this.Parent.Children.Count == 1 : true;
 					
@@ -430,7 +377,7 @@ namespace AE.Data.DescriptionLanguage
 		{
 			this.Tokens   = iTokens;
 			this.Position = -1;
-			this.TopNode  = new SyntaxNode(SyntaxNodeType.FunctionBlock);//this.OpenNode(SyntaxNodeType.FunctionBlock);
+			this.TopNode  = new SyntaxNode(SyntaxNodeType.Root);//this.OpenNode(SyntaxNodeType.FunctionBlock);
 			///this.Tree;//    = new SyntaxNode();
 			//this.Context = new ParsingContext(null);
 		}
@@ -470,13 +417,14 @@ namespace AE.Data.DescriptionLanguage
 				{
 					switch(cToken.Type)
 					{
-						case TokenType.ExpressionOpener:  this.OpenNode(SyntaxNodeType.Expression,    cToken);   break;
+						//case TokenType.RootOpener:        this.OpenNode(SyntaxNodeType.Root,         cToken);   break;
+						case TokenType.ExpressionOpener:  this.OpenNode(SyntaxNodeType.Expression,   cToken);   break;
 						case TokenType.ListOpener:        this.OpenNode(SyntaxNodeType.List,         cToken);   break;
 						case TokenType.ListItemOpener:    this.OpenNode(SyntaxNodeType.ListItem,     cToken);   break;
 
-						case TokenType.ParenthesisOpener: this.OpenNode(SyntaxNodeType.GroupingBlock, cToken);  break;
-						case TokenType.BracketOpener:     this.OpenNode(SyntaxNodeType.ArgumentBlock, cToken);  break;
-						case TokenType.BraceOpener:       this.OpenNode(SyntaxNodeType.FunctionBlock, cToken);  break;
+						case TokenType.ParenthesisOpener: this.OpenNode(SyntaxNodeType.ParenthesisBlock, cToken);  break;
+						case TokenType.BracketOpener:     this.OpenNode(SyntaxNodeType.BracketBlock,     cToken);  break;
+						case TokenType.BraceOpener:       this.OpenNode(SyntaxNodeType.BraceBlock,       cToken);  break;
 
 						default : Console.WriteLine("Token '" + cToken.Type.ToString() + "' is skipped"); break;
 					}
@@ -498,43 +446,30 @@ namespace AE.Data.DescriptionLanguage
 				{
 					switch(cToken.Type)
 					{
+						//case TokenType.RootCloser:        this.CloseNode(SyntaxNodeType.Root);          break;
 						case TokenType.ExpressionCloser:  this.CloseNode(SyntaxNodeType.Expression);    break;
-						case TokenType.ListCloser:       this.CloseNode(SyntaxNodeType.List);         break;
-						case TokenType.ListItemCloser:   this.CloseNode(SyntaxNodeType.ListItem);     break;
+						case TokenType.ListCloser:        this.CloseNode(SyntaxNodeType.List);          break;
+						case TokenType.ListItemCloser:    this.CloseNode(SyntaxNodeType.ListItem);      break;
 
-						case TokenType.ParenthesisCloser: this.CloseNode(SyntaxNodeType.GroupingBlock); break;
-						case TokenType.BracketCloser:     this.CloseNode(SyntaxNodeType.ArgumentBlock); break;
-						case TokenType.BraceCloser:       this.CloseNode(SyntaxNodeType.FunctionBlock); break;
-
-
-						//case TokenType.ListItemCloser :
-						//{
-
-						//    break;
-						//}
+						case TokenType.ParenthesisCloser: this.CloseNode(SyntaxNodeType.ParenthesisBlock); break;
+						case TokenType.BracketCloser:     this.CloseNode(SyntaxNodeType.BracketBlock);     break;
+						case TokenType.BraceCloser:       this.CloseNode(SyntaxNodeType.BraceBlock);       break;
 
 						case TokenType.Instruction   : this.AddNode(SyntaxNodeType.Instruction, cToken); break;
-						case TokenType.Label         : this.AddNode(SyntaxNodeType.Label, cToken); break;
-						case TokenType.Pointer       : this.AddNode(SyntaxNodeType.Pointer, cToken); break;
-						case TokenType.Word          : this.AddNode(SyntaxNodeType.Word, cToken); break;
-						case TokenType.Number        : this.AddNode(SyntaxNodeType.Number, cToken); break;
+						case TokenType.Label         : this.AddNode(SyntaxNodeType.Label,       cToken); break;
+						case TokenType.Pointer       : this.AddNode(SyntaxNodeType.Pointer,     cToken); break;
+						case TokenType.Word          : this.AddNode(SyntaxNodeType.Word,        cToken); break;
+						case TokenType.Number        : this.AddNode(SyntaxNodeType.Number,      cToken); break;
 						///case TokenType.InvalidNumber : this.AddNode(SyntaxNodeType.NumInvalid, cToken); break;
-
 						///case TokenType.Int32   : this.AddNode(SyntaxNodeType.NumInt32, cToken); break;
 						///case TokenType.Float32 : this.AddNode(SyntaxNodeType.NumFloat32, cToken); break;
 						///case TokenType.Float64 : this.AddNode(SyntaxNodeType.NumFloat64, cToken); break;
-						
-
-
 						case TokenType.String : this.AddNode(SyntaxNodeType.String, cToken); break;
-
-						
-						case TokenType.HostObject    : this.AddNode(SyntaxNodeType.HostObject,         cToken); break;
-						
+						case TokenType.HostObject       : this.AddNode(SyntaxNodeType.HostObject,            cToken); break;
 						case TokenType.Identifier       : this.AddNode(SyntaxNodeType.Identifier,            cToken); break;
 						case TokenType.LocalIdent       : this.AddNode(SyntaxNodeType.LocalIdentifier,       cToken); break;
 						case TokenType.GlobalIdent      : this.AddNode(SyntaxNodeType.GlobalIdentifier,      cToken); break;
-						case TokenType.ReferenceIdent   : this.AddNode(SyntaxNodeType.ReferenceIdentifier, cToken); break;
+						case TokenType.ReferenceIdent   : this.AddNode(SyntaxNodeType.ReferenceIdentifier,   cToken); break;
 						case TokenType.InputIdent       : this.AddNode(SyntaxNodeType.InputIdentifier,       cToken); break;
 						case TokenType.OutputIdent      : this.AddNode(SyntaxNodeType.OutputIdentifier,      cToken); break;
 						case TokenType.MemberIdent      : this.AddNode(SyntaxNodeType.MemberIdentifier,      cToken); break;
