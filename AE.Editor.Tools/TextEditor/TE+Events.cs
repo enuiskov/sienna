@@ -444,6 +444,39 @@ namespace AE.Visualization
 			}
 			
 		}
+		protected override void OnMouseDoubleClick(MouseEventArgs iEvent)
+		{
+			base.OnMouseDoubleClick(iEvent);
+
+			if(iEvent.Button == MouseButtons.Left)
+			{
+				var _Line = this.CurrentDocument.CurrentLine;
+				var _Cursor = this.CurrentDocument.Cursor.Position;
+
+				this.CurrentDocument.Selection.Reset();
+
+				foreach(var cToken in _Line.Tokens)
+				{
+					if(cToken.Length == -1) continue;
+
+					if(cToken.Offset < _Cursor.X && cToken.Offset + cToken.Length > _Cursor.X)
+					{
+						this.CurrentDocument.Selection.Origin.X = cToken.Offset;
+						this.CurrentDocument.Selection.Origin.Y = _Cursor.Y;
+							
+						this.CurrentDocument.Selection.Offset.X = cToken.Offset + cToken.Length;
+						this.CurrentDocument.Selection.Offset.Y = _Cursor.Y;
+							
+						
+					}
+				}
+				///_Line.Tokens
+				
+
+				///this.CurrentDocument.Selection.Origin = 
+				//this.CurrentDocument.CurrentLine;
+			}
+		}
 		//protected override void OnMouseMove(MouseEventArgs iEvent)
 		//{
 		//    base.OnMouseMove(iEvent);

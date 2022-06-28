@@ -75,26 +75,21 @@ namespace AE.Editor.Tools
 			/** ListError       */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
 			/** ListItemError   */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
 			
-			/** Whitespace */ new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
+			/** Whitespace */     TB.CellStyle.Whitespace,
 			/** Space      */ new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
 			/** Tab        */ new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
 			/** NewLine    */ new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
 
 			/** Garbage */    new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
-			/** Comment */    new TB.CellStyle(new CHSAColor(0.6f, 10), CHSAColor.Transparent),
+			/** Comment */    new TB.CellStyle(new CHSAColor(0.7f, -3.0f, 1.0f), CHSAColor.Transparent),
 			/** MuLComOpnr */ new TB.CellStyle(new CHSAColor(0.6f, 10), CHSAColor.Transparent),
 			/** MuLComClsr */ new TB.CellStyle(new CHSAColor(0.6f, 10), CHSAColor.Transparent),
 			
-			/** String    */  new TB.CellStyle(new CHSAColor(0.6f, 0), CHSAColor.Transparent),
+			/** String    */  new TB.CellStyle(new CHSAColor(0.7f, -1, 1.0f), CHSAColor.Transparent, FontStyle.Regular),
 			/** Character */      TB.CellStyle.Default,
-			/** */
-
-			///** Int32 */         new TB.CellStyle(new CHSAColor(0.6f, 0), CHSAColor.Transparent, FontStyle.Bold),
-			///** Float32 */       new TB.CellStyle(new CHSAColor(0.6f, 0), CHSAColor.Transparent, FontStyle.Bold),
-			///** Float64 */       new TB.CellStyle(new CHSAColor(0.6f, 0), CHSAColor.Transparent, FontStyle.Bold),
-
+			
 			///** InvalidNumber */ new TB.CellStyle(new CHSAColor(0.6f, 0), CHSAColor.Transparent, FontStyle.Bold),
-			/** Number        */ new TB.CellStyle(new CHSAColor(0.6f, 0), CHSAColor.Transparent, FontStyle.Bold),
+			/** Number        */ new TB.CellStyle(new CHSAColor(0.5f, -1), CHSAColor.Transparent, FontStyle.Regular),
 			///** Number        */ new TB.CellStyle(new CHSAColor(0.6f, 1), CHSAColor.Transparent, FontStyle.Underline),
 		
 			
@@ -107,19 +102,19 @@ namespace AE.Editor.Tools
 			
 
 			/** Identifier */               TB.CellStyle.Default,
-			/** Instruction */          new TB.CellStyle(new CHSAColor(0.7f,   7), CHSAColor.Transparent, FontStyle.Bold),
-			/** Label */                new TB.CellStyle(new CHSAColor(0.7f,  10), CHSAColor.Transparent, FontStyle.Bold),
-			/** Pointer */              new TB.CellStyle(new CHSAColor(0.7f,  10), CHSAColor.Transparent, FontStyle.Bold),
-			/** ReferenceIdent */       new TB.CellStyle(new CHSAColor(0.7f,   1), CHSAColor.Transparent, FontStyle.Regular),
-			/** InputIdent */           new TB.CellStyle(new CHSAColor(0.7f,   1), CHSAColor.Transparent),
-			/** OutputIdent */          new TB.CellStyle(new CHSAColor(0.7f,   6), CHSAColor.Transparent),
-			/** LocalIdent */           new TB.CellStyle(new CHSAColor(0.75f,  3), CHSAColor.Transparent),///(0.75f, 3),
-			/** GlobalIdent */          new TB.CellStyle(new CHSAColor(0.7f,   0), CHSAColor.Transparent),
-			/** MemberIdent */          new TB.CellStyle(new CHSAColor(1f, 7), CHSAColor.Transparent),
-			/** Word  */                new TB.CellStyle(new CHSAColor(1.0f), CHSAColor.Transparent, FontStyle.Bold),
-			/** HostObject */               TB.CellStyle.Default,
-			/** PackedTuple  */             TB.CellStyle.Default,
-			/** Type */                     TB.CellStyle.Default,
+			/** Instruction */          new TB.CellStyle(new CHSAColor(0.6f,   7), CHSAColor.Transparent, FontStyle.Bold),
+			/** Label */                new TB.CellStyle(new CHSAColor(0.6f,   9), CHSAColor.Transparent, FontStyle.Bold),
+			/** Pointer */              new TB.CellStyle(new CHSAColor(0.6f,   9), CHSAColor.Transparent, FontStyle.Bold),
+			/** ReferenceIdent */       new TB.CellStyle(new CHSAColor(0.6f,   2), CHSAColor.Transparent, FontStyle.Regular),
+			/** InputIdent */           new TB.CellStyle(new CHSAColor(0.6f,   1), CHSAColor.Transparent, FontStyle.Regular),
+			/** OutputIdent */          new TB.CellStyle(new CHSAColor(0.6f,   6), CHSAColor.Transparent, FontStyle.Regular),
+			/** LocalIdent */           new TB.CellStyle(new CHSAColor(0.6f,   3), CHSAColor.Transparent, FontStyle.Regular),///(0.75f, 3),
+			/** GlobalIdent */          new TB.CellStyle(new CHSAColor(0.6f,   0), CHSAColor.Transparent),
+			/** MemberIdent */          new TB.CellStyle(new CHSAColor(1f,     0), CHSAColor.Transparent, FontStyle.Regular),
+			/** Word  */                new TB.CellStyle(new CHSAColor(1f,     0), CHSAColor.Transparent, FontStyle.Regular),
+			//** HostObject */               TB.CellStyle.Default,
+			//** PackedTuple  */             TB.CellStyle.Default,
+			//** Type */                     TB.CellStyle.Default,
 			/** IdentifiersEnd */           TB.CellStyle.Default,
 
 			/** Parenthesis */              TB.CellStyle.Default,TB.CellStyle.Default,TB.CellStyle.Default,
@@ -182,7 +177,7 @@ namespace AE.Editor.Tools
 							case TokenType.ListItemOpener   : cIsSyntaxToken = true; cAltChar = '<'; /**cStyle = _SyntaxTokenStyle;*/ break;
 							case TokenType.ListItemCloser   : cIsSyntaxToken = true; cAltChar = '>'; /**cStyle = _SyntaxTokenStyle; */ break;
 
-							case TokenType.FileError        : cIsSyntaxToken = true; cAltChar = 'F'; break;
+							case TokenType.RootError        : cIsSyntaxToken = true; cAltChar = 'R'; break;
 							case TokenType.ExpressionError  : cIsSyntaxToken = true; cAltChar = 'E'; break;
 							case TokenType.ListError        : cIsSyntaxToken = true; cAltChar = 'L'; break;
 							case TokenType.ListItemError    : cIsSyntaxToken = true; cAltChar = 'I'; break;

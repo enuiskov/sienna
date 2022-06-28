@@ -42,9 +42,9 @@ namespace AE.Data.DescriptionLanguage
 			//FunctionIdentifier,
 			Word,
 
-			HostObject,
-			Type,
-			PackedTuple,
+			//HostObject,
+			//Type,
+			//PackedTuple,
 	}
 	//public class SyntaxItem
 	//{
@@ -465,7 +465,7 @@ namespace AE.Data.DescriptionLanguage
 						///case TokenType.Float32 : this.AddNode(SyntaxNodeType.NumFloat32, cToken); break;
 						///case TokenType.Float64 : this.AddNode(SyntaxNodeType.NumFloat64, cToken); break;
 						case TokenType.String : this.AddNode(SyntaxNodeType.String, cToken); break;
-						case TokenType.HostObject       : this.AddNode(SyntaxNodeType.HostObject,            cToken); break;
+						///case TokenType.HostObject       : this.AddNode(SyntaxNodeType.HostObject,            cToken); break;
 						case TokenType.Identifier       : this.AddNode(SyntaxNodeType.Identifier,            cToken); break;
 						case TokenType.LocalIdent       : this.AddNode(SyntaxNodeType.LocalIdentifier,       cToken); break;
 						case TokenType.GlobalIdent      : this.AddNode(SyntaxNodeType.GlobalIdentifier,      cToken); break;
@@ -475,8 +475,8 @@ namespace AE.Data.DescriptionLanguage
 						case TokenType.MemberIdent      : this.AddNode(SyntaxNodeType.MemberIdentifier,      cToken); break;
 						///case TokenType.FunctionIdent : this.AddNode(SyntaxNodeType.FunctionIdentifier, cToken); break;
 
-						case TokenType.Type             : this.AddNode(SyntaxNodeType.Type,                  cToken); break;
-						case TokenType.PackedTuple      : this.AddNode(SyntaxNodeType.PackedTuple,           cToken); break;
+						///case TokenType.Type             : this.AddNode(SyntaxNodeType.Type,                  cToken); break;
+						///case TokenType.PackedTuple      : this.AddNode(SyntaxNodeType.PackedTuple,           cToken); break;
 
 						//case TokenType.Space:
 

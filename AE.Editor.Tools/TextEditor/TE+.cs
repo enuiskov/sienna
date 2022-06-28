@@ -14,11 +14,14 @@ namespace AE.Visualization
 {
 	public partial class TextEditorFrame : TextBufferFrame
 	{
+		public static string DefaultFilePath = "0.src";
+		public static bool   IsIntepreter    = false;
+
 		public DocList      Documents;
 		public TextDocument CurrentDocument {get{return this.Documents[this.CurrentDocumentIndex];}}
 		private int         CurrentDocumentIndex = 0;
 		protected bool      LastThemeIsLight;
-		public string       LastDocumentURI = @"U:\Development\Sienna\Software\AE.Studio\bin\Debug\0.src";
+		public string       LastDocumentURI;
 
 		///public bool         NeedsCompleteUpdate = true;  ///~~ forces ;
 		public bool         NeedsBufferReset_GDI = true;
@@ -185,9 +188,9 @@ namespace AE.Visualization
 					
 					_AlphaByte = (int)((Math.Sin(DateTime.Now.Millisecond / 1000.0 * Math.PI * 8.0) * 0.5 + 0.5) * 255);
 
-					iGrx.FillRectangle(new SolidBrush(Color.FromArgb(16,Color.Red)), _WarningRect);
+					///iGrx.FillRectangle(new SolidBrush(Color.FromArgb(16,Color.Red)), _WarningRect);
 				}
-				iGrx.DrawRectangle(new Pen(new SolidBrush(Color.FromArgb(_AlphaByte, Color.Red)), 10), _WarningRect);
+				iGrx.DrawRectangle(new Pen(new SolidBrush(Color.FromArgb(_AlphaByte, Color.Red)), 5), _WarningRect);
 			}
 		}
 		private void DrawCursor        (GraphicsContext iGrx)

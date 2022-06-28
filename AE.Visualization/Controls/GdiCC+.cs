@@ -83,11 +83,12 @@ namespace AE.Visualization
 			{
 				///if(_Frame == null) throw new Exception("Incompatible frame type");
 
-				_Grx.Clear(this.Canvas.Palette.ShadeColor);
-				///_Grx.Clear(Color.White);
+				///_Grx.Clear(this.Canvas.Palette.ShadeColor);
+				_Grx.Clear(this.Canvas.Palette.IsLightTheme ? Color.White : Color.FromArgb(255,20,20,20));
+				//_Grx.Clear(Color.White);
 
 				///_Grx.FillRectangle(new SolidBrush(this.Canvas.Palette.IsLightTheme ? Color.White : Color.FromArgb(255,40,40,40)), new Rectangle(0,0,this.Width,this.Height));
-				_Grx.FillRectangle(new SolidBrush(this.Canvas.Palette.IsLightTheme ? Color.White : Color.FromArgb(255,20,20,20)), new Rectangle(0,0,this.Width,this.Height));
+				///_Grx.FillRectangle(new SolidBrush(this.Canvas.Palette.IsLightTheme ? Color.White : Color.FromArgb(255,20,20,20)), new Rectangle(0,0,this.Width,this.Height));
 				
 				_Grx.BindPalette(_Frame.Palette);
 				
@@ -243,6 +244,8 @@ namespace AE.Visualization
 		}
 		public virtual void RenderFrame	(Frame iFrame)									
 		{
+			if(!iFrame.IsVisible) return;
+
 			var _Bounds = iFrame.Bounds;
 
 			if(_Bounds.Width == 0 || _Bounds.Height == 0) return;
@@ -358,5 +361,14 @@ namespace AE.Visualization
 		{
 			this.Canvas.OnMouseUp(e);
 		}
+		protected override void OnClick(EventArgs e)
+		{
+ 			this.Canvas.OnMouseClick(e as WF.MouseEventArgs);
+		}
+		protected override void OnDoubleClick(EventArgs e)
+		{
+ 			this.Canvas.OnMouseDoubleClick(e as WF.MouseEventArgs);
+		}
+		
 	}
 }

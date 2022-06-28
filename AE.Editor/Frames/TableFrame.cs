@@ -112,7 +112,22 @@ namespace AE.Visualization
 		{
 			if(this.ColumnOffsets == null) this.UpdateColumnOffsets();
 			
-			iGrx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+			///iGrx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
+			iGrx.Device.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+
+			if(this.Palette.IsLightTheme)
+			{
+				iGrx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+			   //_Grx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+			}
+			else
+			{
+				iGrx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+			}
+
+
+
 
 			var _RowH = this.Font.Height + 2;
 			
@@ -150,7 +165,7 @@ namespace AE.Visualization
 
 					//cCell.ForeColor.
 					
-					iGrx.DrawString(cText, this.Font, new SolidBrush(this.Palette.Adapt(cCell.ForeColor)), this.ColumnOffsets[cCi], cY + 2);
+					iGrx.DrawString(cText, this.Font, new SolidBrush(this.Palette.Adapt(cCell.ForeColor, true, true)), this.ColumnOffsets[cCi], cY + 2);
 					///iGrx.DrawString(cText, this.Font, _ForeBrush, this.ColumnOffsets[cCi], cY + 2);
 				}
 

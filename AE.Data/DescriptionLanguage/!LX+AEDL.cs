@@ -87,30 +87,30 @@ namespace AE.Data
 							else if (cChar == ';')               oTokens.Add(new TokenInfo(TokenType.ExpressionDelimiter, iCtx.Offset, ++iCtx.Offset));
 							//else if (cChar == ":")               oTokens.Add(new Token(TokenType.Colon,     cChar, iCtx.Position, iCtx.Position++));
 							else if (cChar == ',')               oTokens.Add(new TokenInfo(TokenType.ListItemDelimiter,  iCtx.Offset, ++iCtx.Offset));
-							else if (cChar == '\'')               oTokens.Add(new TokenInfo(TokenType.AtomDelimiter, iCtx.Offset, ++iCtx.Offset));
+							else if (cChar == '\'')              oTokens.Add(new TokenInfo(TokenType.AtomDelimiter, iCtx.Offset, ++iCtx.Offset));
 
-							else if (cChar == '$')
-							{
-								if(nChar == '-' || nChar == '+') /// $-1, $+2 etc
-								{
-									oTokens.Add(this.ParseList(iCtx));
-								}
-								else if(Char.IsLetter(nChar))/**if     (Char.IsLetter(nChar))*/
-								{
-									oTokens.Add(Char.IsUpper(nChar) ? this.ParseHostObject(iCtx) : this.ParseType(iCtx));
+							//else if (cChar == '$')
+							//{
+							//   if(nChar == '-' || nChar == '+') /// $-1, $+2 etc
+							//   {
+							//      oTokens.Add(this.ParseList(iCtx));
+							//   }
+							//   else if(Char.IsLetter(nChar))/**if     (Char.IsLetter(nChar))*/
+							//   {
+							//      oTokens.Add(Char.IsUpper(nChar) ? this.ParseHostObject(iCtx) : this.ParseType(iCtx));
 								
-									//else
-									//{
-									//    oTokens.Add(this.ParseHostObject(iCtx));
-									//}
+							//      //else
+							//      //{
+							//      //    oTokens.Add(this.ParseHostObject(iCtx));
+							//      //}
 									
-									//if     (Char.IsUpper(nChar))    oTokens.Add(this.ParseType());
-									//else if(Char.IsLower(nChar))    oTokens.Add(this.ParseType());
-								}
-								//else if(nChar == '-' || nChar == '+')
+							//      //if     (Char.IsUpper(nChar))    oTokens.Add(this.ParseType());
+							//      //else if(Char.IsLower(nChar))    oTokens.Add(this.ParseType());
+							//   }
+							//   //else if(nChar == '-' || nChar == '+')
 								
-								else oTokens.Add(this.ParseHostObject(iCtx));
-							}
+							//   else oTokens.Add(this.ParseHostObject(iCtx));
+							//}
 							else
 							{
 								var cToken = this.ParseIdentifier(iCtx);
@@ -282,50 +282,72 @@ namespace AE.Data
 		//    }
 		//    return new TokenInfo(_NumberType, _BegOffs, _EndOffs){Value = _Value};
 		//}
-		public TokenInfo     ParseHostObject   (TextLexerContext iCtx)
-		{
-			var _BegOffs = iCtx.Offset;
-			var _EndOffs = iCtx.Offset + 1; while(_EndOffs < iCtx.Buffer.Length && AEDLLexer.IsIdentChar(iCtx.Buffer[_EndOffs])) _EndOffs++;
+		//public TokenInfo     ParseHostObject   (TextLexerContext iCtx)
+		//{
+		//   var _BegOffs = iCtx.Offset;
+		//   var _EndOffs = iCtx.Offset + 1; while(_EndOffs < iCtx.Buffer.Length && AEDLLexer.IsIdentChar(iCtx.Buffer[_EndOffs])) _EndOffs++;
 			
-			iCtx.Offset = _EndOffs;// + 1;
+		//   iCtx.Offset = _EndOffs;// + 1;
 
-			///return new TokenInfo(TokenType.HostObject, iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs), _BegOffs, _EndOffs);
-			return new TokenInfo(TokenType.HostObject, _BegOffs, _EndOffs){Value = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs)};
-		}
-		public TokenInfo     ParseType         (TextLexerContext iCtx)
-		{
-			var _BegOffs = iCtx.Offset;
-			var _EndOffs = iCtx.Offset + 1;
+		//   ///return new TokenInfo(TokenType.HostObject, iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs), _BegOffs, _EndOffs);
+		//   return new TokenInfo(TokenType.HostObject, _BegOffs, _EndOffs){Value = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs)};
+		//}
+		//public TokenInfo     ParseType         (TextLexerContext iCtx)
+		//{
+		//   var _BegOffs = iCtx.Offset;
+		//   var _EndOffs = iCtx.Offset + 1;
 			
-			while(_EndOffs < iCtx.Buffer.Length)
-			{
-				var cChar = iCtx.Buffer[_EndOffs];
-			//    if(
-			    if(Char.IsLetter(cChar) && Char.IsLower(cChar) || Char.IsNumber(cChar)) _EndOffs++;
-				else if(Char.IsUpper(cChar)) throw new Exception();
-				else break;
-			}
+		//   while(_EndOffs < iCtx.Buffer.Length)
+		//   {
+		//      var cChar = iCtx.Buffer[_EndOffs];
+		//   //    if(
+		//       if(Char.IsLetter(cChar) && Char.IsLower(cChar) || Char.IsNumber(cChar)) _EndOffs++;
+		//      else if(Char.IsUpper(cChar)) throw new Exception();
+		//      else break;
+		//   }
 
-			iCtx.Offset = _EndOffs;// + 1;
+		//   iCtx.Offset = _EndOffs;// + 1;
 
-			///return new TokenInfo(TokenType.Type, iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs), _BegOffs, _EndOffs);
-			return new TokenInfo(TokenType.Type, _BegOffs, _EndOffs){Value = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs)};
-		}
-		public TokenInfo     ParseList         (TextLexerContext iCtx)
-		{
-			var _BegOffs = iCtx.Offset;
-			var _EndOffs = iCtx.Offset + 3;
+		//   ///return new TokenInfo(TokenType.Type, iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs), _BegOffs, _EndOffs);
+		//   return new TokenInfo(TokenType.Type, _BegOffs, _EndOffs){Value = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs)};
+		//}
+		//public TokenInfo     ParseList         (TextLexerContext iCtx)
+		//{
+		//   var _BegOffs = iCtx.Offset;
+		//   var _EndOffs = iCtx.Offset + 3;
 			
-			iCtx.Offset = _EndOffs;
+		//   iCtx.Offset = _EndOffs;
 
-			return new TokenInfo(TokenType.PackedTuple, _BegOffs, _EndOffs);
-		}
+		//   return new TokenInfo(TokenType.PackedTuple, _BegOffs, _EndOffs);
+		//}
 		public TokenInfo     ParseIdentifier   (TextLexerContext iCtx)
 		{
 			var _BegOffs = iCtx.Offset;
 			var _EndOffs = iCtx.Offset + 1;
 
-			while(_EndOffs < iCtx.Buffer.Length && AEDLLexer.IsIdentChar(iCtx.Buffer[_EndOffs])) _EndOffs ++;
+			int _IsConvIdent = 0; for(var cCi = 1 ;; cCi ++)
+			{
+				var cChar = iCtx.Buffer[_EndOffs];
+
+				if(_EndOffs >= iCtx.Buffer.Length || !AEDLLexer.IsIdentChar(cChar)) break;
+
+				if(_IsConvIdent == 0)
+				{
+					if((Char.IsUpper(cChar) || Char.IsDigit(cChar)) && cCi <= 2)
+					{
+						_IsConvIdent = +1;
+					}
+					else if(!Char.IsLower(cChar))
+					{
+						_IsConvIdent = -1;
+					}
+					//if(Char.IsUpper(cChar) || Char.IsDigit(cChar))
+					//{
+					//   _IsConvCase = +1;
+					//}
+				}
+				_EndOffs ++;
+			}
 			
 			var _Str = iCtx.Buffer.Substring(_BegOffs, _EndOffs - _BegOffs);
 			{
@@ -349,7 +371,7 @@ namespace AE.Data
 				var _IsMultiChar    = _Str.Length > 1;
 
 				var _FstChar        = _Str[0];
-				var _SndChar        = _IsMultiChar ? _Str[1] : 'X'; //??
+				var _SndChar        = _IsMultiChar ? _Str[1] : 'X';
 
 				var _IsLinkedIdent  = _IsMultiChar && (_FstChar >= 'A' && _FstChar <= 'Z');
 
@@ -362,28 +384,32 @@ namespace AE.Data
 				{
 					var _IsFstLowC   = _FstChar >= 'a' && _FstChar <= 'z';
 					
-					var _IsSndUppC      = _IsMultiChar && (_SndChar >= 'A' && _SndChar <= 'Z');
-					var _IsSndDigit     = _IsMultiChar && (_SndChar >= '0' && _SndChar <= '9');
-					var _IsFollowingIdent = _IsSndUppC || _IsSndDigit;
-					var _IsFstLetterPfx   = _FstChar == '_' || _FstChar == ':' || _FstChar == '^' || (_FstChar >= 'a' && _FstChar <= 'z');
+					///var _IsSndUppC      = _IsMultiChar && (_SndChar >= 'A' && _SndChar <= 'Z');
+					///var _IsSndDigit     = _IsMultiChar && (_SndChar >= '0' && _SndChar <= '9');
+					var _IsFollowingIdent = _IsConvIdent == +1;///_IsSndUppC || _IsSndDigit;
+					var _IsFstCharPfx   = _FstChar == '_' || _FstChar == ':' || _FstChar == '^' || (_FstChar >= 'a' && _FstChar <= 'z');
 
 
-					if (_IsFstLetterPfx && _IsFollowingIdent) switch(_FstChar)
+					if (_IsFstCharPfx && _IsFollowingIdent) switch(_FstChar)
 					{
 						case '@' : _Type = TokenType.Instruction;    break;
 						case ':' : _Type = TokenType.Label;          break;
 						case '^' : _Type = TokenType.Pointer;        break;
 						case 'g' : _Type = TokenType.GlobalIdent;    break;
-						case 'r' : _Type = TokenType.ReferenceIdent; break;
-						case 'i' : _Type = TokenType.InputIdent;     break;
+						//case 'r' : _Type = TokenType.ReferenceIdent; break;
+						case 'i' : _Type = _SndChar == 'r'
+							              ? TokenType.ReferenceIdent
+											  : TokenType.InputIdent;
+											                              break;
 						case 'o' : _Type = TokenType.OutputIdent;    break;
 
 						default  : _Type = TokenType.LocalIdent;     break;
 					}
 					else
 					{
-						if  (TypeRegex.IsMatch(_Str)) _Type = TokenType.Type;
-						else                          _Type = TokenType.Word;
+						//if  (TypeRegex.IsMatch(_Str)) _Type = TokenType.Type;
+						//else                          _Type = TokenType.Word;
+						_Type = TokenType.Word;
 					}
 				}
 			}
@@ -507,6 +533,16 @@ namespace AE.Data
 			///_ParserState.TokenStack;
 			this.ProcessSyntax(iCtx, iNewTokens, irTokens, (iCtx.State as GenericCodeLexerState).TokenStack);
 
+			//for(int cLi = 0, cTokenID = 0; cLi < this.Lines.Count; cLi++)
+			//{
+			//   foreach(var cToken in this.Lines[cLi].Tokens)
+			//   {
+			//      cToken.Fragment = cLi;
+			//      cToken.ID       = cTokenID ++;
+					
+			//      _AllTokens.Add(cToken);
+			//   }
+			//}
 
 			irTokens.AddRange(iNewTokens);
 		}

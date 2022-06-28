@@ -138,24 +138,24 @@ namespace AE.Editor
 			//}
 		}
 
-		[DllImport("../../../../Debug/AE.GraphicsLibrary.dll")]
+		[DllImport("../../../Debug/AE.GraphicsLibrary.dll")]
 		public static extern int gfMultiply (int iNum1, int iNum2);
-		[DllImport("../../../../Debug/AE.GraphicsLibrary.dll")]
+		[DllImport("../../../Debug/AE.GraphicsLibrary.dll")]
 		public static extern int gfFillWithColor (int[] iArray, int iTime, int iWidth, int iHeight, int iColor);
 
-		[DllImport("../../../../Debug/AE.GraphicsLibrary.dll")]
+		[DllImport("../../../Debug/AE.GraphicsLibrary.dll")]
 		public static extern void gfFillArray(int[] iDstArray, uint[] iSrcArray, int iPixelCount);
 
-		[DllImport("../../../../Debug/AE.GraphicsLibrary.dll")]
+		[DllImport("../../../Debug/AE.GraphicsLibrary.dll")]
 		public static extern void gfSetPixel(int[] iArray, int iWidth, int iHeight, int iX, int iY, int iColor);
-		[DllImport("../../../../Debug/AE.GraphicsLibrary.dll")]
+		[DllImport("../../../Debug/AE.GraphicsLibrary.dll")]
 		public static extern void gfDrawLine(int[] iArray, int iWidth, int iHeight, int iX1, int iY1, int iX2, int iY2, int iColor);
-		[DllImport("../../../../Debug/AE.GraphicsLibrary.dll")]
+		[DllImport("../../../Debug/AE.GraphicsLibrary.dll")]
 		public static extern void gfDrawLines(int[] iArray, int iWidth, int iHeight, int[] iLines, int iLineCount, int iColor);
-		[DllImport("../../../../Debug/AE.GraphicsLibrary.dll")]
+		[DllImport("../../../Debug/AE.GraphicsLibrary.dll")]
 		public static extern void gfDrawRectangles(int[] iArray, int iWidth, int iHeight, RectangleData[] iRects, int iLineCount);
 		
-		[DllImport("../../../../Debug/AE.GraphicsLibrary.dll")]
+		[DllImport("../../../Debug/AE.GraphicsLibrary.dll")]
 		public static extern void gfDrawChar(int[] iArray, int iWidth, int iHeight, int iX, int iY, int[] iChar);
 
 		
@@ -444,7 +444,7 @@ namespace AE.Editor
 		//protected unsafe override void OnPaint(PaintEventArgs e)
 		//{
 		//    ///base.OnPaint(e);
-		//    ///return;
+		//    ///return; 
 
 			
 

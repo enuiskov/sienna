@@ -23,44 +23,8 @@ namespace AE.Editor
 			return 1.0f;
 		}
 
-		static void DLTest()
+		static void BinTest()
 		{
-			var _Lines = System.IO.File.ReadAllLines(@"U:\Development\Aemria\Software\Debug\0.src");
-			var _Buffer = String.Join("\n", _Lines);
-
-			var _Lexer = new AEDLLexer();
-
-			var _LexCtx = _Lexer.CreateContext(_Buffer, 0, _Lexer.DefaultState);
-			var _Tokens = _Lexer.ParseBuffer(_LexCtx);
-			(_Lexer as AEDLLexer).ProcessPairs(_Tokens);
-
-			var _Parser = new AE.Data.DescriptionLanguage.ASTParser(_Tokens);
-			var _SyntaxTree = _Parser.ParseTokens(_Tokens);
-			;
-		}
-		[STAThread]
-		static void Main()
-		{
-			///DLTest();
-			//var _Num = 
-			//var _1 = sizeof(MyClass);
-			//var _2 = Marshal.SizeOf(typeof(MyClass));
-
-			//var _X = 1.0;//  * GetRandom1();
-			//var _Y = 2.0f;// * GetRandom1();
-			//var _Z = 3.0;//  * GetRandom1();
-
-			
-
-			//var _A = _X * _Y;
-			//var _B = _Y + _Z;
-			//var _C = _Z / _Y;
-
-			//var _D = _A + _B;
-			//var _E = _D * _C;
-
-
-
 			var _Memory = new UnmanagedMemory(256);
 			var _Stack = new ByteStack(_Memory, 127);
 			{
@@ -94,11 +58,69 @@ namespace AE.Editor
 			var _Tgt = "12345 12345 12345 12345 12345 12345 12345 ";
 			var _Key = Test.GetKey(_Src, _Tgt, true);
 			var _NewSrc = Test.GetKey(_Tgt, _Key, false);
+		}
+		static void DLTest(string iPath)
+		{
+			var _Lines = System.IO.File.ReadAllLines(iPath);
+			var _Buffer = String.Join("\n", _Lines);
+
+			var _Lexer = new AEDLLexer();
+
+			var _LexCtx = _Lexer.CreateContext(_Buffer, 0, _Lexer.DefaultState);
+			var _Tokens = _Lexer.ParseBuffer(_LexCtx);
+			(_Lexer as AEDLLexer).ProcessPairs(_Tokens);
+
+			var _Parser = new AE.Data.DescriptionLanguage.ASTParser(_Tokens);
+			var _SyntaxTree = _Parser.ParseTokens(_Tokens);
+			;
+		}
+		[STAThread]
+		static void Main(string[] iArgs)
+		{
+			var _S = System.IO.Path.GetFullPath("x");
+
+
+			string _AppMode = "", _FilePath = "";
+			{
+				if(iArgs.Length == 0)
+				{
+				}
+				else if(iArgs.Length == 1)
+				{
+					_AppMode  = iArgs[0];
+					_FilePath = iArgs[0];
+				}
+				else if(iArgs.Length == 2)
+				{
+					_AppMode  = iArgs[0];
+					_FilePath = iArgs[1];
+				}
+				else throw new Exception("Invalid arguments");
+			}
+
+			switch(_AppMode)
+			{
+				case "-test" :
+				{
+					DLTest(_FilePath);
+					break;
+				}
+				default :
+				{
+					if(!String.IsNullOrEmpty(_FilePath))
+					{
+						
+					}
+					else throw new Exception();
+					
+					break;
+				}
+			}
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new EditorMainForm());
-			//Application.Run(new TestMainForm());
+			Application.Run(new EditorMainForm(_FilePath));
+			///Application.Run(new TestMainForm());
 		}
 	}
 	//public struct MyClass

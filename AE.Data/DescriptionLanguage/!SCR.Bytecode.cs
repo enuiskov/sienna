@@ -191,10 +191,10 @@ namespace AE.Data.DescriptionLanguage
 			this.Type      = AEDLOpcodeType.Node;
 
 
-			if(iAssocNode[0].Token.Type == TokenType.HostObject)
-			{
+			//if(iAssocNode[0].Token.Type == TokenType.HostObject)
+			//{
 			
-			}
+			//}
 			//var _Sig =  iOpcodeInfo.Signature;
 			
 			switch(iAssocNode.Type)
@@ -262,32 +262,32 @@ namespace AE.Data.DescriptionLanguage
 							
 							break;
 						}
-						case SyntaxNodeType.HostObject : 
-						{
+			//         case SyntaxNodeType.HostObject : 
+			//         {
 						    
-							//if(cType == TokenType.HostObject)
-			//{
-							var _ListItems = iAssocNode.Children;
-							var _Namespace = this.GetType().Namespace;
-							var _EnumName = _ListItems[1].Token.Value.ToString();
-							var _EnumFieldName  = _ListItems[2].Token.Value.ToString();
+			//            //if(cType == TokenType.HostObject)
+			////{
+			//            var _ListItems = iAssocNode.Children;
+			//            var _Namespace = this.GetType().Namespace;
+			//            var _EnumName = _ListItems[1].Token.Value.ToString();
+			//            var _EnumFieldName  = _ListItems[2].Token.Value.ToString();
 							
-							var _Asm = Assembly.GetExecutingAssembly();
+			//            var _Asm = Assembly.GetExecutingAssembly();
 
-							var _EnumType  = _Asm.GetModules()[0].GetType(_Namespace + "." + _EnumName);
+			//            var _EnumType  = _Asm.GetModules()[0].GetType(_Namespace + "." + _EnumName);
 
-							if(_EnumType == null) throw new BadCodeException("Enum '" + _EnumName + " ' not found");
-							var _EnumFieldValue = _EnumType.GetField(_EnumFieldName);
-							if(_EnumFieldValue == null) throw new BadCodeException("Enum field '" + _EnumFieldName + "' not found");
+			//            if(_EnumType == null) throw new BadCodeException("Enum '" + _EnumName + " ' not found");
+			//            var _EnumFieldValue = _EnumType.GetField(_EnumFieldName);
+			//            if(_EnumFieldValue == null) throw new BadCodeException("Enum field '" + _EnumFieldName + "' not found");
 
-							var _Value = _EnumFieldValue.GetRawConstantValue();
+			//            var _Value = _EnumFieldValue.GetRawConstantValue();
 
-							//this.Name = (string)_AtomNode.Token.Value;
-							this.Type = AEDLOpcodeType.Push;
-							this.ValueToPush = BinaryValue.Parse(_Value, BinaryValueType.Int32);
+			//            //this.Name = (string)_AtomNode.Token.Value;
+			//            this.Type = AEDLOpcodeType.Push;
+			//            this.ValueToPush = BinaryValue.Parse(_Value, BinaryValueType.Int32);
 
-							break;
-						}
+			//            break;
+			//         }
 						default : 
 						{
 							///this.Name        = "push";

@@ -14,7 +14,7 @@ namespace AE.Visualization
 {
 	public partial class CodeEditorFrame : TextEditorFrame
 	{
-		public int SyntaxTokensMode = 1;
+		public int SyntaxTokensMode = 0;
 
 		//public CodeEditorFrame()
 		//{
@@ -43,8 +43,7 @@ namespace AE.Visualization
 				//{
 					if(this.Documents.Count == 0)
 					{
-						///_Value = System.IO.File.ReadAllText(@"L:\Development\Sienna\Software\AE.Studio\bin\Debug\0.src", Encoding.Default);
-						_NewDoc.Load(this.LastDocumentURI);
+						_NewDoc.Load(this.LastDocumentURI ?? DefaultFilePath);
 					}
 					else
 					{
@@ -60,15 +59,7 @@ namespace AE.Visualization
 
 					_NewDoc.Scroll = _OldDoc.Scroll;
 					_NewDoc.Cursor = _OldDoc.Cursor;
-
-
 				}
-				//_NewDoc.UpdateHighlighting();
-
-				///_NewDoc.QQQ_UpdateBeforeExecution();
-				//_NewDoc.UpdateSyntax();
-				//_NewDoc.UpdateSemantics();
-				//global::AE.Data.DescriptionLanguage.Interpreter.Routines.ProcessNodeLabels(_NewDoc.SyntaxTree, false);
 			}
 			this.Documents.Clear();
 			this.Documents.Add(_NewDoc);

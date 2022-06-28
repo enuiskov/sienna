@@ -274,7 +274,7 @@ namespace AE.Visualization
 		//    }
 		//    return oColor;
 		//}
-		public bool      IsLightTheme    = false;
+		public bool      IsLightTheme    = true;
 		
 		public CHSAColor BaseColor;
 		public Color[]   Colors;
@@ -359,14 +359,19 @@ namespace AE.Visualization
 				if(iDoGainHueContrast && oColor.C > 0 && oColor.C < 1)
 				{
 					///~~ gaining fore-to-back color contrast: green-to-white, blue-to-black;
+
+					
 					var _Rgb = (Color)oColor;
 					
-					if(!this.IsLightTheme)
+					if(this.IsLightTheme)
 					{
-					
 					}
-					oColor.SetContrast(oColor.C + ((IsLightTheme ? _Rgb.G : _Rgb.B) / 255f * 0.2f));
-					///oColor.SetContrast(oColor.C + ((this.IsLightTheme ? _Rgb.G : ((_Rgb.B * 1.0f) / 255f * 1.0f))));
+
+					//_Color.SetContrast(_Color.GetContrast() + ((this->IsLightTheme ? _RGBA.Channels.G : max(_RGBA.Channels.R,_RGBA.Channels.B)) / 255.0f * 0.1f));
+					oColor.SetContrast(oColor.C + ((this.IsLightTheme ? _Rgb.G : Math.Max(_Rgb.R,_Rgb.B)) / 255.0f * 0.1f));
+
+					//oColor.SetContrast(oColor.C + ((IsLightTheme ? _Rgb.G : _Rgb.B) / 255f * 0.2f));
+					//oColor.SetContrast(oColor.C + ((this.IsLightTheme ? _Rgb.G : ((_Rgb.B * 1.0f) / 255f * 1.0f))));
 				}
 				if(iDoInvertIfNeeded && IsLightTheme)
 				{

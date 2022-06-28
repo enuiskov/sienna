@@ -232,15 +232,15 @@ namespace AE.Visualization
 			///this.UpdateGLColors();
 
 
-			foreach(var cRow in this.Rows)
-			{
-				for(var cCi = 0; cCi < cRow.Cells.Length; cCi++)
-				{
-					var cCell = cRow.Cells[cCi];
-					cCell.Style.UpdateBytes(true);
-					cRow.Cells[cCi] = cCell;
-				}
-			}
+			//foreach(var cRow in this.Rows)
+			//{
+			//   for(var cCi = 0; cCi < cRow.Cells.Length; cCi++)
+			//   {
+			//      var cCell = cRow.Cells[cCi];
+			//      cCell.Style.UpdateBytes(true);
+			//      cRow.Cells[cCi] = cCell;
+			//   }
+			//}
 
 
 			if(this.IsTextureMode) this.UpdateGlyphs(true);

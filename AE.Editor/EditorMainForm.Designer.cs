@@ -14,6 +14,7 @@ namespace AE.Editor
 	{
 		private System.ComponentModel.IContainer components = null;
 		public static string BackupDirectory = @"U:\Backup\Development\AE.Editor";
+		public string FilePath;
 
 		//public EditorControl CodeEditor;
 
@@ -124,7 +125,7 @@ namespace AE.Editor
 			var _IsExecMode = Keyboard.IsKeyToggled(AE.Visualization.Keys.Scroll);
 			var _IsFastMode = Keyboard.IsKeyToggled(AE.Visualization.Keys.CapsLock);
 			
-			if(_IsExecMode)
+			if(_IsExecMode && CodeEditorFrame.IsIntepreter)
 			{
 			//    var _AEDLDoc = this.EditorControl.CodeEditor.CurrentDocument as CodeEditorFrame.AEDLDocument;
 			//    _AEDLDoc.Interpreter.TryAutoStep();
@@ -414,11 +415,21 @@ namespace AE.Editor
 			///this.EditorControl.CanvasControl.Canvas.InverseColorTheme();
 			this.SetDesktopBounds(50,50,1100,800);
 		}
+		
+		private FormWindowState LastWindowState;
 		protected override void OnResize(EventArgs e)
 		{
 			base.OnResize(e);
 
-			if(!this.Visible) return;
+			if(this.WindowState != this.LastWindowState && this.LastWindowState == FormWindowState.Minimized)
+			{
+				this.EditorControl.CanvasControl.Canvas.OnResize(null);
+			}
+			this.LastWindowState = this.WindowState;
+		}
+		protected override void OnVisibleChanged(EventArgs e)
+		{
+			base.OnVisibleChanged(e);
 		}
 	}
 }

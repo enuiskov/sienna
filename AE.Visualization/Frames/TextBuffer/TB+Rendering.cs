@@ -37,23 +37,27 @@ namespace AE.Visualization
 			var _StrikeFont    = new Font(_RegularFont, FontStyle.Strikeout);
 			var _UnderlineFont = new Font(_RegularFont, FontStyle.Underline);
 
-			_Grx.Device.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-			_Grx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
+			_Grx.Device.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
 
-			///_Grx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+			if(this.Palette.IsLightTheme)
+			{
+				_Grx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+				//_Grx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+			}
+			else
+			{
+				_Grx.Device.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+			}
 
 
 			for(var cRi = 0; cRi < this.Rows.Length; cRi++)
 			{
 				var cRow = this.Rows[cRi]; if(cRow.IsValidated && !iDoForceFullUpdate) continue;
 
-				
 				_Grx.Device.SetClip(new Rectangle(0,cRi * this.Settings.LineHeight,this.Width, this.Settings.LineHeight), System.Drawing.Drawing2D.CombineMode.Intersect);
 				_Grx.Clear();
 				_Grx.ResetClip();
-
-				
 
 				for(var cCi = 0; cCi < cRow.Cells.Length; cCi++)
 				{
@@ -71,7 +75,7 @@ namespace AE.Visualization
 
 					if(cNeedsBackDrawing)
 					{
-						_BackBrush.Color = this.Palette.Adapt(cBackColor);
+						_BackBrush.Color = this.Palette.Adapt(cBackColor,true,true);
 						_Grx.FillRectangle(_BackBrush, new RectangleF(cPos.X,cPos.Y,this.Settings.CharWidth * 1.5f,this.Settings.LineHeight));
 					}
 
@@ -83,8 +87,9 @@ namespace AE.Visualization
 						//{
 						
 						//}
-						_ForeBrush.Color = this.Palette.Adapt(cForeColor);
+						_ForeBrush.Color = this.Palette.Adapt(cForeColor,true,true);
 
+						
 						var cFont = _RegularFont; switch(cCell.Style.FontStyle)
 						{
 							case FontStyle.Bold      : cFont = _BoldFont;      break;
@@ -107,39 +112,37 @@ namespace AE.Visualization
 			if(this.NeedsVertexSync) this.UpdateSheetImage(false);
 
 
-			//return;
+			iGrx.Device.SetClip(new Rectangle(0, 0, this.Width, this.BufferSize.Height * this.Settings.LineHeight));
+
+			var _SplitY = this.GlyphSplitLine * this.Settings.LineHeight;
+			var _Pos1 = new Point(0,-_SplitY);
+			var _Pos2 = new Point(0, (this.BufferSize.Height * this.Settings.LineHeight) - _SplitY);
+
+			//iGrx.Device.DrawImage(this.SheetImage, new Rectangle(_Pos1, this.Bounds.Size));
+			//iGrx.Device.DrawImage(this.SheetImage, new Rectangle(_Pos2, this.Bounds.Size));
+
+			var _Rect1 = new Rectangle(_Pos1, this.SheetImage.Size);
+			var _Rect2 = new Rectangle(_Pos2, this.SheetImage.Size);
+
+			///iGrx.Device.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+			///iGrx.Device.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.AssumeLinear;
 			
-			//base.DrawForeground(iGrx);
-
-			///iGrx.SetClip(new Rectangle(0, 0, this.Width, this.BufferSize.Height * this.Settings.LineHeight));
-
-			//var _Cter = iGrx.BeginContainer();
+			iGrx.Device.DrawImage(this.SheetImage, new Rectangle(_Pos1, this.SheetImage.Size));
+			//var _ImgAttr = new System.Drawing.Imaging.ImageAttributes();
 			//{
-				iGrx.Device.SetClip(new Rectangle(0, 0, this.Width, this.BufferSize.Height * this.Settings.LineHeight));
-
-				var _SplitY = this.GlyphSplitLine * this.Settings.LineHeight;
-				var _Pos1 = new Point(0,-_SplitY);
-				var _Pos2 = new Point(0, (this.BufferSize.Height * this.Settings.LineHeight) - _SplitY);
-
-				//iGrx.Device.DrawImage(this.SheetImage, new Rectangle(_Pos1, this.Bounds.Size));
-				//iGrx.Device.DrawImage(this.SheetImage, new Rectangle(_Pos2, this.Bounds.Size));
-
-				var _Rect1 = new Rectangle(_Pos1, this.SheetImage.Size);
-				var _Rect2 = new Rectangle(_Pos2, this.SheetImage.Size);
-
-				
-				iGrx.Device.DrawImage(this.SheetImage, new Rectangle(_Pos1, this.SheetImage.Size));
-				///iGrx.Device.DrawRectangle(new Pen(new SolidBrush(Color.FromArgb(255,Color.Green)),4f), _Rect1);
-
-				if(_SplitY != 0)
-				{
-					iGrx.Device.DrawImage(this.SheetImage,_Rect2);
-					///iGrx.Device.DrawRectangle(new Pen(new SolidBrush(Color.FromArgb(255,Color.Orange)),2f), _Rect2);
-				}
-				iGrx.ResetClip();
+			//   _ImgAttr.
 			//}
-			//iGrx.EndContainer(_Cter);
+			//iGrx.Device.DrawImage(this.SheetImage, new Rectangle(_Pos1, this.SheetImage.Size), new Rectangle(Point.Empty, this.SheetImage.Size), GraphicsUnit.Pixel, );
+
 			
+			///iGrx.Device.DrawRectangle(new Pen(new SolidBrush(Color.FromArgb(255,Color.Green)),4f), _Rect1);
+
+			if(_SplitY != 0)
+			{
+				iGrx.Device.DrawImage(this.SheetImage,_Rect2);
+				///iGrx.Device.DrawRectangle(new Pen(new SolidBrush(Color.FromArgb(255,Color.Orange)),2f), _Rect2);
+			}
+			iGrx.ResetClip();
 		}
 
 		//private void CreateFontAtlas()

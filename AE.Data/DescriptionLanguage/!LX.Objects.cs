@@ -60,7 +60,7 @@ namespace AE.Data
 		Undefined,
 		SyntaxToken,
 
-		FileError,
+		RootError,
 		BlockError,
 		ExpressionError,
 		ListError,
@@ -107,9 +107,9 @@ namespace AE.Data
 			GlobalIdent,
 			MemberIdent,
 			Word,
-			HostObject,
-			PackedTuple,
-			Type,
+			//HostObject,
+			//PackedTuple,
+			//Type,
 		IdentifiersEnd,
 			//EndOF
 
@@ -151,7 +151,7 @@ namespace AE.Data
 		public bool IsCloser      {get{return this.Type == TokenType.ExpressionCloser || this.Type == TokenType.ListCloser || this.Type == TokenType.ListItemCloser || this.Type == TokenType.ParenthesisCloser ||  this.Type == TokenType.BracketCloser ||  this.Type == TokenType.BraceCloser;}}
 
 
-		public bool IsPseudotoken {get{return this.Type == TokenType.ExpressionOpener || this.Type == TokenType.ListOpener || this.Type == TokenType.ListItemOpener || this.Type == TokenType.ExpressionCloser || this.Type == TokenType.ListCloser || this.Type == TokenType.ListItemCloser || this.Type == TokenType.ListError;}}
+		public bool IsSyntaxToken {get{return this.Type == TokenType.ExpressionOpener || this.Type == TokenType.ListOpener || this.Type == TokenType.ListItemOpener || this.Type == TokenType.ExpressionCloser || this.Type == TokenType.ListCloser || this.Type == TokenType.ListItemCloser || this.Type == TokenType.ListError;}}
 		//public bool IsPseudotoken {get{return this.Type == TokenType.ExpressionOpener || this.Type == TokenType.ListOpener || this.Type == TokenType.ListItemOpener || this.Type == TokenType.ExpressionCloser || this.Type == TokenType.ListCloser || this.Type == TokenType.ListItemCloser || this.Type == TokenType.ListError;}}
 		public bool IsWhitespace  {get{return this.Type >= TokenType.Whitespace && this.Type <= TokenType.NewLine;}}
 		public bool IsGarbage     {get{return this.Type == TokenType.Garbage || this.Type == TokenType.Comment;}}
@@ -195,6 +195,8 @@ namespace AE.Data
 		}
 		public new void Add(TokenInfo iItem)
 		{
+			iItem.ID = this.Count;
+
 			if(!iItem.IsAligned)
 			{
 				var _LastToken = this.Count > 0 ? this[this.Count - 1] : null;
@@ -203,6 +205,14 @@ namespace AE.Data
 				iItem.Length = 0;
 			}
 			base.Add(iItem);
+		}
+		public new void AddRange(IEnumerable<TokenInfo> iItems)
+		{
+			var cIi = 0; foreach(var cItem in iItems)
+			{
+				cItem.ID = this.Count + (cIi ++);
+			}
+			base.AddRange(iItems);
 		}
 		//public new void Add(TokenInfo iItem, int iNewID)
 		//{

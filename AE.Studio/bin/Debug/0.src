@@ -1,6 +1,4 @@
-//~~(1;;); //~~ forces syntax error after double ';';
 (
-*test_bug {42; drop;};
 *!1 {get_SP};
 *!2 {sub get_SP,-4};
 *!3 {sub get_SP,-8};
@@ -21,12 +19,6 @@
 *drop7 {set_SP (sub get_SP,-28)};
 *drop8 {set_SP (sub get_SP,-32)};
 *drop9 {set_SP (sub get_SP,-36)};
-
-
-
-
-
-
 
 *push  {};
 *bla   {nop};
@@ -210,16 +202,16 @@ drawimage
 	drawrect (black,   10,6, 10,8, screensize);
 	!!!;
 };
-testproc (rTestVar,iName,iAge,iPassNum,o1,oError; "#+*4")
+testproc (irTestVar,iName,iAge,iPassNum,o1,oError; "#+*4")
 {
-	set rTestVar 123456;
+	set irTestVar 123456;
 	set o1     555;
 	set oError 42;
 };
-mtest (r0,r1, i0,i1,i2, o0,o1,o2,o3, _1,_2,_3)
+mtest (ir0,ir1, i0,i1,i2, o0,o1,o2,o3, _1,_2,_3)
 {
-	set r0 101;
-	set r1 102;
+	set ir0 101;
+	set ir1 102;
 	set o0 777;
 	set o1 778;
 	set o2 779;
@@ -231,64 +223,7 @@ mtest (r0,r1, i0,i1,i2, o0,o1,o2,o3, _1,_2,_3)
 
 !program// (oError)
 {
-//	777;
-//	!!!,mtest (11,22, 333,444,555);
-//	!!!;
-//	mtest;
-//	///!!!;
-//	1;
-//	!!!,test_AAA();
-//	!!!;
-//	neg 2;// drop2;
-//	
-//	1,2,3,4,5;
-//	1,2,3,4,5;
-//	//!!!,neg 5;
-//	!!!,neg (40,41,42,43,44,45);
-//	
-//	!!!;
-//	mtest (11,22,333,444,555);
-	//!!!;
-	//eqz?  0;
-	//eqz? +1;
-	//eqz? +10;
-	//eqz? -10;
-	//drop4;
-	//!!!;
-//	
-	
-	//!!!;
-	//!!!;
-	//#ffffffffx16;
-	
-	//sign +50;
-	//sign -50;
-	//sign   0;
-	//!!!;
-//
-	//!!!;
-	//not;
-	//!!!;
-	//!!!;
 	drawimage;
-	//!!!;
-//	654321;
-//	
-	//111,222,333;
-	//!!!;
-	//testproc();
-//	
-//	
-//	111,222,333;
-//	!!!;
-//	//wasf;
-//	drop4;
-//	drop4;
-//	drop4;
-//	
-//	drop4;
-//	drop4;
-//	
 	reset;
 };
 

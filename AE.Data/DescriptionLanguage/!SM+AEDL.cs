@@ -265,10 +265,10 @@ namespace AE.Data.DescriptionLanguage
 							case SyntaxNodeType.Instruction           : _InstrCount   ++; break;
 							case SyntaxNodeType.Label                 : _LabelCount   ++; break;
 							case SyntaxNodeType.Pointer               : _PointerCount ++; break;
-							case SyntaxNodeType.PackedTuple           : _TupleCount   ++; break;
+							///case SyntaxNodeType.PackedTuple           : _TupleCount   ++; break;
 
-							case SyntaxNodeType.HostObject            : _HObjCount    ++; break;
-							case SyntaxNodeType.Type                  : _TypeCount    ++; break;
+							///case SyntaxNodeType.HostObject            : _HObjCount    ++; break;
+							///case SyntaxNodeType.Type                  : _TypeCount    ++; break;
 							case SyntaxNodeType.Word                  : _WordCount    ++; break;
 
 							case SyntaxNodeType.ParenthesisBlock      : _ParenBlockCount ++; break;
@@ -439,9 +439,9 @@ namespace AE.Data.DescriptionLanguage
 					case SyntaxNodeType.OutputIdentifier      : goto case SyntaxNodeType.Identifier;
 					case SyntaxNodeType.MemberIdentifier      : goto case SyntaxNodeType.Identifier;
 					//case SyntaxNodeType.FunctionIdentifier : goto case SyntaxNodeType.Identifier;
-					case SyntaxNodeType.HostObject            : goto case SyntaxNodeType.Identifier;
-					case SyntaxNodeType.Type                  : goto case SyntaxNodeType.Identifier;
-					case SyntaxNodeType.PackedTuple           : goto case SyntaxNodeType.Identifier;
+					///case SyntaxNodeType.HostObject            : goto case SyntaxNodeType.Identifier;
+					///case SyntaxNodeType.Type                  : goto case SyntaxNodeType.Identifier;
+					///case SyntaxNodeType.PackedTuple           : goto case SyntaxNodeType.Identifier;
 
 				
 

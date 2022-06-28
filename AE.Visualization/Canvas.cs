@@ -297,7 +297,7 @@ namespace AE.Visualization
 			var _Control = this.Control as WF.UserControl;
 
 			if(this.Frame == null) return;
-			
+
 			///if(_Control.ParentForm != null && !_Control.ParentForm.Visible) return;
 			
 

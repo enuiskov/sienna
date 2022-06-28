@@ -10,8 +10,10 @@ namespace AE.Editor
 {
 	public partial class EditorMainForm : Form
 	{
-		public EditorMainForm()
+		public EditorMainForm(string iFilePath)
 		{
+			AE.Visualization.CodeEditorFrame.DefaultFilePath = iFilePath;
+			AE.Visualization.CodeEditorFrame.IsIntepreter    = System.IO.Path.GetExtension(iFilePath) == ".src";
 			InitializeComponent();
 		}
 	}

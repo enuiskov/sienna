@@ -31,7 +31,7 @@ namespace AE.Visualization
 			//public static CellStyle Default = new CellStyle(2,0);
 			///public static CellStyle Default {get{return new CellStyle(CHSAColor.Glare, CHSAColor.Transparent);}}
 			public static CellStyle Default    = new CellStyle(CHSAColor.Glare, CHSAColor.Transparent);
-			public static CellStyle Whitespace = new CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent);
+			public static CellStyle Whitespace = new CellStyle(CHSAColor.Glare.WithAlpha(0.15f), CHSAColor.Transparent);
 
 			
 			//public int ForeColorIndex{get{return this.ForeColorIndex_;}set{this.ForeColorIndex_ = value; this.UpdateBytes();}} private int ForeColorIndex_;
