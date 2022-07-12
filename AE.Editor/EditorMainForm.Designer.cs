@@ -13,12 +13,11 @@ namespace AE.Editor
 	partial class EditorMainForm
 	{
 		private System.ComponentModel.IContainer components = null;
-		public static string BackupDirectory = @"U:\Backup\Development\AE.Editor";
+		public static string BackupDirectory = null;
 		public string FilePath;
+		private string SettingsFilePath = "Settings.xml";
 
-		//public EditorControl CodeEditor;
 
-		//public GdiCanvasControl Canvas;
 		public EditorControl   EditorControl;
 		
 		public StatusStrip Status;
@@ -318,7 +317,7 @@ namespace AE.Editor
 				{
 					if(iEvent.Control)
 					{
-						if(Directory.Exists(EditorMainForm.BackupDirectory))
+						if(!String.IsNullOrEmpty(EditorMainForm.BackupDirectory) && Directory.Exists(EditorMainForm.BackupDirectory))
 						{
 							var _DocPath     = _AEDLDoc.URI;
 							var _DocFileName = Path.GetFileName(_DocPath);
@@ -374,46 +373,95 @@ namespace AE.Editor
 					_AEDLDoc.Save();
 				}
 			}
+			this.SaveSettings();
 			Application.Exit();
+
 			return false;
 		}
-		//protected override void OnPaint(PaintEventArgs e)
-		//{
-		//    this.Step(0);
-		//    base.OnPaint(e);
-			
-		//}
-		//public void Step(int iDirection)
-		//{
-		//    var _AEDLDoc = this.EditorControl.CodeEditor.CurrentDocument as CodeEditorFrame.AEDLDocument;
-		//    var _Iter    = _AEDLDoc.Interpreter;
+		public void SaveSettings()
+		{
+			var _Node = new DataNode("AE.Editor");
+			{
+				var _SettingsN = _Node.Create("Settings");
+				
+				_SettingsN["@is-light-theme"] = this.EditorControl.CanvasControl.Canvas.Palette.IsLightTheme;
+				_SettingsN["@backup-directory"] = EditorMainForm.BackupDirectory;
 
-		//    if(!_AEDLDoc.IsExecutionReady)
-		//    {
-		//        _AEDLDoc.QQQ_UpdateBeforeExecution();
-		//        this.EditorControl.MakeStepsUntilEntryPoint();
-		//        return;
-		//    }
+				var _WindowN = _SettingsN.Create("Window");
+				{
+					_WindowN["@state"]  = this.WindowState.ToString();
+					_WindowN["@bounds"] = this.DesktopBounds.X + "," + this.DesktopBounds.Y + "," + this.DesktopBounds.Width + "," + this.DesktopBounds.Height;
+				}
+				var _DocumentN = _SettingsN.Create("Document");
+				{
+					var _Cursor = this.EditorControl.CodeEditor.CurrentDocument.Cursor.Position;
 
-		//    switch(iDirection)
-		//    {
-		//        case  0 : _Iter.StepOver(); break;
-		//        case +1 : _Iter.StepInto(); break;
-		//        case -1 : _Iter.StepOut();  break;
-		//    }
+					_DocumentN["@path"]   = this.FilePath;
+					_DocumentN["@scroll-y"] = this.EditorControl.CodeEditor.CurrentDocument.Scroll.Offset.Y;
+					_DocumentN["@cursor"] = _Cursor.X + "," + _Cursor.Y;
+				}
+			}
+			DataNode.Save(_Node, this.SettingsFilePath);
+		}
+		public void LoadSettings()
+		{
+			if(File.Exists(this.SettingsFilePath))
+			{
+				var _Node = DataNode.Load(this.SettingsFilePath);
+				var _SettingsN = _Node["Settings"];
+				var _WindowN   = _SettingsN["Window"];
+				var _DocumentN = _SettingsN["Document"];
 
-		//    _AEDLDoc.UpdateHighlightings(0);
-		//    this.EditorControl.UpdateDebugData();
-		//}
+				var _IsLightTheme = _SettingsN["@is-light-theme"];
+				EditorMainForm.BackupDirectory = _SettingsN["@backup-directory"];
+
+
+				var _Bounds = new Rectangle();
+				{
+					var _BBStr = _WindowN["@bounds"].Value;
+					var _BB    = _BBStr.Split(',');
+				
+					_Bounds.X      = Int32.Parse(_BB[0]);
+					_Bounds.Y      = Int32.Parse(_BB[1]);
+					_Bounds.Width  = Int32.Parse(_BB[2]);
+					_Bounds.Height = Int32.Parse(_BB[3]);
+				}
+
+
+				var _CrsPos = new TextBufferFrame.TextBufferOffset();
+				{
+					var _CrsPosStrPP = _DocumentN["@cursor"].Value.Split(',');
+
+					_CrsPos.X = Int32.Parse(_CrsPosStrPP[0]);
+					_CrsPos.Y = Int32.Parse(_CrsPosStrPP[1]);
+				}
+				this.EditorControl.CodeEditor.CurrentDocument.Cursor.Position = _CrsPos;
+				this.EditorControl.CodeEditor.CurrentDocument.Scroll.Offset.Y = _DocumentN["@scroll-y"];
+				
+
+				this.WindowState = _WindowN["@state"].Value == "Maximized" ? FormWindowState.Maximized : FormWindowState.Normal;
+				this.DesktopBounds = _Bounds;
+				this.EditorControl.CanvasControl.Canvas.SetColorTheme(_IsLightTheme);
+
+				return;
+			}
+			else
+			{
+				this.SetDesktopBounds(50,50,1100,800);
+			}
+		}
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-
 			this.OnResize(null);
 
+			
+
+			this.LoadSettings();
+
 			///this.EditorControl.CanvasControl.Canvas.InverseColorTheme();
-			this.SetDesktopBounds(50,50,1100,800);
+			
 		}
 		
 		private FormWindowState LastWindowState;

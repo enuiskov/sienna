@@ -144,16 +144,16 @@ namespace AE.Visualization
 		}
 
 
+		public void SetColorTheme(bool iIsLightTheme)
+		{
+			this.Palette.Update(iIsLightTheme);
+			ColorPalette.Default.Update(iIsLightTheme);
+			
+			this.OnThemeUpdate(null);
+		}
 		public void InverseColorTheme()
 		{
-			this.Palette.Update(!this.Palette.IsLightTheme);
-			///this.Palette.IsLightTheme = !this.Palette.IsLightTheme;
-
-			ColorPalette.Default.Update(this.Palette.IsLightTheme);
-			///this.Palette.Update();
-			
-
-			this.OnThemeUpdate(null);
+			this.SetColorTheme(!this.Palette.IsLightTheme);
 		}
 		
 		//protected virtual void OnPaint            (WF.PaintEventArgs iEvent)

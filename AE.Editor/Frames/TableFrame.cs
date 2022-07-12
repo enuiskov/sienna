@@ -171,7 +171,7 @@ namespace AE.Visualization
 
 				if(cRi == this.Data.Boundary)
 				{
-					iGrx.DrawLine(new Pen(this.Palette.Glare, 1), 2, cY + _RowH, this.Width - 2, cY + _RowH);
+					iGrx.DrawLine(new Pen(this.Palette.AdaptedColor, 1), 2, cY + _RowH, this.Width - 2, cY + _RowH);
 				}
 			}
 
@@ -186,9 +186,9 @@ namespace AE.Visualization
 			//this.Data.Boundary
 			//iGrx.DrawLine(new Pen(this.Palette.Fore, 1), 0,0,100,100);
 
-			iGrx.DrawRectangle(new Pen(this.Palette.Fore, 1), new Rectangle(Point.Empty, this.Bounds.Size - new Size(1,1)));
+			iGrx.DrawRectangle(new Pen(this.Palette.AdaptedColor, 1), new Rectangle(Point.Empty, this.Bounds.Size - new Size(1,1)));
 
-			///base.DrawForeground(iGrx);
+			//base.DrawForeground(iGrx);
 		}
 
 

@@ -1,0 +1,182 @@
+(
+*!1 {get_SP};
+*!2 {sub get_SP,-4};
+*!3 {sub get_SP,-8};
+*!4 {sub get_SP,-12};
+*!5 {sub get_SP,-16};
+*!6 {sub get_SP,-20};
+*!7 {sub get_SP,-24};
+*!8 {sub get_SP,-28};
+*!9 {sub get_SP,-32};
+
+*drop  {drop1};
+*drop1 {set_SP (sub get_SP,-4)};
+*drop2 {set_SP (sub get_SP,-8)};
+*drop3 {set_SP (sub get_SP,-12)};
+*drop4 {set_SP (sub get_SP,-16)};
+*drop5 {set_SP (sub get_SP,-20)};
+*drop6 {set_SP (sub get_SP,-24)};
+*drop7 {set_SP (sub get_SP,-28)};
+*drop8 {set_SP (sub get_SP,-32)};
+*drop9 {set_SP (sub get_SP,-36)};
+
+*push  {};
+*bla   {nop};
+*dup   {get !1};
+*movup {set !2};
+
+*eqz?
+{
+	jpos,drop (dup),            ^0;
+	jpos,drop (sub 0,(get !2)), ^0;
+	
+	    ret drop,1;
+	:0; ret drop,0;
+};
+*jz
+{
+	jpos (get,eqz? !2),^J; drop;
+	
+	set !2; ret;
+	
+	:J; set !2; goto2;
+};
+
+*reset  {mode 254};
+
+*add   {neg; sub};
+*neg   {dup; set !3 0; sub};
+
+*mulsign
+{
+	dup;
+	jpos not,^Z;
+		jpos drop,^P;
+			drop; neg;
+	
+	:P; ret;
+	:Z; drop2; 0;
+};
+
+mul (iOp1'$i32,iOp2'$i32,oV'$i32,    _Neg2'$i32,cI'$i32)
+{
+	jz (get iOp1),^Z; drop;
+	jz (get iOp2),^Z; drop;
+	
+	jpos (sub (get iOp2; get iOp1)),^DontSwap;
+	(
+		drop;
+		get iOp1;
+		set iOp1 (get iOp2);
+		set iOp2;
+	);
+	
+	:DontSwap;
+	
+	set oV 0;
+	set _Neg2 (get,neg iOp2);
+	
+	set cI (get,abs iOp1); :I; jpos,drop (dec,dup),^I
+	(
+		set oV (sub (get oV; get _Neg2));
+	);
+	set oV (mulsign (get oV; get,sign iOp1));
+	ret;
+	
+	:Z; set oV 0;
+};
+
+*abs     {dup; jpos ^RET; drop; neg; :RET;};
+*sign    {jpos ^POS; neg; jpos ^NEG; ret; :POS; ret +1; :NEG; ret -1; };
+*clamp01 {sign; inc; dup; jpos ^GE0; drop; ret; :GE0; dec};
+
+*goto    {csp++;       set_IP;};
+*goto2   {csp++,csp++; set_IP;};
+
+*case    {jpos (not sub (get !3; get !2)),^J; drop3; ret; :J; drop; movup; csp++; set_IP};
+*not     {jpos ^1; neg; jpos ^1; drop; ret 1; :1; ret 0};
+*and     {sub (clamp01,neg; set !3 (get,clamp01 !2)); dec; clamp01};
+*or      {!!!; };
+*xor     {!!!; };
+
+**sub    {!!!;};
+**equals {!!!;};
+**less?  {get; !3; get; sub; jpos ^TRUE; set !3 0; drop; ret; :TRUE; set !2 1;};
+
+*inc {sub -1};
+*dec {sub +1};
+
+**inc {dup; dup; get; inc; set !3; set};
+**dec {dup; dup; get; dec; set !3; set};
+
+*white {#ffffffffx16}; *black {#ff000000x16};
+*red   {#ffff0000x16}; *green {#ff00ff00x16}; *blue {#ff0000ffx16}; *yellow {#ffffff00x16};
+*screensize {30,20};
+*argb       {set (mul 4)};
+
+fillrect (iColor,iX,iY,iW,iH,iScrW,iScrH,_MaxX,_MaxY,_ScanW,cX,cY,cBase)
+{
+	set _MaxX  (add (get iX; get iW));
+	set _MaxY  (add (get iY; get iH));
+	
+	set _ScanW (mul (get iScrW; 1));
+	
+	set cY (get iY); :Y; jpos,drop (sub (get _MaxY; get cY)),^Y
+	(
+		set cX (get iX); :X; jpos,drop (sub (get _MaxX; get cX)),^X
+		(
+			set cBase (mul (get _ScanW; get cY); add (get cX));
+			!!!;
+			argb (get cBase) (get iColor);
+			*inc cX;
+		);
+		*inc cY;
+	);
+};
+drawrect (iColor,iX,iY,iW,iH,iScrW,iScrH)
+{
+	fillrect ((get iColor), (get iX),(get iY),  (get iW),1, screensize);
+	fillrect ((get iColor), (get iX),(get iY),  1,(get iH), screensize);
+	
+	fillrect ((get iColor),  (add (get iX; (get iW; sub 1))),  (get iY),              1, (get iH), screensize);
+	fillrect ((get iColor),  (get iX), (add (get iY; (get iH; sub 1))), (get iW),        1, screensize);
+};
+drawimage
+{
+	fillrect (white,  0,  0, 30, 20, screensize);
+	drawrect (black,  1,  1, 28, 18, screensize);
+	
+	fillrect (yellow,   6,3, 10,8, screensize);
+	drawrect (red,      6,3, 10,8, screensize);
+	fillrect (blue,     4,7, 20,3, screensize);
+	
+	fillrect (green,   10,6, 10,8, screensize);
+	drawrect (black,   10,6, 10,8, screensize);
+	!!!;
+};
+testproc (irTestVar,iName,iAge,iPassNum,o1,oError; "#+*4")
+{
+	set irTestVar 123456;
+	set o1     555;
+	set oError 42;
+};
+mtest (ir0,ir1, i0,i1,i2, o0,o1,o2,o3, _1,_2,_3)
+{
+	set ir0 101;
+	set ir1 102;
+	set o0 777;
+	set o1 778;
+	set o2 779;
+	set o3 780;
+};
+*test_AAA {111; test_BBB;};
+*test_BBB {222; test_CCC;};
+*test_CCC {333; };
+
+!program
+{
+	drawimage;
+	reset;
+};
+
+);

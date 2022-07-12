@@ -44,11 +44,11 @@ namespace AE.Editor
 				///this.CanvasControl.Canvas.Frame = new CodeEditorFrame{Name = "CodeEditor", Bounds = new System.Drawing.Rectangle(0,0,300,300), Palette = new GdiColorPalette(0.5,2.5,0.5), Canvas = this.CanvasControl.Canvas, Dock = AE.Visualization.DockStyle.Left};
 				var _RootFrame = this.CanvasControl.Canvas.Frame = new RootFrame{Canvas = this.CanvasControl.Canvas, Dock = AE.Visualization.DockStyle.Fill};
 				{
-					_RootFrame.Children.Add(this.CodeEditor = new CodeEditorFrame {Name = "CodeEditor", Margin = new AE.Visualization.Padding(0,0,300,0), Palette = new GdiColorPalette(0.5,2.5,0.5), Dock = AE.Visualization.DockStyle.None});
-					_RootFrame.Children.Add(this.Variables  = new TableFrame      {Name = "Variables", Bounds = new System.Drawing.Rectangle(0,0,300,100), Palette = new GdiColorPalette(0.5,2.5,0.5), Margin = new AE.Visualization.Padding(-1,0,0,-1)});
-					_RootFrame.Children.Add(this.Operands   = new TableFrame      {Name = "Operands", Bounds = new System.Drawing.Rectangle(0,0,300,250), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,100,0,300), ColumnWidths = new int[]{40,80,10,-1,25}});
-					_RootFrame.Children.Add(this.Calls      = new TableFrame      {Name = "Calls",    Bounds = new System.Drawing.Rectangle(0,0,300,100), Palette = new GdiColorPalette(0.5,2.5,0.5),   Margin = new AE.Visualization.Padding(-1,-1,0,200), ColumnWidths = new int[]{30,-1,75}});
-					_RootFrame.Children.Add(this.Image      = new MemoryImageFrame {Name = "MemoryImage", Bounds = new System.Drawing.Rectangle(0,0,300,200), Palette = new GdiColorPalette(0.5,2.5,0.5),  Margin = new AE.Visualization.Padding(-1,-1,0,0)});
+					_RootFrame.Children.Add(this.CodeEditor = new CodeEditorFrame  {Name = "CodeEditor",  Margin = new AE.Visualization.Padding(0,0,300,0),   Palette = new GdiColorPalette(0.2,0,0), Dock = AE.Visualization.DockStyle.None});
+					_RootFrame.Children.Add(this.Variables  = new TableFrame       {Name = "Variables",   Bounds = new System.Drawing.Rectangle(0,0,300,100), Palette = new GdiColorPalette(0.2,0,0),    Margin = new AE.Visualization.Padding(-1,0,0,-1)});
+					_RootFrame.Children.Add(this.Operands   = new TableFrame       {Name = "Operands",    Bounds = new System.Drawing.Rectangle(0,0,300,250), Palette = new GdiColorPalette(0.2,0,0),  Margin = new AE.Visualization.Padding(-1,100,0,300), ColumnWidths = new int[]{40,80,10,-1,25}});
+					_RootFrame.Children.Add(this.Calls      = new TableFrame       {Name = "Calls",       Bounds = new System.Drawing.Rectangle(0,0,300,100), Palette = new GdiColorPalette(0.2,0,0),   Margin = new AE.Visualization.Padding(-1,-1,0,200), ColumnWidths = new int[]{30,-1,75}});
+					_RootFrame.Children.Add(this.Image      = new MemoryImageFrame {Name = "MemoryImage", Bounds = new System.Drawing.Rectangle(0,0,300,200), Palette = new GdiColorPalette(0.2,0,0),  Margin = new AE.Visualization.Padding(-1,-1,0,0)});
 					//this.Console    = new BufferConsoleFrame {Name = "Debug", Bounds = new System.Drawing.Rectangle(0,0,300,0), Palette = new GdiColorPalette(0.5,2.5,0.5), Margin = new AE.Visualization.Padding(-1,0,0,100)};
 
 					if(CodeEditorFrame.IsIntepreter == false)

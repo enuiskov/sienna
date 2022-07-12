@@ -155,7 +155,7 @@ namespace AE.Data
 				if(cChar != _FoundWs)          break;
 
 				if(AEDLLexer.IsNewline(cChar)) break;
-
+				
 				_EndOffs++;
 			}
 			
@@ -554,7 +554,6 @@ namespace AE.Data
 
 			var _IsSingleToken = iNewTokens.Count == 1; if(!_IsSingleToken){}
 			var _TokenType     = _Token.Type;
-			
 			//if(irStack.Count == 0)
 			//{
 			//   ///~~ need opener token before any whitespace and comment tokens;

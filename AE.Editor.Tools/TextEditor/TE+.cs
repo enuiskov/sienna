@@ -14,7 +14,7 @@ namespace AE.Visualization
 {
 	public partial class TextEditorFrame : TextBufferFrame
 	{
-		public static string DefaultFilePath = "0.src";
+		public static string DefaultFilePath = "Default.src";
 		public static bool   IsIntepreter    = false;
 
 		public DocList      Documents;
@@ -174,7 +174,7 @@ namespace AE.Visualization
 
 			this.DrawHelpers(iGrx);
 
-			iGrx.DrawRectangle(new Pen(this.Palette.Fore, 1), new Rectangle(Point.Empty, this.Bounds.Size - new Size(1,1)));
+			iGrx.DrawRectangle(new Pen(this.Palette.AdaptedColor, 1), new Rectangle(Point.Empty, this.Bounds.Size - new Size(1,1)));
 			//this.Invalidate(1);
 			//this.ScrollBy(0,this.BufferSize.Height);
 
@@ -339,7 +339,7 @@ namespace AE.Visualization
 					10,
 					(int)((float)this.BufferSize.Height / this.CurrentDocument.Lines.Count * this.Height)
 				);
-				iGrx.FillRectangle(this.Palette.Fore, _VScrollBar);
+				iGrx.FillRectangle(this.Palette.Adapted, _VScrollBar);
 
 			}
 			//this.

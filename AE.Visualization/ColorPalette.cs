@@ -277,6 +277,7 @@ namespace AE.Visualization
 		public bool      IsLightTheme    = true;
 		
 		public CHSAColor BaseColor;
+		public CHSAColor AdaptedColor;
 		public Color[]   Colors;
 
 		public Color     ForeColor;
@@ -313,6 +314,8 @@ namespace AE.Visualization
 
 			var _BriC       = Adapt(this.BaseColor.WithContrast(0.5f));
 			var _DulC       = Adapt(this.BaseColor.WithContrast(0.7f));
+
+			this.AdaptedColor = Adapt(this.BaseColor, true, true);
 
 			this.ShadeColor = _IsL ? _WhiC : _BlaC;
 			this.GlareColor = _IsL ? _BlaC : _WhiC;
@@ -398,7 +401,8 @@ namespace AE.Visualization
 	{
 		public static new GdiColorPalette Default = new GdiColorPalette();
 
-		
+		public Brush Adapted;
+
 		public Brush Shade;
 		public Brush Glare; ///iGrx.Palette.Glare;
 
@@ -428,6 +432,8 @@ namespace AE.Visualization
 			}
 
 			base.Update(iIsLightTheme);
+
+			this.Adapted = new SolidBrush(this.AdaptedColor);
 
 			this.Shade = new SolidBrush(this.ShadeColor);
 			this.Glare = new SolidBrush(this.GlareColor);

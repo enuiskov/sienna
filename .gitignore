@@ -18,6 +18,7 @@ Thumbs.db
 *.lib
 *.suo
 *.user
+*.ulx
 *.[Cc]ache
 *.resources
 *.FileListAbsolute.txt
@@ -26,3 +27,4 @@ BuildLog.htm
 *.manifest
 *.res
 *.dep
+AE.Editor/bin/Debug/Settings.xml
