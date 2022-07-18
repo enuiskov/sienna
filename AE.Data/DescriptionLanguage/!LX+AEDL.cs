@@ -373,7 +373,7 @@ namespace AE.Data
 				var _FstChar        = _Str[0];
 				var _SndChar        = _IsMultiChar ? _Str[1] : 'X';
 
-				var _IsLinkedIdent  = _IsMultiChar && (_FstChar >= 'A' && _FstChar <= 'Z');
+				var _IsLinkedIdent  = _IsMultiChar && Char.IsUpper(_FstChar);
 
 
 				if(_IsLinkedIdent)
@@ -382,12 +382,12 @@ namespace AE.Data
 				}
 				else
 				{
-					var _IsFstLowC   = _FstChar >= 'a' && _FstChar <= 'z';
+					///var _IsFstLowC   = _FstChar >= 'a' && _FstChar <= 'z';
 					
 					///var _IsSndUppC      = _IsMultiChar && (_SndChar >= 'A' && _SndChar <= 'Z');
 					///var _IsSndDigit     = _IsMultiChar && (_SndChar >= '0' && _SndChar <= '9');
 					var _IsFollowingIdent = _IsConvIdent == +1;///_IsSndUppC || _IsSndDigit;
-					var _IsFstCharPfx   = _FstChar == '_' || _FstChar == ':' || _FstChar == '^' || (_FstChar >= 'a' && _FstChar <= 'z');
+					var _IsFstCharPfx   = _FstChar == '_' || _FstChar == ':' || _FstChar == '^' || Char.IsLower(_FstChar);
 
 
 					if (_IsFstCharPfx && _IsFollowingIdent) switch(_FstChar)
@@ -396,7 +396,6 @@ namespace AE.Data
 						case ':' : _Type = TokenType.Label;          break;
 						case '^' : _Type = TokenType.Pointer;        break;
 						case 'g' : _Type = TokenType.GlobalIdent;    break;
-						//case 'r' : _Type = TokenType.ReferenceIdent; break;
 						case 'i' : _Type = _SndChar == 'r'
 							              ? TokenType.ReferenceIdent
 											  : TokenType.InputIdent;
@@ -577,7 +576,7 @@ namespace AE.Data
 			var _IsLiteral = _TokenType >= TokenType.String && _TokenType <= TokenType.Number;
 			
 			var _IsBlock         = _IsBlockOpener || _IsBlockCloser;
-			var _IsIdentifier    = (_TokenType >= TokenType.Identifier && _TokenType < TokenType.IdentifiersEnd);
+			var _IsIdentifier    = (_TokenType > TokenType.Identifiers__Begin && _TokenType < TokenType.Identifiers__End);
 			var _IsAtomDelim     = _TokenType == TokenType.AtomDelimiter;
 			var _IsListItem      = _IsLiteral || _IsIdentifier || _IsBlockOpener || _IsAtomDelim;/// /**/ || _IsWord; /**/
 			var _IsListItemDelim = _TokenType == TokenType.ListItemDelimiter;

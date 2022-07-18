@@ -466,7 +466,7 @@ namespace AE.Data.DescriptionLanguage
 						///case TokenType.Float64 : this.AddNode(SyntaxNodeType.NumFloat64, cToken); break;
 						case TokenType.String : this.AddNode(SyntaxNodeType.String, cToken); break;
 						///case TokenType.HostObject       : this.AddNode(SyntaxNodeType.HostObject,            cToken); break;
-						case TokenType.Identifier       : this.AddNode(SyntaxNodeType.Identifier,            cToken); break;
+						///case TokenType.Identifier       : this.AddNode(SyntaxNodeType.Identifier,            cToken); break;
 						case TokenType.LocalIdent       : this.AddNode(SyntaxNodeType.LocalIdentifier,       cToken); break;
 						case TokenType.GlobalIdent      : this.AddNode(SyntaxNodeType.GlobalIdentifier,      cToken); break;
 						case TokenType.ReferenceIdent   : this.AddNode(SyntaxNodeType.ReferenceIdentifier,   cToken); break;

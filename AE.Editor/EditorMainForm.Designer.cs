@@ -14,7 +14,7 @@ namespace AE.Editor
 	{
 		private System.ComponentModel.IContainer components = null;
 		public static string BackupDirectory = null;
-		public string FilePath;
+		//public string FilePath;
 		private string SettingsFilePath = "Settings.xml";
 
 
@@ -319,7 +319,7 @@ namespace AE.Editor
 					{
 						if(!String.IsNullOrEmpty(EditorMainForm.BackupDirectory) && Directory.Exists(EditorMainForm.BackupDirectory))
 						{
-							var _DocPath     = _AEDLDoc.URI;
+							var _DocPath     = _AEDLDoc.FilePath;
 							var _DocFileName = Path.GetFileName(_DocPath);
 
 							var _BackupDirName  = DateTime.Now.ToString("yyyyMMdd");
@@ -392,13 +392,16 @@ namespace AE.Editor
 					_WindowN["@state"]  = this.WindowState.ToString();
 					_WindowN["@bounds"] = this.DesktopBounds.X + "," + this.DesktopBounds.Y + "," + this.DesktopBounds.Width + "," + this.DesktopBounds.Height;
 				}
+
 				var _DocumentN = _SettingsN.Create("Document");
 				{
-					var _Cursor = this.EditorControl.CodeEditor.CurrentDocument.Cursor.Position;
+					var _CurrDoc = this.EditorControl.CodeEditor.CurrentDocument;
 
-					_DocumentN["@path"]   = this.FilePath;
-					_DocumentN["@scroll-y"] = this.EditorControl.CodeEditor.CurrentDocument.Scroll.Offset.Y;
-					_DocumentN["@cursor"] = _Cursor.X + "," + _Cursor.Y;
+					var _Cursor = _CurrDoc.Cursor.Position;
+
+					_DocumentN["@file-path"] = _CurrDoc.FilePath;
+					_DocumentN["@scroll-y"]  = _CurrDoc.Scroll.Offset.Y;
+					_DocumentN["@cursor"]    = _Cursor.X + "," + _Cursor.Y;
 				}
 			}
 			DataNode.Save(_Node, this.SettingsFilePath);
@@ -427,6 +430,7 @@ namespace AE.Editor
 					_Bounds.Height = Int32.Parse(_BB[3]);
 				}
 
+				var _CurrDoc = this.EditorControl.CodeEditor.CurrentDocument;
 
 				var _CrsPos = new TextBufferFrame.TextBufferOffset();
 				{
@@ -435,12 +439,23 @@ namespace AE.Editor
 					_CrsPos.X = Int32.Parse(_CrsPosStrPP[0]);
 					_CrsPos.Y = Int32.Parse(_CrsPosStrPP[1]);
 				}
-				this.EditorControl.CodeEditor.CurrentDocument.Cursor.Position = _CrsPos;
-				this.EditorControl.CodeEditor.CurrentDocument.Scroll.Offset.Y = _DocumentN["@scroll-y"];
-				
+				int _ScrollY = _DocumentN["@scroll-y"];
 
-				this.WindowState = _WindowN["@state"].Value == "Maximized" ? FormWindowState.Maximized : FormWindowState.Normal;
+				var _FilePath = _DocumentN["@file-path"].Value;
+				if(_FilePath == _CurrDoc.FilePath)
+				{
+					if(_CrsPos.Y < _CurrDoc.Lines.Count)
+					{
+						_CurrDoc.Cursor.Position = _CrsPos;
+					}
+					if(_ScrollY < _CurrDoc.Lines.Count - 1)
+					{
+						_CurrDoc.Scroll.Offset.Y = _ScrollY;
+					}
+				}
+
 				this.DesktopBounds = _Bounds;
+				this.WindowState = _WindowN["@state"].Value == "Maximized" ? FormWindowState.Maximized : FormWindowState.Normal;
 				this.EditorControl.CanvasControl.Canvas.SetColorTheme(_IsLightTheme);
 
 				return;

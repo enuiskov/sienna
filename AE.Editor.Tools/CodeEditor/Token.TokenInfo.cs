@@ -68,13 +68,7 @@ namespace AE.Editor.Tools
 		{
 			/** Undefined */     new TB.CellStyle(new CHSAColor(0.5f, 6), CHSAColor.Transparent, FontStyle.Bold),
 			/** SyntaxToken */   new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.75f), CHSAColor.Transparent),
-			
-			/** FileError       */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
-			/** BlockError      */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
-			/** ExpressionError */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
-			/** ListError       */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
-			/** ListItemError   */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
-			
+		
 			/** Whitespace */     TB.CellStyle.Whitespace,
 			/** Space      */ new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
 			/** Tab        */ new TB.CellStyle(CHSAColor.Glare.WithAlpha(0.25f), CHSAColor.Transparent),
@@ -98,51 +92,72 @@ namespace AE.Editor.Tools
 			/** ExpressionDelimiter */      TB.CellStyle.Default,
 			/** ListDelimiter */            ///TB.CellStyle.Default,
 			/** ListItemDelimiter */        TB.CellStyle.Default,
-			/** IdentifierDelimiter */      TB.CellStyle.Default,
+			/** AtomDelimiter */            TB.CellStyle.Default,
 			
 
-			/** Identifier */               TB.CellStyle.Default,
-			/** Instruction */          new TB.CellStyle(new CHSAColor(0.6f,   7), CHSAColor.Transparent, FontStyle.Bold),
-			/** Label */                new TB.CellStyle(new CHSAColor(0.6f,   9), CHSAColor.Transparent, FontStyle.Bold),
-			/** Pointer */              new TB.CellStyle(new CHSAColor(0.6f,   9), CHSAColor.Transparent, FontStyle.Bold),
-			/** ReferenceIdent */       new TB.CellStyle(new CHSAColor(0.6f,   2), CHSAColor.Transparent, FontStyle.Regular),
-			/** InputIdent */           new TB.CellStyle(new CHSAColor(0.6f,   1), CHSAColor.Transparent, FontStyle.Regular),
-			/** OutputIdent */          new TB.CellStyle(new CHSAColor(0.6f,   6), CHSAColor.Transparent, FontStyle.Regular),
-			/** LocalIdent */           new TB.CellStyle(new CHSAColor(0.6f,   3), CHSAColor.Transparent, FontStyle.Regular),///(0.75f, 3),
-			/** GlobalIdent */          new TB.CellStyle(new CHSAColor(0.6f,   0), CHSAColor.Transparent),
-			/** MemberIdent */          new TB.CellStyle(new CHSAColor(1f,     0), CHSAColor.Transparent, FontStyle.Regular),
-			/** Word  */                new TB.CellStyle(new CHSAColor(1f,     0), CHSAColor.Transparent, FontStyle.Regular),
-			//** HostObject */               TB.CellStyle.Default,
-			//** PackedTuple  */             TB.CellStyle.Default,
-			//** Type */                     TB.CellStyle.Default,
-			/** IdentifiersEnd */           TB.CellStyle.Default,
+			/** Identifiers__Begin */       TB.CellStyle.Default,
+			/**   Instruction */        new TB.CellStyle(new CHSAColor(0.6f,   7), CHSAColor.Transparent, FontStyle.Bold),
+			/**   Label */              new TB.CellStyle(new CHSAColor(0.6f,   9), CHSAColor.Transparent, FontStyle.Bold),
+			/**   Pointer */            new TB.CellStyle(new CHSAColor(0.6f,   9), CHSAColor.Transparent, FontStyle.Bold),
+			/**   ReferenceIdent */     new TB.CellStyle(new CHSAColor(0.6f,   2), CHSAColor.Transparent, FontStyle.Regular),
+			/**   InputIdent */         new TB.CellStyle(new CHSAColor(0.6f,   1), CHSAColor.Transparent, FontStyle.Regular),
+			/**   OutputIdent */        new TB.CellStyle(new CHSAColor(0.6f,   6), CHSAColor.Transparent, FontStyle.Regular),
+			/**   LocalIdent */         new TB.CellStyle(new CHSAColor(0.6f,   3), CHSAColor.Transparent, FontStyle.Regular),///(0.75f, 3),
+			/**   GlobalIdent */        new TB.CellStyle(new CHSAColor(0.6f,   0), CHSAColor.Transparent),
+			/**   MemberIdent */        new TB.CellStyle(new CHSAColor(1f,     0), CHSAColor.Transparent, FontStyle.Regular),
+			/**   Word  */              new TB.CellStyle(new CHSAColor(1f,     0), CHSAColor.Transparent, FontStyle.Regular),
+			/** Identifiers__End */         TB.CellStyle.Default,
 
-			/** Parenthesis */              TB.CellStyle.Default,TB.CellStyle.Default,TB.CellStyle.Default,
-			/** Bracket */                  TB.CellStyle.Default,TB.CellStyle.Default,TB.CellStyle.Default,
-			/** Brace */                    TB.CellStyle.Default,TB.CellStyle.Default,TB.CellStyle.Default,
+
+			/** AllSyntaxTokens__Begin */       TB.CellStyle.Default,
+			/**   Brace,Parenthesis,Bracket */  TB.CellStyle.Default,TB.CellStyle.Default,TB.CellStyle.Default,
+			/**   X-Opener */                   TB.CellStyle.Default,TB.CellStyle.Default,TB.CellStyle.Default,
+			/**   X-Closer */                   TB.CellStyle.Default,TB.CellStyle.Default,TB.CellStyle.Default,
 			
-			/** File */                     TB.CellStyle.Default,SyntaxTokenStyle,SyntaxTokenStyle,
-			/** Block */                    TB.CellStyle.Default,SyntaxTokenStyle,SyntaxTokenStyle,
-			/** Expression */               TB.CellStyle.Default,SyntaxTokenStyle,SyntaxTokenStyle,
-			/** List */                     TB.CellStyle.Default,SyntaxTokenStyle,SyntaxTokenStyle,
-			/** ListItem */                 TB.CellStyle.Default,SyntaxTokenStyle,SyntaxTokenStyle,
+			/**   SpecialSyntaxTokens__Begin */       SyntaxTokenStyle,
+			/**     Root,Block,Expr,List,ListItem */  SyntaxTokenStyle,SyntaxTokenStyle,SyntaxTokenStyle,SyntaxTokenStyle,SyntaxTokenStyle,
+			/**     X-Opener */                       SyntaxTokenStyle,SyntaxTokenStyle,SyntaxTokenStyle,SyntaxTokenStyle,SyntaxTokenStyle,
+			/**     X-Closer */                       SyntaxTokenStyle,SyntaxTokenStyle,SyntaxTokenStyle,SyntaxTokenStyle,SyntaxTokenStyle,
 
-			/** */            TB.CellStyle.Default,
-			/** */            new TB.CellStyle(new CHSAColor(0.7f, 7,1,0.5f), CHSAColor.Transparent),
-			/** */            new TB.CellStyle(new CHSAColor(0.7f, 7,1,0.5f), CHSAColor.Transparent),
+			/**     ExpectExpression */              SyntaxTokenStyle,
+			/**     ExpectList */                    SyntaxTokenStyle,
+			/**     ExpectListItem */                SyntaxTokenStyle,
+			/**     ExpectNextAtom */                SyntaxTokenStyle,
 
-			/** */            TB.CellStyle.Default,
-			/** */            new TB.CellStyle(new CHSAColor(0.7f, 7), CHSAColor.Transparent),
-			/** */            new TB.CellStyle(new CHSAColor(0.7f, 7), CHSAColor.Transparent),
+			
+			/** RootError       */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
+			/** BlockError      */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
+			/** ExpressionError */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
+			/** ListError       */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
+			/** ListItemError   */ new TB.CellStyle(CHSAColor.Shade, new CHSAColor(0.5f,0f), FontStyle.Bold),
 
-			/** */            TB.CellStyle.Default,
-			/** */            new TB.CellStyle(new CHSAColor(0.7f, 7), CHSAColor.Transparent),
-			/** */            new TB.CellStyle(new CHSAColor(0.7f, 7), CHSAColor.Transparent),
 
-			/**  */           TB.CellStyle.Default,
-			/**  */           TB.CellStyle.Default,
-			/**  */           TB.CellStyle.Default,
-			/**  */           TB.CellStyle.Default,
+			///**     Block      */                    TB.CellStyle.Default,SyntaxTokenStyle,SyntaxTokenStyle,
+			///**     Expression */               TB.CellStyle.Default,SyntaxTokenStyle,SyntaxTokenStyle,
+			///**     List       */                     TB.CellStyle.Default,SyntaxTokenStyle,SyntaxTokenStyle,
+			///**     ListItem   */                 TB.CellStyle.Default,SyntaxTokenStyle,SyntaxTokenStyle,
+
+
+
+			///** */            TB.CellStyle.Default,
+			///** */            new TB.CellStyle(new CHSAColor(0.7f, 7,1,0.5f), CHSAColor.Transparent),
+			///** */            new TB.CellStyle(new CHSAColor(0.7f, 7,1,0.5f), CHSAColor.Transparent),
+
+			///** */            TB.CellStyle.Default,
+			///** */            new TB.CellStyle(new CHSAColor(0.7f, 7), CHSAColor.Transparent),
+			///** */            new TB.CellStyle(new CHSAColor(0.7f, 7), CHSAColor.Transparent),
+
+			///** */            TB.CellStyle.Default,
+			///** */            new TB.CellStyle(new CHSAColor(0.7f, 7), CHSAColor.Transparent),
+			///** */            new TB.CellStyle(new CHSAColor(0.7f, 7), CHSAColor.Transparent),
+
+			///**  */           TB.CellStyle.Default,
+			///**  */           TB.CellStyle.Default,
+			///**  */           TB.CellStyle.Default,
+			///**  */           TB.CellStyle.Default,
+
+			/**   SpecialSyntaxTokens__End */   SyntaxTokenStyle,
+			/** AllSyntaxTokens__End */         TB.CellStyle.Default,
 		};
 
 

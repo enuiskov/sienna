@@ -80,7 +80,7 @@ namespace AE.Visualization
 		public class TextDocument
 		{
 			public TextEditorFrame Editor;
-			public string          URI;
+			public string          FilePath;
 			public string          Value;
 			public TextReadyState  ReadyState;
 			public FileSyncState   FileState = FileSyncState.Saved;
@@ -1273,7 +1273,7 @@ namespace AE.Visualization
 
 			public void Save()
 			{
-				this.Save(this.URI);
+				this.Save(this.FilePath);
 			}
 			public void Save(string iPath)
 			{
@@ -1287,21 +1287,21 @@ namespace AE.Visualization
 						else                           _FileData.Append (this.Lines[cLi].Value);
 					}
 				}
-				System.IO.File.WriteAllText(this.URI, _FileData.ToString());
+				System.IO.File.WriteAllText(this.FilePath, _FileData.ToString());
 
 				this.FileState = FileSyncState.Saved;
 			}
 			public void Load()
 			{
-				this.Load(this.URI);
+				this.Load(this.FilePath);
 			}
-			public void Load(string iURI)
+			public void Load(string iFilePath)
 			{
-				///var _FileData = System.IO.File.ReadAllText(iURI);
-				var _FileLines = System.IO.File.ReadAllLines(iURI);
+				///var _FileData = System.IO.File.ReadAllText(iFilePath);
+				var _FileLines = System.IO.File.ReadAllLines(iFilePath);
 				var _FileData = String.Join("\n", _FileLines);
 				
-				this.URI = iURI;
+				this.FilePath = iFilePath;
 				this.ReadString(_FileData);
 
 				this.FileState = FileSyncState.Saved;

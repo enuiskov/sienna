@@ -59,12 +59,6 @@ namespace AE.Data
 	{
 		Undefined,
 		SyntaxToken,
-
-		RootError,
-		BlockError,
-		ExpressionError,
-		ListError,
-		ListItemError,
 		
 		Whitespace,
 		Space,
@@ -94,12 +88,10 @@ namespace AE.Data
 		ListItemDelimiter,        /// "1","2";
 		AtomDelimiter,            /// iItem'Name
 		
-		
-		Identifier, ///~~ "var _IsIdentifier = ... "
+		Identifiers__Begin,
 			Instruction,
 			Label,
 			Pointer,
-			
 			ReferenceIdent,
 			InputIdent,
 			OutputIdent,
@@ -107,26 +99,33 @@ namespace AE.Data
 			GlobalIdent,
 			MemberIdent,
 			Word,
-			//HostObject,
-			//PackedTuple,
-			//Type,
-		IdentifiersEnd,
-			//EndOF
+		Identifiers__End,
 
-		Parenthesis, ParenthesisOpener, ParenthesisCloser,
-		Bracket,     BracketOpener,     BracketCloser,
-		Brace,       BraceOpener,       BraceCloser,
 
-		Root,        RootOpener,        RootCloser,
-		Block,       BlockOpener,       BlockCloser,
-		Expression,  ExpressionOpener,  ExpressionCloser,
-		List,        ListOpener,        ListCloser,
-		ListItem,    ListItemOpener,    ListItemCloser,
-		
-		ExpectExpression,           
-		ExpectList,                 
-		ExpectListItem,             
-		ExpectNextAtom,             
+		AllSyntaxTokens__Begin,
+			Brace,       Parenthesis,       Bracket,
+			BraceOpener, ParenthesisOpener, BracketOpener,
+			BraceCloser, ParenthesisCloser, BracketCloser,
+
+			SpecialSyntaxTokens__Begin,
+				
+				Root,       Block,       Expression,       List,       ListItem,        
+				RootOpener, BlockOpener, ExpressionOpener, ListOpener, ListItemOpener, 
+				RootCloser, BlockCloser, ExpressionCloser, ListCloser, ListItemCloser, 
+
+				ExpectExpression,           
+				ExpectList,                 
+				ExpectListItem,             
+				ExpectNextAtom,             
+
+				RootError,
+				BlockError,
+				ExpressionError,
+				ListError,
+				ListItemError,
+
+			SpecialSyntaxTokens__End,
+		AllSyntaxTokens__End,
 	}
 	public class TokenInfo
 	{
